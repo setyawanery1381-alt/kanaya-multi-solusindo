@@ -1,0 +1,10 @@
+<!-- Chengtian Weiye Logo SVG -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" fill="none">
+  <g transform="translate(60, 10)">
+    <rect x="0" y="4" width="22" height="22" rx="4" fill="#0284C7"/>
+    <rect x="5" y="9" width="12" height="12" fill="#FFFFFF"/>
+    <text x="28" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="14" fill="#0F172A">澄天伟业</text>
+    <text x="28" y="32" font-family="'Inter', sans-serif" font-weight="600" font-size="7" fill="#64748B" letter-spacing="1">CHENGTIAN WEIYE</text>
+  </g>
+  <text x="120" y="62" font-family="'Inter', sans-serif" font-size="8.5" font-weight="600" fill="#64748B" text-anchor="middle" letter-spacing="0.2">PT. Chengtian Weiye Indonesia</text>
+</svg>
