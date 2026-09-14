@@ -122,14 +122,14 @@
         display: none !important;
       }
       .hero-slider-container {
-        min-height: 500px !important;
+        min-height: 480px !important;
       }
       .hero-slide-bg {
-        opacity: 0.65 !important;
+        opacity: 0.28 !important;
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
-        filter: brightness(0.96) contrast(1.05) !important;
+        filter: contrast(108%) brightness(100%) !important;
       }
       .wa-float-btn {
         bottom: 20px !important;
@@ -1867,12 +1867,12 @@
 
           wrapper.innerHTML = slides.map((slide, idx) => `
             <div class="hero-slide ${idx === currentSlideIndex ? 'active' : ''}" id="hero-slide-${idx}">
-              <!-- Slide Background Image with High Clarity -->
+              <!-- Slide Background Image with Clearer Visibility -->
               <img src="${slide.image}" alt="${slide.title}" class="hero-slide-bg">
               
               <!-- Content Container -->
               <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-16 lg:py-24 w-full">
-                <div class="max-w-2xl bg-white/85 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-5 sm:p-0 rounded-2xl border border-white/60 sm:border-none shadow-sm sm:shadow-none">
+                <div class="max-w-2xl">
                   <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-200 text-corporate text-[11px] sm:text-xs font-bold mb-3 sm:mb-5 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
                     <span>${slide.badge || 'PT Kanaya Multi Solusindo'}</span>
@@ -1883,14 +1883,14 @@
                   <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8 font-normal">
                     ${slide.subtitle}
                   </p>
-                  <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+                  <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap">
                     <a href="${slide.btnPrimaryLink || '#products'}" onclick="navigateTo('${(slide.btnPrimaryLink || 'products').replace('#', '')}')" 
-                       class="btn-gold w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-bold flex items-center justify-center gap-2 shadow">
+                       class="btn-gold px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold flex items-center justify-center gap-1.5 sm:gap-2 shadow">
                       <span>${slide.btnPrimaryText || 'Lihat Produk'}</span>
-                      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                     </a>
                     <a href="${slide.btnSecondaryLink || '#contact'}" onclick="navigateTo('${(slide.btnSecondaryLink || 'contact').replace('#', '')}')" 
-                       class="btn-outline-navy w-full sm:w-auto px-6 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-semibold transition flex items-center justify-center gap-2 bg-white/90 backdrop-blur-sm shadow-xs">
+                       class="btn-outline-navy px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold transition flex items-center justify-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-sm">
                       <span>${slide.btnSecondaryText || 'Hubungi Kami'}</span>
                     </a>
                   </div>
