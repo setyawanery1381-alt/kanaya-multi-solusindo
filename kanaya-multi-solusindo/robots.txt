@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kanaya-multi-solusindo.vercel.app/sitemap.xml
