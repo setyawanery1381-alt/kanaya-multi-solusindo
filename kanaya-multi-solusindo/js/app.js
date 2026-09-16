@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCatalogFilters();
   handleRouting();
   checkAdminButtonVisibility();
+  initHeroTouchSwipe();
 
   // Hash route listener
   window.addEventListener('hashchange', () => {
@@ -46,6 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileBtn) {
     mobileBtn.addEventListener('click', toggleMobileMenu);
   }
+
+  // Close mobile menu on outside tap
+  document.addEventListener('click', (e) => {
+    const drawer = document.getElementById('mobile-drawer');
+    const btn = document.getElementById('mobile-menu-btn');
+    if (drawer && !drawer.classList.contains('hidden') && !drawer.contains(e.target) && btn && !btn.contains(e.target)) {
+      toggleMobileMenu();
+    }
+  });
 });
 
 function initIcons() {
@@ -184,6 +194,19 @@ function refreshAllPublicContent() {
   if (cAddress) cAddress.textContent = c.address;
   if (cIg) cIg.textContent = c.instagram || '@kanayamultisolusindo';
 
+  // Dynamic Google Maps Embed & Navigation Link
+  const mapAddressText = document.getElementById('map-address-text');
+  const openGmapsLink = document.getElementById('open-gmaps-link');
+  const gmapsIframe = document.getElementById('gmaps-iframe');
+  const contactAddressMapLink = document.getElementById('contact-address-map-link');
+
+  const fullAddr = `${c.address || 'Ruko Sentra Harapan Indah'}${c.city ? ', ' + c.city : ', Bekasi'}`;
+  if (mapAddressText) mapAddressText.textContent = fullAddr;
+  const mapQuery = encodeURIComponent(fullAddr);
+  if (openGmapsLink) openGmapsLink.href = `https://maps.google.com/?q=${mapQuery}`;
+  if (contactAddressMapLink) contactAddressMapLink.href = `https://maps.google.com/?q=${mapQuery}`;
+  if (gmapsIframe) gmapsIframe.src = `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+
   if (contactWaLink) contactWaLink.href = waUrl;
   if (contactEmailSalesLink) contactEmailSalesLink.href = emailSalesUrl;
   if (contactEmailAdminLink) contactEmailAdminLink.href = emailAdminUrl;
@@ -280,33 +303,33 @@ function renderHeroSlides() {
   const slides = window.KMS_DATA.heroSlides || [];
   if (slides.length === 0) return;
 
-  // Build Slides HTML (Light, Modern, Corporate Blue Palette matching Mockup)
+  // Build Slides HTML (Exact Classic Layout matching Photo 2, seamless background image)
   wrapper.innerHTML = slides.map((slide, idx) => `
     <div class="hero-slide ${idx === currentSlideIndex ? 'active' : ''}" id="hero-slide-${idx}">
-      <!-- Slide Background Image with Soft Mask -->
+      <!-- Slide Background Image with Clearer Visibility -->
       <img src="${slide.image}" alt="${slide.title}" class="hero-slide-bg">
       
       <!-- Content Container -->
-      <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-16 lg:py-24 w-full">
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-16 lg:py-24 w-full">
         <div class="max-w-2xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-200 text-corporate text-xs font-bold mb-5 shadow-sm">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-200 text-corporate text-[11px] sm:text-xs font-bold mb-3 sm:mb-5 shadow-sm">
             <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
             <span>${slide.badge || 'PT Kanaya Multi Solusindo'}</span>
           </div>
-          <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-corporate-dark mb-5">
+          <h2 class="font-heading text-2xl sm:text-4xl lg:text-5xl font-black leading-tight text-corporate-dark mb-3 sm:mb-5 break-words">
             ${slide.title}
           </h2>
-          <p class="text-slate-600 text-base sm:text-lg leading-relaxed mb-8 font-normal">
+          <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8 font-normal">
             ${slide.subtitle}
           </p>
-          <div class="flex flex-wrap items-center gap-4">
+          <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap">
             <a href="${slide.btnPrimaryLink || '#products'}" onclick="navigateTo('${(slide.btnPrimaryLink || 'products').replace('#', '')}')" 
-               class="btn-gold px-7 py-3.5 rounded-lg text-sm sm:text-base font-bold flex items-center gap-2 shadow">
+               class="btn-gold px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold flex items-center justify-center gap-1.5 sm:gap-2 shadow">
               <span>${slide.btnPrimaryText || 'Lihat Produk'}</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             </a>
             <a href="${slide.btnSecondaryLink || '#contact'}" onclick="navigateTo('${(slide.btnSecondaryLink || 'contact').replace('#', '')}')" 
-               class="btn-outline-navy px-6 py-3.5 rounded-lg text-sm sm:text-base font-semibold transition flex items-center gap-2 bg-white/80 backdrop-blur-sm">
+               class="btn-outline-navy px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold transition flex items-center justify-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-sm">
               <span>${slide.btnSecondaryText || 'Hubungi Kami'}</span>
             </a>
           </div>
@@ -397,6 +420,33 @@ function restartHeroSlider() {
 }
 
 /**
+ * Mobile Touch / Swipe Navigation for Hero Slider
+ */
+let heroTouchStartX = 0;
+let heroTouchEndX = 0;
+
+function initHeroTouchSwipe() {
+  const slider = document.getElementById('hero-slider-box');
+  if (!slider) return;
+
+  slider.addEventListener('touchstart', (e) => {
+    heroTouchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  slider.addEventListener('touchend', (e) => {
+    heroTouchEndX = e.changedTouches[0].screenX;
+    const threshold = 45;
+    if (heroTouchEndX < heroTouchStartX - threshold) {
+      nextHeroSlide();
+      restartHeroSlider();
+    } else if (heroTouchEndX > heroTouchStartX + threshold) {
+      prevHeroSlide();
+      restartHeroSlider();
+    }
+  }, { passive: true });
+}
+
+/**
  * ==================== ROUTING & NAVIGATION ====================
  */
 function handleRouting() {
@@ -461,8 +511,13 @@ function updateNavActive(target) {
 
 function toggleMobileMenu() {
   const drawer = document.getElementById('mobile-drawer');
+  const btn = document.getElementById('mobile-menu-btn');
   if (drawer) {
-    drawer.classList.toggle('hidden');
+    const isHidden = drawer.classList.toggle('hidden');
+    if (btn) {
+      btn.innerHTML = isHidden ? '<i data-lucide="menu" class="w-6 h-6"></i>' : '<i data-lucide="x" class="w-6 h-6"></i>';
+      initIcons();
+    }
   }
 }
 
@@ -2262,15 +2317,39 @@ function renderAdminInquiries() {
 
 function deleteInquiryItem(id) {
   let list = loadInquiries();
+  const target = list.find(i => i.id === id);
   list = list.filter(i => i.id !== id);
-  localStorage.setItem('KMS_INQUIRIES_V2', JSON.stringify(list));
+  try {
+    localStorage.setItem('KMS_INQUIRIES_V2', JSON.stringify(list));
+  } catch(e) {}
+
+  // Hapus dari Cloud Firestore
+  if (typeof kmsDb !== 'undefined' && kmsDb && target && target._firestoreId) {
+    kmsDb.collection('inquiries').doc(target._firestoreId).delete()
+      .then(() => console.log('Inquiry terhapus dari Cloud Firestore'))
+      .catch(err => console.warn('Gagal hapus dari Firestore:', err));
+  }
+
   renderAdminInquiries();
   updateAdminStats();
 }
 
 function clearAllInquiries() {
   if (confirm('Hapus seluruh riwayat inquiry masuk?')) {
-    localStorage.removeItem('KMS_INQUIRIES_V2');
+    const list = loadInquiries();
+    try {
+      localStorage.removeItem('KMS_INQUIRIES_V2');
+    } catch(e) {}
+
+    // Hapus seluruh dokumen dari Cloud Firestore
+    if (typeof kmsDb !== 'undefined' && kmsDb) {
+      list.forEach(item => {
+        if (item._firestoreId) {
+          kmsDb.collection('inquiries').doc(item._firestoreId).delete().catch(e => console.warn(e));
+        }
+      });
+    }
+
     renderAdminInquiries();
     updateAdminStats();
   }

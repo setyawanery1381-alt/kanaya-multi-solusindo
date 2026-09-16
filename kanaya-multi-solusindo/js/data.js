@@ -31,9 +31,15 @@ const DEFAULT_KMS_DATA = {
     {
       id: "slide-1",
       badge: "General Supplier & B2B Procurement Partner",
-      title: "General Supplier yang Mendukung Kebutuhan Bisnis & Industri Anda",
-      subtitle: "PT Kanaya Multi Solusindo hadir sebagai solusi pengadaan dengan menyediakan beragam produk untuk mendukung kebutuhan bisnis, operasional, dan industri.",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=85",
+      title: "General Supplier Terpercaya untuk Kebutuhan Operasional & Bisnis",
+      subtitle: "PT Kanaya Multi Solusindo hadir sebagai mitra pengadaan terintegrasi dengan menyediakan beragam produk industri berkualitas prima.",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
+      tag: "Suplai Cepat & Resmi",
+      highlights: [
+        "Katalog Produk Lengkap & Siap Pasok",
+        "Legalitas Perusahaan Lengkap & Faktur Pajak Resmi",
+        "Jangkauan Pengiriman Seluruh Wilayah Industri"
+      ],
       btnPrimaryText: "Lihat Produk",
       btnPrimaryLink: "#products",
       btnSecondaryText: "Hubungi Kami",
@@ -41,21 +47,33 @@ const DEFAULT_KMS_DATA = {
     },
     {
       id: "slide-2",
-      badge: "Packaging & Plastic Wrapping Solution",
-      title: "Solusi Lengkap Packaging & Material Plastik Industri",
-      subtitle: "Menyediakan Plastic Stretch Film kualitas prima, bubble wrap, kardus corrugated, dan perlengkapan kemasan pallet untuk distribusi kargo aman.",
-      image: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=1600&q=85",
+      badge: "Packaging & Material Plastik Industri",
+      title: "Solusi Lengkap Packaging & Plastic Stretch Film Industri",
+      subtitle: "Menyediakan Plastic Stretch Film kualitas prima, bubble wrap tebal, lakban OPP, dan kardus corrugated untuk proteksi kargo maksimal.",
+      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=85",
+      tag: "Proteksi Kargo Pallet",
+      highlights: [
+        "Plastic Stretch Film Hand & Machine Roll",
+        "Bubble Wrap Tebal & Dus Corrugated Box",
+        "Standar Proteksi Kargo Industri & Siap Ekspor"
+      ],
       btnPrimaryText: "Katalog Plastik",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Ajukan Inquiry",
+      btnSecondaryText: "Ajukan Penawaran",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-3",
-      badge: "Workplace Safety & K3 Standards",
-      title: "Perlengkapan Keselamatan Kerja (APD) & Kebutuhan Operasional",
-      subtitle: "Mendukung standar kepatuhan K3 di lingkungan kerja pabrik, proyek konstruksi, dan pergudangan dengan perlengkapan keselamatan berkualitas tinggi.",
-      image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=85",
+      badge: "Workplace Safety & Standar K3",
+      title: "Perlengkapan Keselamatan Kerja (APD) & Safety Industri",
+      subtitle: "Mendukung kepatuhan standar K3 di lingkungan kerja pabrik, pergudangan, dan proyek dengan perlengkapan keselamatan bersertifikasi.",
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
+      tag: "Standar Sertifikasi K3",
+      highlights: [
+        "Helm Safety, Rompi K3, Kacamata & Sarung Tangan",
+        "Sepatu Safety Standar Pabrik & Konstruksi",
+        "Perlindungan Optimal Tenaga Kerja Industri"
+      ],
       btnPrimaryText: "Perlengkapan APD",
       btnPrimaryLink: "#products",
       btnSecondaryText: "Konsultasi Safety",
@@ -65,8 +83,14 @@ const DEFAULT_KMS_DATA = {
       id: "slide-4",
       badge: "Mitra Pengadaan B2B Terpercaya",
       title: "Bukan Sekadar Penyedia, Kami Hadir sebagai Mitra Strategis",
-      subtitle: "Kami percaya bahwa kerja sama yang baik dibangun melalui integritas, kecepatan suplai, kualitas produk teruji, dan komitmen pelayanan jangka panjang.",
-      image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=85",
+      subtitle: "Kerja sama yang baik dibangun melalui integritas, kecepatan suplai, kualitas produk teruji, dan komitmen pelayanan jangka panjang.",
+      image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=85",
+      tag: "Kemitraan Jangka Panjang",
+      highlights: [
+        "Sistem Pembayaran TOP (Term of Payment) Fleksibel",
+        "Dedicated Account Manager yang Responsif",
+        "Garansi Mutu Produk & Pelayanan Prima"
+      ],
       btnPrimaryText: "Lihat Klien Kami",
       btnPrimaryLink: "#clients",
       btnSecondaryText: "Mulai Kerja Sama",
@@ -146,7 +170,7 @@ const DEFAULT_KMS_DATA = {
       name: "Plastic",
       title: "Material Plastik & Wrapping",
       desc: "Berbagai material dan kebutuhan plastik untuk packaging dan operasional industri.",
-      image: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
       itemCount: "9 Varian Utama"
     },
     {
@@ -209,9 +233,9 @@ const DEFAULT_KMS_DATA = {
       badge: "Proteksi Kemasan",
       shortDesc: "Material stretch film elastis tinggi untuk mengamankan barang pallet saat pengiriman dan penyimpanan.",
       fullDesc: "Plastic stretch film dirancang khusus untuk melindungi produk dari debu, kelembapan, kotoran, dan goncangan selama proses penyimpanan dan distribusi pengiriman barang di gudang maupun ekspedisi logistik.",
-      image: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=900&q=80",
+      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
         "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
         "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"
       ],
@@ -303,8 +327,8 @@ const DEFAULT_KMS_DATA = {
       badge: "Vacuum & Frozen",
       shortDesc: "Sangat kuat dan tahan suhu tinggi; untuk frozen food, daging, dan kemasan vacuum bag.",
       fullDesc: "Plastik Nylon dirancang dengan ketahanan gas barrier yang tinggi terhadap oksigen, menjamin kesegaran produk frozen food, daging olahan, dan makanan steril dalam jangka panjang.",
-      image: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=900&q=80"],
+      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+      gallery: ["https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"],
       advantages: [
         "Ketahanan hampa udara (vacuum barrier) terbaik",
         "Tahan suhu beku (freezer) tanpa pecah atau getas",
@@ -366,8 +390,8 @@ const DEFAULT_KMS_DATA = {
       badge: "Flexible Bag",
       shortDesc: "Lentur dan ringan; untuk kantong plastik, plastic wrap pelindung, dan kantong belanja.",
       fullDesc: "LDPE memiliki karakteristik lentur, kedap air, dan memiliki elastisitas baik, sangat cocok untuk kantong belanja tahan beban, plastik pelindung barang, dan liner pallet.",
-      image: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=900&q=80"],
+      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+      gallery: ["https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"],
       advantages: [
         "Fleksibel dan tidak mudah robek saat ditarik",
         "Tahan terhadap kelembapan tinggi",
@@ -695,9 +719,36 @@ const DEFAULT_KMS_DATA = {
 };
 
 /**
- * Reactive LocalStorage Data Layer
+ * Firebase Firestore Cloud Configuration & Client
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V2';
+const KMS_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyC2Qbc1qWT8FIPK9CT7dpPgJySY3_OzG1A",
+  authDomain: "kanaya-multi-solusindo.firebaseapp.com",
+  projectId: "kanaya-multi-solusindo",
+  storageBucket: "kanaya-multi-solusindo.firebasestorage.app",
+  messagingSenderId: "779738839192",
+  appId: "1:779738839192:web:df3b952da43f07d87538ed"
+};
+
+let kmsDb = null;
+try {
+  if (typeof firebase !== 'undefined') {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(KMS_FIREBASE_CONFIG);
+    }
+    kmsDb = firebase.firestore();
+    console.log('✅ Firebase Firestore terhubung sukses.');
+  } else {
+    console.warn('⚠️ Firebase SDK belum dimuat, fallback ke LocalStorage.');
+  }
+} catch (err) {
+  console.warn('⚠️ Inisialisasi Firebase error:', err);
+}
+
+/**
+ * Reactive LocalStorage + Cloud Firestore Data Layer
+ */
+const STORAGE_KEY = 'KMS_APP_DATA_V3';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -714,6 +765,10 @@ function loadKmsData() {
           merged.company.contacts = Object.assign({}, DEFAULT_KMS_DATA.company.contacts, parsed.company.contacts);
         }
       }
+      // Guarantee updated hero slides with clean high-res images & highlights
+      if (!parsed.heroSlides || parsed.heroSlides.some(s => !s.highlights || s.image.includes('1605600659908'))) {
+        merged.heroSlides = JSON.parse(JSON.stringify(DEFAULT_KMS_DATA.heroSlides));
+      }
       return merged;
     }
   } catch (e) {
@@ -723,10 +778,23 @@ function loadKmsData() {
 }
 
 function saveKmsData(data) {
+  // 1. Simpan ke LocalStorage seketika untuk kecepatan lokal & offline fallback
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (e) {
     console.error('Error saving to localStorage:', e);
+  }
+
+  // 2. Simpan & Sinkronkan langsung ke Cloud Firebase Firestore
+  if (kmsDb) {
+    kmsDb.collection('cms').doc('website_data').set(data)
+      .then(() => {
+        console.log('☁️ Data website berhasil disinkronkan ke Cloud Firestore.');
+        showSyncNotice('Tersimpan di Cloud Firebase');
+      })
+      .catch((err) => {
+        console.error('❌ Gagal sinkron ke Cloud Firestore:', err);
+      });
   }
 }
 
@@ -750,11 +818,118 @@ function saveInquiry(inquiry) {
   const list = loadInquiries();
   inquiry.id = 'INQ-' + Date.now();
   inquiry.createdAt = new Date().toLocaleString('id-ID');
+  inquiry.createdAtMs = Date.now();
   inquiry.status = 'Baru';
   list.unshift(inquiry);
-  localStorage.setItem(INQUIRIES_KEY, JSON.stringify(list));
+  try {
+    localStorage.setItem(INQUIRIES_KEY, JSON.stringify(list));
+  } catch (e) {}
+
+  // Simpan inquiry ke Firebase Firestore agar dapat diakses admin dari mana saja
+  if (kmsDb) {
+    kmsDb.collection('inquiries').add(inquiry)
+      .then((docRef) => {
+        inquiry._firestoreId = docRef.id;
+        console.log('☁️ Inquiry pengadaan berhasil masuk ke Cloud Firestore:', docRef.id);
+      })
+      .catch((err) => {
+        console.error('❌ Gagal simpan inquiry ke Firestore:', err);
+      });
+  }
+
   return inquiry;
+}
+
+// Helper notice sinkronisasi cloud
+function showSyncNotice(msg) {
+  let toast = document.getElementById('kms-sync-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'kms-sync-toast';
+    toast.className = 'fixed bottom-5 right-5 z-[9999] bg-emerald-600 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-2';
+    toast.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-200 animate-ping"></span><span id="kms-sync-msg"></span>';
+    document.body.appendChild(toast);
+  }
+  const msgEl = document.getElementById('kms-sync-msg');
+  if (msgEl) msgEl.textContent = msg;
+  toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+  setTimeout(() => {
+    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+  }, 2500);
 }
 
 // Initialize Global Data Instance
 window.KMS_DATA = loadKmsData();
+
+// Real-Time Cloud Synchronization Listener
+function initCloudSync() {
+  if (!kmsDb) return;
+
+  // 1. Dengarkan pembaruan data website dari Firestore secara langsung
+  kmsDb.collection('cms').doc('website_data').onSnapshot((doc) => {
+    if (doc.exists) {
+      const cloudData = doc.data();
+      const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
+      if (cloudData.company) {
+        merged.company = Object.assign({}, DEFAULT_KMS_DATA.company, cloudData.company);
+        if (cloudData.company.contacts) {
+          merged.company.contacts = Object.assign({}, DEFAULT_KMS_DATA.company.contacts, cloudData.company.contacts);
+        }
+      }
+      window.KMS_DATA = merged;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      } catch(e) {}
+
+      // Perbarui tampilan publik jika halaman utama sedang terbuka
+      if (typeof refreshAllPublicContent === 'function') {
+        refreshAllPublicContent();
+      }
+      // Perbarui hero slides jika fungsi tersedia
+      if (typeof window.renderHeroSlides === 'function') {
+        window.renderHeroSlides();
+      }
+      // Perbarui dashboard admin jika admin sedang membukanya
+      if (typeof initAdminDashboard === 'function' && window.location.hash.includes('admin')) {
+        initAdminDashboard();
+      }
+    } else {
+      // Jika data di Firestore masih kosong, unggah data default secara otomatis
+      console.log('☁️ Mengunggah data awal bawaan ke Cloud Firestore...');
+      kmsDb.collection('cms').doc('website_data').set(window.KMS_DATA)
+        .catch(err => console.warn('Gagal upload data awal:', err));
+    }
+  }, (err) => {
+    console.warn('Firestore real-time sync warning:', err);
+  });
+
+  // 2. Dengarkan data Inquiries dari Firestore secara realtime untuk Admin
+  kmsDb.collection('inquiries').onSnapshot((snapshot) => {
+    const cloudInquiries = [];
+    snapshot.forEach((doc) => {
+      const item = doc.data();
+      item._firestoreId = doc.id;
+      cloudInquiries.push(item);
+    });
+    cloudInquiries.sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
+    try {
+      localStorage.setItem(INQUIRIES_KEY, JSON.stringify(cloudInquiries));
+    } catch(e) {}
+
+    if (typeof renderAdminInquiries === 'function' && window.location.hash.includes('admin')) {
+      renderAdminInquiries();
+    }
+    if (typeof updateAdminStats === 'function' && window.location.hash.includes('admin')) {
+      updateAdminStats();
+    }
+  }, (err) => {
+    console.warn('Firestore inquiries sync warning:', err);
+  });
+}
+
+// Jalankan Cloud Sync setelah halaman siap
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCloudSync);
+} else {
+  initCloudSync();
+}
