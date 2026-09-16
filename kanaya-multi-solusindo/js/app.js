@@ -286,15 +286,101 @@ function renderValuesGrid(elementId) {
   if (!container) return;
   const values = window.KMS_DATA.values || [];
 
-  container.innerHTML = values.map(val => `
-    <div class="bg-white rounded-2xl p-8 card-hover border-t-4 border-t-corporate flex flex-col items-center text-center shadow-sm">
-      <div class="w-16 h-16 rounded-2xl bg-blue-50 text-corporate flex items-center justify-center mb-5">
-        <i data-lucide="${val.icon || 'shield-check'}" class="w-8 h-8"></i>
+  const defaultDetails = {
+    "profesional": {
+      badge: "Legalitas 100% Resmi",
+      gradient: "from-blue-600 to-corporate",
+      badgeClass: "bg-blue-50 text-blue-800 border-blue-200",
+      iconBg: "bg-gradient-to-br from-blue-700 to-corporate text-white",
+      points: [
+        "Perusahaan Berbadan Hukum Resmi (PT)",
+        "Faktur Pajak PPN & e-Billing Sah",
+        "Sistem TOP (Term of Payment) Fleksibel"
+      ]
+    },
+    "customer-focus": {
+      badge: "Layanan Cepat & Fleksibel",
+      gradient: "from-amber-500 to-amber-600",
+      badgeClass: "bg-amber-50 text-amber-800 border-amber-200",
+      iconBg: "bg-gradient-to-br from-amber-500 to-amber-600 text-slate-950",
+      points: [
+        "Dedicated Account Representative B2B",
+        "Respon Cepat WhatsApp & Penawaran Hitungan Jam",
+        "Pengiriman Terjadwal Langsung ke Pabrik / Gudang"
+      ]
+    },
+    "kualitas-pelayanan": {
+      badge: "Garansi Mutu 100%",
+      gradient: "from-emerald-600 to-teal-700",
+      badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200",
+      iconBg: "bg-gradient-to-br from-emerald-600 to-teal-700 text-white",
+      points: [
+        "Produk Terstandarisasi K3 & Mutu Industri",
+        "Garansi Retur 100% Jika Barang Cacat / Tidak Sesuai",
+        "Penyediaan Sampel Produk untuk Trial"
+      ]
+    }
+  };
+
+  container.innerHTML = values.map((val, idx) => {
+    const key = val.id || (idx === 0 ? "profesional" : idx === 1 ? "customer-focus" : "kualitas-pelayanan");
+    const det = defaultDetails[key] || {
+      badge: "Standar Korporat",
+      gradient: "from-corporate to-blue-700",
+      badgeClass: "bg-slate-100 text-slate-700 border-slate-200",
+      iconBg: "bg-corporate text-white",
+      points: [
+        "Standar Mutu Industri Teruji",
+        "Proses Pengadaan Cepat & Transparan",
+        "Dukungan Penuh Tim Profesional"
+      ]
+    };
+
+    return `
+      <div class="bg-white rounded-2xl p-7 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden flex flex-col justify-between group">
+        <!-- Top Accent Gradient Line -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${det.gradient}"></div>
+
+        <div>
+          <!-- Top Row: Icon Container + Badge -->
+          <div class="flex items-center justify-between gap-3 mb-6">
+            <div class="w-14 h-14 rounded-2xl ${det.iconBg} flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 flex-shrink-0">
+              <i data-lucide="${val.icon || 'shield-check'}" class="w-7 h-7"></i>
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-bold tracking-wide border ${det.badgeClass}">
+              ${det.badge}
+            </span>
+          </div>
+
+          <!-- Title & Subtitle -->
+          <h3 class="font-heading font-extrabold text-xl text-slate-900 group-hover:text-corporate transition-colors mb-3">
+            ${val.title}
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            ${val.desc}
+          </p>
+
+          <!-- Feature Bullet Points with Checkmarks -->
+          <div class="space-y-3 pt-5 border-t border-slate-100 mb-6">
+            ${det.points.map(pt => `
+              <div class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+                <div class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3 h-3 stroke-[3]"></i>
+                </div>
+                <span>${pt}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Card Bottom Link / Action -->
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-corporate group-hover:text-amber-600 transition-colors">
+          <span>Keunggulan Layanan B2B</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition-transform"></i>
+        </div>
       </div>
-      <h3 class="font-heading font-extrabold text-lg text-corporate-dark mb-2">${val.title}</h3>
-      <p class="text-slate-600 text-sm leading-relaxed">${val.desc}</p>
-    </div>
-  `).join('');
+    `;
+  }).join('');
   initIcons();
 }
 
