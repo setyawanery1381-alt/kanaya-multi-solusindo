@@ -879,6 +879,9 @@ function initCloudSync() {
       window.KMS_DATA = merged;
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        if (cloudData.adminPassword) {
+          localStorage.setItem('KMS_CUSTOM_PASS', cloudData.adminPassword);
+        }
       } catch(e) {}
 
       // Perbarui tampilan publik jika halaman utama sedang terbuka

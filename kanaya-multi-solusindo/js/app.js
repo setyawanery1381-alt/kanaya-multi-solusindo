@@ -17,7 +17,8 @@ let isSlidePaused = false;
 
 // Admin Authentication State
 const DEFAULT_ADMIN_USER = 'admin';
-const DEFAULT_ADMIN_PASS = 'kanaya2026';
+const DEFAULT_ADMIN_PASS = 'kanaya123';
+const LEGACY_ADMIN_PASS = 'kanaya2026';
 
 document.addEventListener('DOMContentLoaded', () => {
   initIcons();
@@ -1168,7 +1169,11 @@ function handleAdminLoginSubmit(e) {
 
   const storedPass = localStorage.getItem('KMS_CUSTOM_PASS') || DEFAULT_ADMIN_PASS;
 
-  if (u === DEFAULT_ADMIN_USER && p === storedPass) {
+  // Mendukung password tersimpan di browser, password default baru 'kanaya123', maupun cadangan 'kanaya2026'
+  const isValidPassword = (p === storedPass || p === DEFAULT_ADMIN_PASS || p === LEGACY_ADMIN_PASS);
+
+  if (u === DEFAULT_ADMIN_USER && isValidPassword) {
+    localStorage.setItem('KMS_CUSTOM_PASS', p);
     sessionStorage.setItem('KMS_ADMIN_LOGGED_IN', 'true');
     closeAdminLoginModal();
     window.location.hash = 'admin';
@@ -1191,7 +1196,17 @@ function changeAdminPassword(e) {
     return;
   }
   localStorage.setItem('KMS_CUSTOM_PASS', newPass);
-  alert('Password admin berhasil diubah!');
+
+  // Simpan otomatis ke Cloud Firestore agar tersinkronisasi di semua perangkat
+  if (typeof kmsDb !== 'undefined' && kmsDb) {
+    kmsDb.collection('cms').doc('website_data').set({
+      adminPassword: newPass
+    }, { merge: true }).then(() => {
+      console.log('Password admin berhasil disinkronkan ke Cloud Firestore.');
+    }).catch(err => console.warn('Gagal sinkron password ke Firestore:', err));
+  }
+
+  alert('Password admin berhasil diubah menjadi: ' + newPass);
   document.getElementById('adm-new-pass').value = '';
 }
 
