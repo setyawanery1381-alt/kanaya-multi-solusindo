@@ -194,18 +194,24 @@ function refreshAllPublicContent() {
   if (cAddress) cAddress.textContent = c.address;
   if (cIg) cIg.textContent = c.instagram || '@kanayamultisolusindo';
 
-  // Dynamic Google Maps Embed & Navigation Link
+  // Dynamic Google Maps Embed & Navigation Link (Both Contact & Home Views)
   const mapAddressText = document.getElementById('map-address-text');
   const openGmapsLink = document.getElementById('open-gmaps-link');
   const gmapsIframe = document.getElementById('gmaps-iframe');
   const contactAddressMapLink = document.getElementById('contact-address-map-link');
+  const homeMapAddressText = document.getElementById('home-map-address-text');
+  const homeOpenGmapsLink = document.getElementById('home-open-gmaps-link');
+  const homeGmapsIframe = document.getElementById('home-gmaps-iframe');
 
   const fullAddr = `${c.address || 'Ruko Sentra Harapan Indah'}${c.city ? ', ' + c.city : ', Bekasi'}`;
   if (mapAddressText) mapAddressText.textContent = fullAddr;
+  if (homeMapAddressText) homeMapAddressText.textContent = fullAddr;
   const mapQuery = encodeURIComponent(fullAddr);
   if (openGmapsLink) openGmapsLink.href = `https://maps.google.com/?q=${mapQuery}`;
+  if (homeOpenGmapsLink) homeOpenGmapsLink.href = `https://maps.google.com/?q=${mapQuery}`;
   if (contactAddressMapLink) contactAddressMapLink.href = `https://maps.google.com/?q=${mapQuery}`;
   if (gmapsIframe) gmapsIframe.src = `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+  if (homeGmapsIframe) homeGmapsIframe.src = `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   if (contactWaLink) contactWaLink.href = waUrl;
   if (contactEmailSalesLink) contactEmailSalesLink.href = emailSalesUrl;
