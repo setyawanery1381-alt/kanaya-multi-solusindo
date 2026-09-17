@@ -20,9 +20,15 @@ const DEFAULT_KMS_DATA = {
       emailAdmin: "admin@kanayamulti.com",
       instagram: "@kanayamultisolusindo",
       instagramUrl: "https://instagram.com/kanayamultisolusindo",
+      tiktok: "@pt_kanayamultisolusindo",
+      tiktokUrl: "https://www.tiktok.com/@pt_kanayamultisolusindo?_r=1&_t=ZS-99aLXp9ql8C",
+      linkedin: "PT Kanaya Multi Solusindo",
+      linkedinUrl: "https://www.linkedin.com/in/pt-kanaya-multi-solusindo-661959435/",
       address: "Ruko Sentra EM.6 Harapan Indah - Bekasi - Jawa Barat",
       city: "Bekasi, Jawa Barat - Indonesia",
-      operationalHours: "Senin - Jumat: 08:30 - 17:00 WIB"
+      operationalHours: "Senin - Jumat: 08:30 - 17:00 WIB",
+      mapsUrl: "https://maps.google.com/?q=Ruko+Sentra+EM.6+Harapan+Indah+Bekasi",
+      footerTagline: "General Supplier untuk kebutuhan bisnis, operasional, dan industri. Mitra terpercaya pengadaan barang korporat berkualitas tinggi."
     }
   },
 
@@ -132,6 +138,58 @@ const DEFAULT_KMS_DATA = {
     { number: "100+", label: "Klien Korporat", sublabel: "Mitra B2B dan industri manufaktur" },
     { number: "10+", label: "Sektor Industri", sublabel: "Otomotif, logam, logistik & perkantoran" }
   ],
+
+  whyKanaya: {
+    badge: "Keunggulan Kompetitif B2B",
+    title: "Mengapa Perusahaan Memilih Bermitra dengan Kanaya?",
+    subtitle: "Kami bukan sekadar penyedia barang, melainkan mitra strategis pengadaan yang menjamin legalitas resmi, keaslian mutu produk, serta kepastian jadwal suplai untuk kelancaran operasional industri Anda.",
+    items: [
+      {
+        id: "profesional",
+        badge: "Legalitas 100% Resmi",
+        title: "Profesional & Terpercaya",
+        desc: "Menjunjung tinggi integritas, transparansi transaksi, dan kepatuhan administrasi.",
+        points: [
+          "Perusahaan Berbadan Hukum Resmi (PT)",
+          "Faktur Pajak PPN & e-Billing Sah",
+          "Sistem TOP (Term of Payment) Fleksibel"
+        ]
+      },
+      {
+        id: "customer-focus",
+        badge: "Layanan Cepat & Fleksibel",
+        title: "Customer Focus",
+        desc: "Menjadikan kebutuhan dan jadwal produksi pelanggan sebagai prioritas utama pelayanan.",
+        points: [
+          "Dedicated Account Representative B2B",
+          "Respon Cepat WhatsApp & Penawaran Hitungan Jam",
+          "Pengiriman Terjadwal Langsung ke Pabrik / Gudang"
+        ]
+      },
+      {
+        id: "kualitas-pelayanan",
+        badge: "Garansi Mutu 100%",
+        title: "Kualitas & Pelayanan",
+        desc: "Standar mutu teruji dengan jaminan penggantian barang untuk kepuasan mitra.",
+        points: [
+          "Produk Terstandarisasi K3 & Mutu Industri",
+          "Garansi Retur 100% Jika Barang Cacat / Tidak Sesuai",
+          "Penyediaan Sampel Produk untuk Trial"
+        ]
+      }
+    ],
+    guarantees: [
+      { icon: "file-check-2", title: "Faktur Pajak Sah", desc: "Legalitas PT & PPN resmi" },
+      { icon: "clock", title: "Fast Response", desc: "Penawaran hitungan jam" },
+      { icon: "shield-check", title: "Garansi 100%", desc: "Retur barang bila cacat" },
+      { icon: "truck", title: "Suplai Rutin", desc: "Pengiriman se-Jabodetabek" }
+    ]
+  },
+
+  closingCta: {
+    title: "Bukan Sekadar Penyedia, Kami Hadir sebagai Mitra.",
+    desc: "Kami percaya bahwa kerja sama yang baik dibangun melalui kepercayaan, profesionalitas, kualitas, dan komitmen. Kanaya Multi Solusindo berupaya memahami kebutuhan pelanggan dan memberikan solusi pengadaan yang tepat untuk mendukung kebutuhan bisnis dan operasional."
+  },
 
   solutions: [
     {
@@ -879,6 +937,9 @@ function initCloudSync() {
       window.KMS_DATA = merged;
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        if (cloudData.adminUsername) {
+          localStorage.setItem('KMS_CUSTOM_USER', cloudData.adminUsername);
+        }
         if (cloudData.adminPassword) {
           localStorage.setItem('KMS_CUSTOM_PASS', cloudData.adminPassword);
         }
@@ -928,6 +989,68 @@ function initCloudSync() {
   }, (err) => {
     console.warn('Firestore inquiries sync warning:', err);
   });
+
+  // 3. Dengarkan data Analitik Kunjungan dari Firestore secara realtime
+  kmsDb.collection('cms').doc('analytics').onSnapshot((doc) => {
+    if (doc.exists) {
+      window.KMS_ANALYTICS = doc.data();
+      if (typeof renderAdminAnalytics === 'function' && window.location.hash.includes('admin')) {
+        renderAdminAnalytics();
+      }
+    }
+  }, (err) => {
+    console.warn('Firestore analytics sync warning:', err);
+  });
+
+  // Jalankan pelacakan pengunjung jika bukan admin
+  if (!window.location.hash.includes('admin')) {
+    trackVisitor();
+  }
+}
+
+/**
+ * Mesin Pelacak Kunjungan Pengunjung Website (Real-time Analytics)
+ */
+function trackVisitor() {
+  if (!kmsDb || typeof firebase === 'undefined') return;
+  try {
+    const today = new Date().toISOString().split('T')[0];
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    let visId = localStorage.getItem('KMS_VISITOR_ID');
+    let isNewVisitor = false;
+    if (!visId) {
+      visId = 'v_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      localStorage.setItem('KMS_VISITOR_ID', visId);
+      isNewVisitor = true;
+    }
+
+    const lastVisit = localStorage.getItem('KMS_LAST_VISIT_DATE');
+    const isNewToday = (lastVisit !== today);
+    if (isNewToday) {
+      localStorage.setItem('KMS_LAST_VISIT_DATE', today);
+    }
+
+    const inc = firebase.firestore.FieldValue.increment(1);
+    const updateData = {
+      totalViews: inc,
+      lastUpdated: new Date().toISOString()
+    };
+    if (isNewVisitor) {
+      updateData.uniqueVisitors = inc;
+    }
+    if (isMobile) {
+      updateData.mobileViews = inc;
+    } else {
+      updateData.desktopViews = inc;
+    }
+    updateData[`views_${today}`] = inc;
+
+    kmsDb.collection('cms').doc('analytics').set(updateData, { merge: true })
+      .catch(err => console.warn('Gagal mencatat analitik:', err));
+  } catch(e) {
+    console.warn('Pelacakan analitik dilewati:', e);
+  }
 }
 
 // Jalankan Cloud Sync setelah halaman siap
