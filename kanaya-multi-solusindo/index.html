@@ -408,7 +408,58 @@
         </div>
       </section>
 
+      <!-- 4.3.5 Clients Section on Homepage (Dipercaya oleh Perusahaan & Industri) -->
+      <section class="py-14 sm:py-16 bg-slate-50/80 border-b border-slate-200/70 relative overflow-hidden" id="home-clients-section">
+        <!-- Subtle decorative background glow -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none"></div>
 
+        <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/70 border border-blue-200/60 text-corporate text-xs font-bold uppercase tracking-wider mb-2.5 shadow-xs">
+                <span class="w-2 h-2 rounded-full bg-corporate animate-pulse"></span>
+                <span>Kemitraan Korporat &amp; B2B</span>
+              </div>
+              <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark">
+                Dipercaya oleh Berbagai Perusahaan Terkemuka
+              </h2>
+              <p class="text-slate-600 text-sm sm:text-base mt-1.5 max-w-2xl leading-relaxed">
+                Komitmen keaslian produk, legalitas resmi, dan ketepatan jadwal pengiriman menjadikan kami mitra pengadaan pilihan berbagai sektor industri manufaktur dan bisnis.
+              </p>
+            </div>
+            <a href="#clients" onclick="navigateTo('clients')" class="btn-outline-navy px-4 py-2.5 rounded-xl text-xs font-bold inline-flex items-center gap-2 bg-white shadow-xs hover:bg-corporate hover:text-white transition-all self-start md:self-auto group">
+              <span>Lihat Portfolio Klien</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+
+          <!-- 8 Clients Grid on Homepage -->
+          <div id="home-clients-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            <!-- Dynamically populated from data.js -->
+          </div>
+
+          <!-- Trust Badges Strip -->
+          <div class="mt-10 pt-6 border-t border-slate-200/60 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-slate-500">
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+              <span class="font-medium">Faktur Pajak PPN Resmi</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+              <span class="font-medium">Kemitraan Jangka Panjang B2B</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+              <span class="font-medium">Standar Mutu Industri Terjamin</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+              <span class="font-medium">Term of Payment (TOP) Fleksibel</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- 4.4 Product Categories Section -->
       <section class="py-16 md:py-24 bg-white">
@@ -2251,8 +2302,8 @@
   <!-- Firebase App & Firestore SDKs (Compat v10.8.0) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="js/data.js?v=2.6"></script>
-  <script src="js/app.js?v=2.6"></script>
+  <script src="js/data.js?v=2.7"></script>
+  <script src="js/app.js?v=2.7"></script>
 
   <!-- Hero Slides Synchronizer & Enhanced Renderer (Guarantees Instant Live Update via Single-File Upload) -->
   <script>

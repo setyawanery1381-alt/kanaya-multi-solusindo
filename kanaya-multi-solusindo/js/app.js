@@ -1030,18 +1030,35 @@ function downloadProductCatalog() {
  * ==================== CLIENTS & GALLERY ====================
  */
 function initClientsGrid() {
-  const container = document.getElementById('client-logos-grid');
-  if (!container) return;
+  const clients = (window.KMS_DATA && window.KMS_DATA.clients) ? window.KMS_DATA.clients : [];
 
-  container.innerHTML = window.KMS_DATA.clients.map(client => `
-    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm card-hover flex flex-col items-center justify-center text-center h-44 relative group">
-      <div class="h-20 w-full flex items-center justify-center p-2 mb-2">
-        <img src="${client.logo}" alt="${client.name}" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
+  // 1. Render on Klien Kami Page (#view-clients)
+  const container = document.getElementById('client-logos-grid');
+  if (container && clients.length > 0) {
+    container.innerHTML = clients.map(client => `
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm card-hover flex flex-col items-center justify-center text-center h-44 relative group">
+        <div class="h-20 w-full flex items-center justify-center p-2 mb-2">
+          <img src="${client.logo}" alt="${client.name}" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
+        </div>
+        <div class="text-[11px] font-extrabold text-corporate-dark line-clamp-1">${client.shortName}</div>
+        <div class="text-[9.5px] text-slate-400 line-clamp-1 mt-0.5">${client.industry}</div>
       </div>
-      <div class="text-[11px] font-extrabold text-corporate-dark line-clamp-1">${client.shortName}</div>
-      <div class="text-[9.5px] text-slate-400 line-clamp-1 mt-0.5">${client.industry}</div>
-    </div>
-  `).join('');
+    `).join('');
+  }
+
+  // 2. Render on Homepage (#view-home under Mengenal Kanaya)
+  const homeContainer = document.getElementById('home-clients-grid');
+  if (homeContainer && clients.length > 0) {
+    homeContainer.innerHTML = clients.map(client => `
+      <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-corporate/40 transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center justify-center text-center group cursor-pointer" onclick="navigateTo('clients')">
+        <div class="h-16 w-full flex items-center justify-center p-2 mb-3">
+          <img src="${client.logo}" alt="${client.name}" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300">
+        </div>
+        <div class="text-xs font-extrabold text-corporate-dark line-clamp-1 group-hover:text-corporate transition-colors">${client.shortName}</div>
+        <div class="text-[10px] text-slate-500 line-clamp-1 mt-1 font-medium">${client.industry}</div>
+      </div>
+    `).join('');
+  }
 }
 
 function initGalleryGrid() {
