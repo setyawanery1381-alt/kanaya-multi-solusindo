@@ -161,8 +161,11 @@ function refreshAllPublicContent() {
   if (footerPhone) footerPhone.textContent = c.whatsapp || '0813-1052-840';
   if (footerEmailSales) footerEmailSales.textContent = c.emailSales || 'sales@kanayamulti.com';
   if (footerEmailAdmin) footerEmailAdmin.textContent = c.emailAdmin || 'admin@kanayamulti.com';
-  if (footerIg) footerIg.textContent = c.instagram || '@kanayamultisolusindo';
   if (footerTagline) footerTagline.textContent = c.footerTagline || data.company.tagline;
+  const footerHours = document.getElementById('footer-hours');
+  if (footerHours) footerHours.textContent = c.operationalHours || 'Senin - Jumat | 08.00 - 17.00 WIB';
+  const footerMapsBtn = document.getElementById('footer-maps-btn');
+  if (footerMapsBtn) footerMapsBtn.href = c.mapsUrl || 'https://maps.google.com/?q=Ruko+Sentra+EM.6+Harapan+Indah+Bekasi';
 
   // Header TikTok & LinkedIn
   const topTiktok = document.getElementById('top-tiktok');
