@@ -370,9 +370,9 @@ const DEFAULT_KMS_DATA = {
         "badge": "Industri & Proteksi",
         "shortDesc": "Material kuat dan tahan lama untuk kebutuhan PVC sheet lentur/mika tebal, blister pack, hingga pipa industri.",
         "fullDesc": "Plastik PVC (Polyvinyl Chloride) adalah material tangguh, tahan lama, dan memiliki ketahanan terhadap bahan kimia serta cuaca. Tersedia dalam berbagai bentuk formulasi fleksibel maupun kaku untuk kebutuhan mika tebal tirai gudang (PVC sheet), blister pack kemasan alat/obat, hingga pipa PVC saluran industri.",
-        "image": "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=900&q=80",
+        "image": "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=900&q=80",
         "gallery": [
-            "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=900&q=80"
+            "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=900&q=80"
         ],
         "advantages": [
             "Kekuatan mekanik tinggi dan tahan gesekan",
