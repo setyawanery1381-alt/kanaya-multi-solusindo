@@ -4,6 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
+  catalogVersion: 2,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -224,423 +225,2228 @@ const DEFAULT_KMS_DATA = {
 
   categories: [
     {
-      id: "plastic",
-      name: "Plastic",
-      title: "Material Plastik & Wrapping",
-      desc: "Berbagai material dan kebutuhan plastik untuk packaging dan operasional industri.",
-      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
-      itemCount: "9 Varian Utama"
+        "id": "plastic",
+        "name": "Plastic",
+        "title": "Material Plastik Industri",
+        "desc": "Menyediakan beragam material plastik untuk memenuhi berbagai kebutuhan industri dan bisnis.",
+        "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+        "itemCount": "8 Produk Utama"
     },
     {
-      id: "packaging",
-      name: "Packaging",
-      title: "Solusi Kemasan & Kardus",
-      desc: "Solusi kemasan untuk mendukung kebutuhan pengemasan, penyimpanan, dan distribusi.",
-      image: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80",
-      itemCount: "Kardus, Lakban, Strapping"
+        "id": "packaging",
+        "name": "Packaging",
+        "title": "Kemasan & Logistik",
+        "desc": "Solusi kemasan kardus, plastik, kayu, pengikat, dan kain untuk pengemasan, penyimpanan, dan distribusi.",
+        "image": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80",
+        "itemCount": "5 Subkategori"
     },
     {
-      id: "stationery",
-      name: "Office Stationery",
-      title: "Alat Tulis & Kantor",
-      desc: "Kebutuhan alat tulis dan perlengkapan kantor untuk mendukung aktivitas operasional.",
-      image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=600&q=80",
-      itemCount: "Kertas, Map, Pulpen, Klip"
+        "id": "stationery",
+        "name": "Office Stationery",
+        "title": "Alat Tulis Kantor (ATK)",
+        "desc": "Kebutuhan alat tulis dan perlengkapan kantor lengkap untuk mendukung aktivitas operasional perusahaan.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "itemCount": "15 Produk"
     },
     {
-      id: "safety",
-      name: "Safety Equipment",
-      title: "Perlengkapan K3 / APD",
-      desc: "Perlengkapan keselamatan untuk mendukung keamanan di lingkungan kerja industri & proyek.",
-      image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80",
-      itemCount: "Helm, Rompi, Sarung Tangan, Sepatu"
+        "id": "safety",
+        "name": "Safety Equipment",
+        "title": "Perlengkapan K3 & APD",
+        "desc": "Perlengkapan keselamatan kerja berstandar untuk mendukung keamanan di lingkungan industri & proyek.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "itemCount": "12 Produk"
     },
     {
-      id: "chemical",
-      name: "Chemical",
-      title: "Chemical & Kebersihan",
-      desc: "Produk chemical dan kebutuhan kebersihan untuk mendukung aktivitas operasional.",
-      image: "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=600&q=80",
-      itemCount: "Pembersih Lantai, Disinfektan, Kaca"
+        "id": "chemical",
+        "name": "Chemical",
+        "title": "Chemical & Kebersihan",
+        "desc": "Formula kimia pembersih, pelumas anti-karat, dan cairan sanitasi industri.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "itemCount": "12 Produk"
     },
     {
-      id: "consumable",
-      name: "Consumable",
-      title: "Consumable Operasional",
-      desc: "Berbagai kebutuhan consumable untuk mendukung aktivitas bisnis dan operasional harian.",
-      image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=600&q=80",
-      itemCount: "Tissue, Kantong Sampah, Masker"
+        "id": "consumable",
+        "name": "Consumable",
+        "title": "Consumable Operasional",
+        "desc": "Barang habis pakai, alat potong gerinda, kain majun, dan perlengkapan kebersihan rutin.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "itemCount": "9 Produk"
     },
     {
-      id: "printing",
-      name: "Printing",
-      title: "Percetakan & Cetak Dokumen",
-      desc: "Kebutuhan printing untuk mendukung kebutuhan bisnis, promosi, dan operasional administrasi.",
-      image: "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=600&q=80",
-      itemCount: "Brosur, Label Stiker, Form NCR"
+        "id": "printing",
+        "name": "Printing",
+        "title": "Percetakan & Display",
+        "desc": "Layanan cetak banner tarik, spanduk, kartu nama, dan stiker kustom perusahaan.",
+        "image": "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80",
+        "itemCount": "5 Produk"
     }
-  ],
+],
 
   products: [
     {
-      id: "plastic-stretch-film",
-      categoryId: "plastic",
-      name: "Plastic Stretch Film",
-      categoryName: "Plastic",
-      tag: "Best Seller",
-      badge: "Proteksi Kemasan",
-      shortDesc: "Material stretch film elastis tinggi untuk mengamankan barang pallet saat pengiriman dan penyimpanan.",
-      fullDesc: "Plastic stretch film dirancang khusus untuk melindungi produk dari debu, kelembapan, kotoran, dan goncangan selama proses penyimpanan dan distribusi pengiriman barang di gudang maupun ekspedisi logistik.",
-      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"
-      ],
-      advantages: [
-        "Kuat dan sangat elastis dengan daya regang optimal",
-        "Transparan, higienis, dan memiliki daya rekat satu sisi yang rapi",
-        "Tahan terhadap robekan sudut tajam dan kelembaban udara",
-        "Cocok untuk hand roll maupun mesin wrapping pallet industri"
-      ],
-      specs: [
-        { key: "Material", val: "LLDPE (Linear Low-Density Polyethylene)" },
-        { key: "Ketebalan", val: "10 - 25 mikron (Tersedia: 12µ, 15µ, 17µ, 20µ, 25µ)" },
-        { key: "Lebar Roll", val: "300 - 500 mm" },
-        { key: "Panjang Roll", val: "100 - 1000 meter (Customizable)" },
-        { key: "Warna", val: "Bening (Clear Transparent) & Hitam Opaque" },
-        { key: "Aplikasi", val: "Wrapping Pallet Kargo, Ekspedisi, Gudang Manufaktur" }
-      ]
+        "id": "plastic-opp",
+        "categoryId": "plastic",
+        "name": "Plastik OPP (Oriented Polypropylene)",
+        "categoryName": "Plastic",
+        "tag": "Bening Kristal",
+        "badge": "Food & Ritel",
+        "shortDesc": "Film polimer sangat bening kristal dan kaku untuk kemasan pakaian, roti, masker, dan produk ritel agar terlihat premium.",
+        "fullDesc": "Plastik OPP (Oriented Polypropylene) adalah film polimer yang memiliki tingkat transparansi sangat tinggi (crystal clear) serta bertekstur kaku dan mengilap. Umumnya digunakan sebagai kemasan pembungkus pakaian, OPP bag, kemasan roti/bakery, lakban bening, dan produk ritel agar terlihat elegan dan eksklusif.",
+        "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Transparansi bening kristal sangat tinggi dan mengilap",
+            "Karakter material kaku, rapi, dan mudah dibentuk kantong",
+            "Tersedia pilihan seal lem praktis (self-adhesive tape)",
+            "Melindungi produk dari debu, udara lembap, dan kotoran"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Oriented Polypropylene (OPP)"
+            },
+            {
+                "key": "Karakteristik",
+                "val": "Bening kristal, kaku, permukaan mengilap"
+            },
+            {
+                "key": "Aplikasi Utama",
+                "val": "Kemasan Pakaian, OPP Bag, Kemasan Roti, Lakban Bening"
+            },
+            {
+                "key": "Format",
+                "val": "Sheet, Roll Film, Kantong Lipat Lem"
+            }
+        ]
     },
     {
-      id: "plastic-opp",
-      categoryId: "plastic",
-      name: "Plastik OPP (Oriented Polypropylene)",
-      categoryName: "Plastic",
-      tag: "Spesifikasi PRD",
-      badge: "Food & Garment",
-      shortDesc: "Bening, kaku, mengilap; sangat cocok untuk kemasan makanan kering dan apparel garmen.",
-      fullDesc: "Plastik OPP memiliki tingkat kejernihan transparansi yang sangat tinggi, bersifat kaku dan mengilap sehingga memberikan kesan visual produk yang premium dan higienis.",
-      image: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Permukaan bening kristal dan sangat mengilap",
-        "Struktur material kaku dan rapi untuk kemasan pajang",
-        "Tersedia varian lem seal (self-adhesive) praktis"
-      ],
-      specs: [
-        { key: "Karakteristik", val: "Bening, kaku, mengilap" },
-        { key: "Fungsi Utama", val: "Kemasan makanan kering, snack, bakery, packaging baju & stationery" },
-        { key: "Format", val: "Sheet, Roll, Kantong Seal Tape" }
-      ]
+        "id": "plastic-cpp",
+        "categoryId": "plastic",
+        "name": "Plastik CPP (Cast Polypropylene)",
+        "categoryName": "Plastic",
+        "tag": "Tahan Panas & Lentur",
+        "badge": "Food Packaging",
+        "shortDesc": "Film polimer lentur, bening, dan memiliki ketahanan panas yang baik untuk kemasan snack, frozen food, dan inner packaging.",
+        "fullDesc": "Plastik CPP (Cast Polypropylene) adalah film polimer yang lentur, jernih, serta memiliki ketahanan termal (panas) dan ketahanan sobek yang sangat baik. Sangat ideal diaplikasikan untuk kemasan snack, makanan beku (frozen food), inner packaging, dan kemasan makanan yang membutuhkan proses sterilisasi/seal rapat.",
+        "image": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Sangat lentur dan memiliki daya tahan tusukan tinggi",
+            "Tahan terhadap suhu pemanasan dan segel panas (heat sealable)",
+            "Food grade aman bersentuhan langsung dengan makanan",
+            "Daya rekat kemasan kuat dan kedap udara"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Cast Polypropylene (CPP Film)"
+            },
+            {
+                "key": "Karakteristik",
+                "val": "Lentur, bening, tahan panas, daya seal kuat"
+            },
+            {
+                "key": "Aplikasi Utama",
+                "val": "CPP Film, Kemasan Snack, Frozen Food, Inner Packaging, Kemasan Makanan"
+            },
+            {
+                "key": "Metode Seal",
+                "val": "Heat Sealing & Lamination"
+            }
+        ]
     },
     {
-      id: "plastic-cpp",
-      categoryId: "plastic",
-      name: "Plastik CPP (Cast Polypropylene)",
-      categoryName: "Plastic",
-      tag: "Spesifikasi PRD",
-      badge: "Heat Resistant",
-      shortDesc: "Lentur, tahan panas, tidak mudah sobek; untuk kemasan makanan panas dan retort pouch.",
-      fullDesc: "Plastik CPP memiliki sifat fleksibel dengan ketahanan terhadap suhu tinggi, daya rekat segel termal (heat sealing) yang kuat, serta ketahanan tusukan yang sangat andal.",
-      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Tahan suhu sterilisasi dan perebusan",
-        "Sangat lentur dan daya sobek rendah",
-        "Lapisan lamination sealing yang kokoh"
-      ],
-      specs: [
-        { key: "Karakteristik", val: "Lentur, tahan panas, tidak mudah sobek" },
-        { key: "Fungsi Utama", val: "Kemasan makanan panas, pasta, retort packaging" }
-      ]
+        "id": "plastic-pvc",
+        "categoryId": "plastic",
+        "name": "Plastik PVC (Polyvinyl Chloride)",
+        "categoryName": "Plastic",
+        "tag": "Kuat & Serbaguna",
+        "badge": "Industri & Proteksi",
+        "shortDesc": "Material kuat dan tahan lama untuk kebutuhan PVC sheet lentur/mika tebal, blister pack, hingga pipa industri.",
+        "fullDesc": "Plastik PVC (Polyvinyl Chloride) adalah material tangguh, tahan lama, dan memiliki ketahanan terhadap bahan kimia serta cuaca. Tersedia dalam berbagai bentuk formulasi fleksibel maupun kaku untuk kebutuhan mika tebal tirai gudang (PVC sheet), blister pack kemasan alat/obat, hingga pipa PVC saluran industri.",
+        "image": "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Kekuatan mekanik tinggi dan tahan gesekan",
+            "Tahan terhadap zat kimia, minyak, dan korosi air",
+            "Tersedia varian transparan jernih hingga lembaran solid"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Polyvinyl Chloride (PVC)"
+            },
+            {
+                "key": "Varian",
+                "val": "PVC Sheet (Lentur/Mika Tebal), PVC Blister, Pipa PVC, PVC Water Pipe"
+            },
+            {
+                "key": "Penggunaan",
+                "val": "Penyekat ruangan gudang, kemasan blister, instalasi perpipaan industri"
+            }
+        ]
     },
     {
-      id: "plastic-pvc",
-      categoryId: "plastic",
-      name: "Plastik PVC (Polyvinyl Chloride)",
-      categoryName: "Plastic",
-      tag: "Spesifikasi PRD",
-      badge: "Rigid & Durable",
-      shortDesc: "Kuat dan sedikit elastis; ideal untuk botol, pipa, serta kemasan blister pack industri.",
-      fullDesc: "Material PVC menawarkan kekuatan mekanis tinggi, stabilitas dimensi prima, dan ketahanan kimia yang kuat untuk berbagai wadah dan proteksi blister part.",
-      image: "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Struktur kokoh dan tahan terhadap benturan luar",
-        "Ketahanan isolasi dan kimia industri",
-        "Sangat presisi untuk cetak thermoforming / blister"
-      ],
-      specs: [
-        { key: "Karakteristik", val: "Kuat dan sedikit elastis" },
-        { key: "Fungsi Utama", val: "Botol industri, pipa, kemasan blister perkakas & farmasi" }
-      ]
+        "id": "plastic-nylon",
+        "categoryId": "plastic",
+        "name": "Plastik Nylon (Polyamide / PA)",
+        "categoryName": "Plastic",
+        "tag": "Tahan Tusukan",
+        "badge": "Vacuum & Barrier",
+        "shortDesc": "Material kuat, fleksibel, dan memiliki ketahanan tinggi terhadap panas serta tusukan untuk kemasan vacuum food dan cable ties.",
+        "fullDesc": "Plastik Nylon (Polyamide / PA) terkenal dengan daya regang luar biasa, elastisitas tinggi, dan ketahanan terhadap tusukan benda runcing. Sangat umum digunakan pada kantong vacuum makanan beku (frozen food), film pembungkus tahan gesek, serta perlengkapan pengikat kabel (cable ties) industri.",
+        "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Ketahanan tusukan dan robekan nomor satu di kelasnya",
+            "Barrier udara dan oksigen yang sangat rapat untuk vacuum pack",
+            "Tahan rentang suhu dingin beku ekstrem hingga panas"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Polyamide (PA / Nylon Film)"
+            },
+            {
+                "key": "Aplikasi Utama",
+                "val": "Nylon Film, Kemasan Vacuum Frozen Food, Cable Ties Pengikat"
+            },
+            {
+                "key": "Keunggulan",
+                "val": "Gas barrier tinggi, anti-bocor, lentur"
+            }
+        ]
     },
     {
-      id: "plastic-nylon",
-      categoryId: "plastic",
-      name: "Plastik Nylon (Polyamide Barrier)",
-      categoryName: "Plastic",
-      tag: "Spesifikasi PRD",
-      badge: "Vacuum & Frozen",
-      shortDesc: "Sangat kuat dan tahan suhu tinggi; untuk frozen food, daging, dan kemasan vacuum bag.",
-      fullDesc: "Plastik Nylon dirancang dengan ketahanan gas barrier yang tinggi terhadap oksigen, menjamin kesegaran produk frozen food, daging olahan, dan makanan steril dalam jangka panjang.",
-      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Ketahanan hampa udara (vacuum barrier) terbaik",
-        "Tahan suhu beku (freezer) tanpa pecah atau getas",
-        "Kekuatan tarik dan tusukan sangat tinggi"
-      ],
-      specs: [
-        { key: "Karakteristik", val: "Sangat kuat, tahan tusukan, dan tahan suhu tinggi" },
-        { key: "Fungsi Utama", val: "Frozen food, daging olahan, vacuum packaging, seafood" }
-      ]
+        "id": "plastic-pp",
+        "categoryId": "plastic",
+        "name": "Plastik PP (Polypropylene)",
+        "categoryName": "Plastic",
+        "tag": "Food Grade & Ringan",
+        "badge": "Wadah & Ritel",
+        "shortDesc": "Material ringan, kuat, dan tahan panas untuk gelas plastik, wadah makanan, sedotan, dan perabot plastik.",
+        "fullDesc": "Plastik PP (Polypropylene) adalah polimer termoplastik yang ringan, kuat, higienis, dan tahan panas. Merupakan standar utama industri makanan dan minuman (F&B) untuk wadah makanan takeaway (microwave safe), gelas plastik cup sealer, sedotan, dan berbagai perlengkapan berbahan plastik.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bebas BPA (BPA Free) dan food grade aman untuk konsumsi",
+            "Tahan suhu hangat/panas makanan tanpa berubah bentuk",
+            "Bobot ringan namun kokoh dan tidak mudah retak"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Polypropylene (PP)"
+            },
+            {
+                "key": "Aplikasi Utama",
+                "val": "Gelas Plastik Cup, Wadah Makanan Box, Sedotan, Wadah Rumah Tangga"
+            },
+            {
+                "key": "Ketahanan Suhu",
+                "val": "Tahan microwave & air hangat"
+            }
+        ]
     },
     {
-      id: "plastic-pp",
-      categoryId: "plastic",
-      name: "Plastik PP (Polypropylene Food Grade)",
-      categoryName: "Plastic",
-      tag: "Spesifikasi PRD",
-      badge: "Food Grade",
-      shortDesc: "Kuat, tahan panas, dan aman untuk makanan; untuk gelas cup, kotak makanan, dan sedotan.",
-      fullDesc: "Polimer PP berbobot ringan, berdaya tahan panas prima (tahan microwave), serta aman bersentuhan langsung dengan makanan (food grade).",
-      image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Aman untuk makanan & minuman (BPA Free)",
-        "Tahan panas suhu tinggi",
-        "Ekonomis dan mudah didaur ulang"
-      ],
-      specs: [
-        { key: "Karakteristik", val: "Kuat, tahan panas, dan aman untuk makanan" },
-        { key: "Fungsi Utama", val: "Gelas cup plastik, kotak makanan catering, sedotan, tutup botol" }
-      ]
+        "id": "plastic-pet",
+        "categoryId": "plastic",
+        "name": "Plastik PET (Polyethylene Terephthalate)",
+        "categoryName": "Plastic",
+        "tag": "Jernih Seperti Kaca",
+        "badge": "Botol & Wadah",
+        "shortDesc": "Material bening, ringan, kuat, dan tahan tekanan untuk botol minuman, botol oli, dan wadah makanan transparan.",
+        "fullDesc": "Plastik PET (Polyethylene Terephthalate) memiliki kejernihan visual setara kaca namun dengan bobot sangat ringan dan tahan banting. Sangat luas digunakan untuk botol minuman kemasan, botol oli, botol cairan kimia konsumen, hingga wadah makanan yang menuntut tampilan isi produk secara jelas.",
+        "image": "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Transparansi sangat jernih dan mengilap",
+            "Tahan terhadap tekanan gas/karbonasi dan benturan",
+            "Dapat didaur ulang 100% (Recycle Code 1)"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Polyethylene Terephthalate (PET)"
+            },
+            {
+                "key": "Aplikasi Utama",
+                "val": "Botol Minuman PET, Botol Minyak/Oli, Wadah Makanan Jernih"
+            },
+            {
+                "key": "Karakter",
+                "val": "Rigid, transparan, higienis"
+            }
+        ]
     },
     {
-      id: "plastic-pet",
-      categoryId: "plastic",
-      name: "Plastik PET (Polyethylene Terephthalate)",
-      categoryName: "Plastic",
-      tag: "Spesifikasi PRD",
-      badge: "High Clarity",
-      shortDesc: "Bening, ringan, tahan tekanan; untuk botol minuman dan kemasan makanan higienis.",
-      fullDesc: "Plastik PET bening transparan menyerupai kaca namun tidak mudah pecah, kedap terhadap gas CO2, dan sangat ideal untuk kemasan botol minuman siap saji.",
-      image: "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Transparansi sebening kaca",
-        "Tahan tekanan internal botol minuman berkarbonasi",
-        "Ringan dan higienis bersertifikasi"
-      ],
-      specs: [
-        { key: "Karakteristik", val: "Bening, ringan, tahan tekanan" },
-        { key: "Fungsi Utama", val: "Botol minuman, toples selai/bumbu, wadah blister makanan" }
-      ]
+        "id": "plastic-ldpe",
+        "categoryId": "plastic",
+        "name": "Plastik LDPE (Low-Density Polyethylene)",
+        "categoryName": "Plastic",
+        "tag": "Elastis & Kedap Air",
+        "badge": "Film & Wrapping",
+        "shortDesc": "Material ringan, lentur, dan tahan kelembapan untuk plastik cor bangunan, trash bag, bubble wrap, dan cling wrap.",
+        "fullDesc": "Plastik LDPE (Low-Density Polyethylene) adalah polimer dengan fleksibilitas tinggi, tahan air, dan daya lentur istimewa. Digunakan secara luas untuk plastik cor pelapis lantai konstruksi, kantong sampah (trash bag), plastik gelembung (bubble wrap), dan cling wrap pembungkus makanan.",
+        "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Sangat fleksibel dan tidak mudah getas/robek",
+            "Kedap air dan kelembapan untuk perlindungan optimal",
+            "Mudah dipress dan disegel rapat"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Low-Density Polyethylene (LDPE)"
+            },
+            {
+                "key": "Aplikasi Utama",
+                "val": "Plastik Cor, Trash Bag Hitam/Warna, Bubble Wrap, Cling Wrap"
+            },
+            {
+                "key": "Format",
+                "val": "Roll Plastik Cor, Roll Bubble, Kantong Sampah"
+            }
+        ]
     },
     {
-      id: "plastic-ldpe",
-      categoryId: "plastic",
-      name: "Plastik LDPE (Low-Density Polyethylene)",
-      categoryName: "Plastic",
-      tag: "Spesifikasi PRD",
-      badge: "Flexible Bag",
-      shortDesc: "Lentur dan ringan; untuk kantong plastik, plastic wrap pelindung, dan kantong belanja.",
-      fullDesc: "LDPE memiliki karakteristik lentur, kedap air, dan memiliki elastisitas baik, sangat cocok untuk kantong belanja tahan beban, plastik pelindung barang, dan liner pallet.",
-      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Fleksibel dan tidak mudah robek saat ditarik",
-        "Tahan terhadap kelembapan tinggi",
-        "Berbagai pilihan ketebalan dan ukuran kantong"
-      ],
-      specs: [
-        { key: "Karakteristik", val: "Lentur dan ringan" },
-        { key: "Fungsi Utama", val: "Kantong plastik industri, plastic wrap pelindung, kantong belanja" }
-      ]
+        "id": "plastic-hdpe",
+        "categoryId": "plastic",
+        "name": "Plastik HDPE (High-Density Polyethylene)",
+        "categoryName": "Plastic",
+        "tag": "Kaku & Tahan Kimia",
+        "badge": "Wadah Industri",
+        "shortDesc": "Material kuat, kaku, dan tahan kimia untuk keranjang industri, drum, botol oli, jerigen, dan kantong sampah medis.",
+        "fullDesc": "Plastik HDPE (High-Density Polyethylene) memiliki struktur molekul padat yang menghasilkan kekuatan tarik tinggi, kekakuan ekstra, serta ketahanan luar biasa terhadap asam, pelarut, dan zat kimia. Menjadi pilihan nomor satu untuk jerigen kimia, drum industri, keranjang pabrik, botol oli mesin, dan kantong medis biohazard.",
+        "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Tahan terhadap bahan kimia pekat, pelarut, dan oli",
+            "Struktur sangat kokoh, tahan banting, dan tahan tumpukan berat",
+            "Aman untuk aplikasi industri keras maupun limbah medis"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "High-Density Polyethylene (HDPE)"
+            },
+            {
+                "key": "Aplikasi Utama",
+                "val": "Keranjang Industri, Drum Plastik, Botol Oli, Jerigen Kimia, Kantung Sampah Medis"
+            },
+            {
+                "key": "Karakteristik",
+                "val": "Kaku, buram (matte), daya tahan impak tinggi"
+            }
+        ]
     },
     {
-      id: "plastic-bubble-wrap",
-      categoryId: "plastic",
-      name: "Bubble Wrap Roll Industri",
-      categoryName: "Plastic",
-      tag: "Spesifikasi PRD",
-      badge: "Cushioning",
-      shortDesc: "Material gelembung udara berkualitas untuk membantu melindungi barang dari benturan fisik.",
-      fullDesc: "Roll bubble wrap dengan gelembung udara padat dan elastis, memberikan perlindungan maksimal terhadap guncangan, benturan, dan goresan saat pengiriman ekspedisi logistik.",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Gelembung udara padat dan tidak mudah kempis",
-        "Melindungi barang pecah belah, elektronik, & kosmetik",
-        "Mudah dipotong dan dibungkus mengikuti bentuk barang"
-      ],
-      specs: [
-        { key: "Fungsi", val: "Membantu melindungi barang dari benturan & lecet" },
-        { key: "Lebar Roll", val: "125 cm (Standard Industri)" },
-        { key: "Panjang Roll", val: "50 meter per roll / custom" },
-        { key: "Pilihan Warna", val: "Bening (Clear) & Hitam (Black)" }
-      ]
-    },
-    // Packaging
-    {
-      id: "kardus-corrugated",
-      categoryId: "packaging",
-      name: "Kardus Karton Corrugated Box",
-      categoryName: "Packaging",
-      tag: "Solusi Kemasan",
-      badge: "Heavy Duty",
-      shortDesc: "Solusi kemasan kardus bergelombang untuk pengemasan makanan, elektronik, kosmetik, hingga pengiriman barang.",
-      fullDesc: "Karton box corrugated berkualitas tinggi dengan pilihan Single Wall, Double Wall, dan Triple Wall untuk memastikan keamanan penyimpanan di rak gudang serta distribusi antarpulau.",
-      image: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Tahan tumpukan beban tinggi di gudang",
-        "Dapat dicetak logo & instruksi penanganan (custom print)",
-        "Material ramah lingkungan dan dapat didaur ulang"
-      ],
-      specs: [
-        { key: "Tipe Flute", val: "B/F, C/F, E/F, Single Wall (3 ply) & Double Wall (5 ply)" },
-        { key: "Ketahanan Beban", val: "Hingga 50+ kg tergantung konstruksi" },
-        { key: "Ukuran", val: "Customized sesuai kebutuhan packaging klien" }
-      ]
+        "id": "pkg-kardus-corrugated",
+        "categoryId": "packaging",
+        "subCategory": "kardus",
+        "subCategoryName": "Kemasan Kardus & Kertas",
+        "name": "Kardus & Karton Corrugated Box",
+        "categoryName": "Packaging",
+        "tag": "Kemasan Karton",
+        "badge": "Packing & Pengiriman",
+        "shortDesc": "Solusi kemasan berbahan kertas karton bergelombang untuk packing, penyimpanan di gudang, dan pengiriman kargo perusahaan.",
+        "fullDesc": "Karton box corrugated berkualitas tinggi dengan pilihan Single Wall (3 ply), Double Wall (5 ply), hingga Triple Wall untuk memastikan keamanan penyimpanan di rak gudang serta distribusi logistik antarpulau dan ekspor.",
+        "image": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Kekuatan tumpuk beban tinggi (stacking strength optimal)",
+            "Bisa custom ukuran dan cetak logo/branding perusahaan",
+            "Material ramah lingkungan dan 100% dapat didaur ulang"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Kemasan Kardus & Kertas"
+            },
+            {
+                "key": "Tipe Flute",
+                "val": "B/F, C/F, E/F, Single Wall (3 ply) & Double Wall (5 ply)"
+            },
+            {
+                "key": "Penggunaan",
+                "val": "Packing pengiriman produk, karton master, dus arsip"
+            }
+        ]
     },
     {
-      id: "strapping-band",
-      categoryId: "packaging",
-      name: "Strapping Band & Lakban OPP Tape",
-      categoryName: "Packaging",
-      tag: "Packaging Supply",
-      badge: "Logistik",
-      shortDesc: "Tali strapping mesin/manual dan lakban perekat kuat untuk pengikatan koli dan karton.",
-      fullDesc: "Perlengkapan bundling karton dan pengikatan beban berat pada pallet menggunakan tali strapping PP/PET dan isolasi OPP tape dengan lem water-based tahan suhu ekstrem.",
-      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Daya rekat tinggi tidak mudah terkelupas di suhu dingin/panas",
-        "Kekuatan tarik strapping band tinggi untuk mengikat muatan berat",
-        "Tersedia warna bening, cokelat, dan custom cetak logo brand"
-      ],
-      specs: [
-        { key: "Tipe Lakban", val: "OPP Tape Bening & Cokelat (48mm x 90-100 yard)" },
-        { key: "Tali Strapping", val: "PP Strapping Band 9mm, 12mm, 15mm (Hand & Machine)" }
-      ]
+        "id": "pkg-paper-bag",
+        "categoryId": "packaging",
+        "subCategory": "kardus",
+        "subCategoryName": "Kemasan Kardus & Kertas",
+        "name": "Paper Bag & Kantong Kertas Kraft",
+        "categoryName": "Packaging",
+        "tag": "Eco Friendly",
+        "badge": "Kemasan Kertas",
+        "shortDesc": "Kantong kertas kraft ramah lingkungan berkualitas kuat untuk pengemasan belanja, merchandise, dan pengiriman barang ritel.",
+        "fullDesc": "Solusi kemasan kantong kertas cokelat dan putih berbahan kraft tebal ramah lingkungan dengan tali pegangan kuat (twisted/flat handle). Memberikan kesan ramah lingkungan dan profesional untuk pengemasan produk perusahaan Anda.",
+        "image": "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bahan kraft tebal tidak mudah sobek saat membawa beban",
+            "Bisa custom sablon logo brand perusahaan",
+            "Mendukung program keberlanjutan ramah lingkungan (green packaging)"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Kemasan Kardus & Kertas"
+            },
+            {
+                "key": "Material",
+                "val": "Kraft Paper Cokelat & Putih (125 - 200 gsm)"
+            },
+            {
+                "key": "Handle",
+                "val": "Tali Kur, Tali Kertas Twisted, atau Tanpa Tali"
+            }
+        ]
     },
-    // Office Stationery
     {
-      id: "office-stationery-bundle",
-      categoryId: "stationery",
-      name: "Perlengkapan ATK Kantor Lengkap",
-      categoryName: "Office Stationery",
-      tag: "Pengadaan Kantor",
-      badge: "ATK Bisnis",
-      shortDesc: "Pulpen, pensil, spidol, buku tulis, map ordner, dan perlengkapan kantor untuk operasional perusahaan.",
-      fullDesc: "Solusi pengadaan rutin alat tulis kantor (ATK) skala grosir dan retail corporate untuk kebutuhan operasional kantor, instansi, dan cabang perusahaan tanpa repot.",
-      image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Katalog produk ATK lengkap dari berbagai merek terpercaya",
-        "Harga pengadaan grosir B2B efisien dengan suplai terjadwal",
-        "Faktur pajak dan legalitas transaksi perusahaan lengkap"
-      ],
-      specs: [
-        { key: "Kategori Produk", val: "Kertas HVS (A4, F4), Pulpen, Spidol Whiteboard/Permanent" },
-        { key: "Pengarsipan", val: "Ordner Bantex, Map Business File, Binder, Clear Holder" },
-        { key: "Aksesoris", val: "Stapler, Puncher, Paper Clip, Correction Tape, Notes" }
-      ]
+        "id": "pkg-container-box",
+        "categoryId": "packaging",
+        "subCategory": "kemasan-plastik",
+        "subCategoryName": "Kemasan Plastik",
+        "name": "Container Box Plastik Industri",
+        "categoryName": "Packaging",
+        "tag": "Stackable Box",
+        "badge": "Wadah Gudang",
+        "shortDesc": "Kotak kontainer plastik tebal serbaguna untuk wadah penyimpanan sparepart, komponen manufaktur, dan distribusi kargo.",
+        "fullDesc": "Container box plastik industri berbahan PP murni ekstra tebal yang dirancang kuat menahan beban berat, dapat ditumpuk secara rapi (stackable), serta tahan benturan untuk operasional gudang dan pabrik perakitan.",
+        "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Konstruksi dinding bertulang kuat menahan beban tumpukan tinggi",
+            "Tersedia tipe buntu (solid) dan tipe berlubang (mesh)",
+            "Mudah dibersihkan dan tahan terhadap oli maupun cairan industri"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Kemasan Plastik"
+            },
+            {
+                "key": "Material",
+                "val": "Polypropylene (PP) Murni Grade Industri"
+            },
+            {
+                "key": "Pilihan Ukuran",
+                "val": "Kapasitas 20L, 35L, 50L, 75L, hingga 100L"
+            }
+        ]
     },
-    // Safety Equipment
     {
-      id: "safety-equipment-set",
-      categoryId: "safety",
-      name: "Perlengkapan Safety & APD K3",
-      categoryName: "Safety Equipment",
-      tag: "Standar K3",
-      badge: "Perlindungan Pekerja",
-      shortDesc: "Mendukung perlindungan pekerja dari berbagai potensi bahaya di lingkungan kerja proyek & industri.",
-      fullDesc: "Rangkaian Alat Pelindung Diri (APD) bersertifikasi SNI dan standar internasional (ANSI/CE) untuk menjamin keselamatan tenaga kerja di pabrik, gudang, konstruksi, dan area berisiko tinggi.",
-      image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Memenuhi standar kepatuhan regulasi K3 nasional",
-        "Material tangguh, ergonomis, dan nyaman dipakai shift panjang",
-        "Tersedia lengkap dari kepala hingga kaki"
-      ],
-      specs: [
-        { key: "Item Helm", val: "Safety Helmet V-Gard dengan tali dagu & suspensi putar" },
-        { key: "Item Rompi", val: "Rompi Safety Reflektif Scotlight (Jaring/Polyester)" },
-        { key: "Item Kaki & Tangan", val: "Sepatu Safety Steel Toe Cap & Sarung Tangan PU/Nitrile/Katun" }
-      ]
+        "id": "pkg-busa-pe",
+        "categoryId": "packaging",
+        "subCategory": "kemasan-plastik",
+        "subCategoryName": "Kemasan Plastik",
+        "name": "Busa PE (PE Foam Protection)",
+        "categoryName": "Packaging",
+        "tag": "Anti-Benturan",
+        "badge": "Pelindung Empuk",
+        "shortDesc": "Busa polietilena empuk untuk melindungi produk dari goresan, lecet, dan peredam getaran selama pengiriman.",
+        "fullDesc": "PE Foam (Polyethylene Foam) adalah material busa pelindung berserat halus yang berfungsi mencegah gesekan, goresan permukaan, dan meredam getaran pada produk elektronik, kaca, suku cadang mesin, dan furnitur.",
+        "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Permukaan sangat lembut, melindungi lapisan cat dan finishing",
+            "Elastis, ringan, dan efektif meredam benturan",
+            "Tersedia bentuk roll lembaran tebal dan kantong pouch"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Kemasan Plastik"
+            },
+            {
+                "key": "Ketebalan",
+                "val": "0.5 mm, 1 mm, 2 mm, 3 mm, hingga 5 mm"
+            },
+            {
+                "key": "Format",
+                "val": "Roll Lebar 1 - 1.2 meter & Custom Bag"
+            }
+        ]
     },
-    // Chemical
     {
-      id: "industrial-cleaning-chemical",
-      categoryId: "chemical",
-      name: "Chemical & Pembersih Area Operasional",
-      categoryName: "Chemical",
-      tag: "Chemical Terstandar",
-      badge: "Kebersihan & Sanitasi",
-      shortDesc: "Pembersih lantai, pembersih kaca, pengharum ruangan, dan chemical sanitasi industri.",
-      fullDesc: "Menyediakan kebutuhan formula pembersih konsentrat untuk gedung perkantoran, fasilitas manufaktur, rumah sakit, dan area komersial dengan efektivitas pembersihan tinggi.",
-      image: "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Konsentrasi tinggi sehingga sangat hemat pemakaian",
-        "Aman untuk berbagai jenis permukaan lantai (epoxy, keramik, granit)",
-        "Disertai Material Safety Data Sheet (MSDS) resmi"
-      ],
-      specs: [
-        { key: "Produk Utama", val: "Floor Cleaner, Glass Cleaner, Hand Soap, Disinfektan" },
-        { key: "Kemasan", val: "Jerigen 4 Liter, 5 Liter, hingga Drum 20-25 Liter" }
-      ]
+        "id": "pkg-stretch-film",
+        "categoryId": "packaging",
+        "subCategory": "kemasan-plastik",
+        "subCategoryName": "Kemasan Plastik",
+        "name": "Plastic Stretch Film Industri",
+        "categoryName": "Packaging",
+        "tag": "Best Seller",
+        "badge": "Pallet Wrapping",
+        "shortDesc": "Material plastik stretch film elastis tinggi untuk mengamankan dan mengunci muatan pallet saat pengiriman dan penyimpanan.",
+        "fullDesc": "Plastic stretch film bermutu tinggi dengan elastisitas regang optimal untuk membungkus kargo pallet, mencegah pergeseran barang di perjalanan, serta melindungi dari debu, air hujan, dan kelembapan.",
+        "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya regang elastisitas tinggi dan tidak mudah sobek pada sudut tajam",
+            "Daya lekat plastik kuat mengikat tanpa lem tambahan",
+            "Tersedia varian Hand Roll (manual) dan Machine Roll (otomatis)"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Kemasan Plastik"
+            },
+            {
+                "key": "Ketebalan",
+                "val": "17 mikron, 20 mikron, 25 mikron"
+            },
+            {
+                "key": "Lebar",
+                "val": "500 mm (Standard Pallet Wrapping)"
+            }
+        ]
     },
-    // Consumable
     {
-      id: "operational-consumables",
-      categoryId: "consumable",
-      name: "Consumable Operasional & Kantong Sampah",
-      categoryName: "Consumable",
-      tag: "Kebutuhan Rutin",
-      badge: "Fasilitas Kerja",
-      shortDesc: "Berbagai kebutuhan consumable rutin untuk mendukung aktivitas bisnis dan operasional harian.",
-      fullDesc: "Penyediaan barang habis pakai rutin seperti trash bag medis/non-medis, tissue dispenser, sarung tangan disposable, dan perlengkapan pantry perusahaan.",
-      image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Ketersediaan stok stabil untuk kontrak pasokan bulanan",
-        "Kualitas bahan tebal tidak mudah bocor atau robek",
-        "Pengiriman terjadwal sesuai ritme operasional perusahaan"
-      ],
-      specs: [
-        { key: "Plastik Sampah", val: "Trash Bag Hitam HD/PE (60x100, 80x100, 90x120 cm)" },
-        { key: "Produk Tissue", val: "Hand Towel Roll, Facial Tissue, Toilet Paper Jumbo Roll" }
-      ]
+        "id": "pkg-peti-kayu",
+        "categoryId": "packaging",
+        "subCategory": "kemasan-kayu",
+        "subCategoryName": "Kemasan Kayu",
+        "name": "Peti Kayu Solid (Wooden Crate)",
+        "categoryName": "Packaging",
+        "tag": "Proteksi Berat",
+        "badge": "Heavy Cargo",
+        "shortDesc": "Kemasan kayu kokoh untuk melindungi barang berat, mesin industri, dan peralatan elektronik selama distribusi ekspedisi.",
+        "fullDesc": "Peti kayu industri custom-built berbahan kayu keras pilihan atau plywood tebal berkualitas tinggi. Dirancang khusus untuk proteksi kargo bernilai tinggi, mesin pabrik, dan suku cadang berat dari benturan keras selama ekspedisi darat, laut, maupun udara.",
+        "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Konstruksi rangka kayu sangat kokoh menahan beban hingga berton-ton",
+            "Desain ukuran custom sesuai dimensi produk klien",
+            "Memenuhi standar pengiriman kargo aman antarpulau & ekspor"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Kemasan Kayu"
+            },
+            {
+                "key": "Material",
+                "val": "Kayu Keras / Rimba Campur / Plywood Tebal"
+            },
+            {
+                "key": "Kapasitas Beban",
+                "val": "Customized dari 100 kg hingga 5+ Ton"
+            }
+        ]
     },
-    // Printing
     {
-      id: "commercial-printing-solutions",
-      categoryId: "printing",
-      name: "Layanan Cetak Dokumen & Promosi Bisnis",
-      categoryName: "Printing",
-      tag: "Percetakan Korporat",
-      badge: "Branding & Dokumen",
-      shortDesc: "Produk cetak formulir, label barcode sticker, nota rangkap NCR, dan materi promosi korporat.",
-      fullDesc: "Solusi cetak offset dan digital presisi tinggi untuk mendukung branding perusahaan, administrasi logistik gudang, dan materi presentasi bisnis dengan warna akurat.",
-      image: "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80",
-      gallery: ["https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80"],
-      advantages: [
-        "Hasil cetak tajam, presisi warna konsisten dengan standar proofing",
-        "Kertas NCR sensitif berkualitas tinggi untuk surat jalan / faktur",
-        "Stiker label barcode berperekat kuat tahan gesekan & kelembapan"
-      ],
-      specs: [
-        { key: "Dokumen Kantor", val: "Buku Nota NCR Rangkap 2-4, Kop Surat, Amplop Perusahaan" },
-        { key: "Label Logistik", val: "Stiker Thermal Barcode, Stiker Fragile, Label Kemasan" },
-        { key: "Marketing", val: "Brosur, Company Profile Booklet, Spanduk & Roll Banner" }
-      ]
+        "id": "pkg-palet-kayu",
+        "categoryId": "packaging",
+        "subCategory": "kemasan-kayu",
+        "subCategoryName": "Kemasan Kayu",
+        "name": "Palet Kayu Standar (Wooden Pallet)",
+        "categoryName": "Packaging",
+        "tag": "Standar Gudang",
+        "badge": "Forklift & Racking",
+        "shortDesc": "Palet kayu kokoh untuk tatakan kargo, penyimpanan racking gudang, dan mempermudah operasional forklift.",
+        "fullDesc": "Palet kayu standar industri dengan konstruksi 2-way dan 4-way entry. Mampu menopang beban statis maupun dinamis dengan stabil, mempermudah perpindahan barang menggunakan forklift maupun hand pallet.",
+        "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Struktur paku ulir kuat tidak mudah goyah atau patah",
+            "Standar dimensi pas untuk kontainer kargo dan rak gudang",
+            "Tersedia opsi perlakuan panas / fumigasi (ISPM 15)"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Kemasan Kayu"
+            },
+            {
+                "key": "Ukuran Populer",
+                "val": "100 x 120 cm, 110 x 110 cm, 80 x 120 cm"
+            },
+            {
+                "key": "Daya Angkut",
+                "val": "Dinamis 1 - 1.5 Ton, Statis 2 - 3 Ton"
+            }
+        ]
+    },
+    {
+        "id": "pkg-strapping-band",
+        "categoryId": "packaging",
+        "subCategory": "pengikat-pengaman",
+        "subCategoryName": "Pengikat & Pengaman",
+        "name": "Strapping Band (Tali Strapping PP/PET)",
+        "categoryName": "Packaging",
+        "tag": "Pengikat Koli",
+        "badge": "Bundling Cargo",
+        "shortDesc": "Tali strapping mesin dan manual berkualitas tinggi untuk mengikat dan mengamankan koli karton serta muatan pallet.",
+        "fullDesc": "Tali pengikat strapping band berbahan Polypropylene (PP) dan Polyester (PET) dengan kekuatan tarik tinggi. Digunakan untuk bundling kardus, pipa, dan penguncian pallet barang agar tidak goyah atau berantakan.",
+        "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya tarik dan regangan tidak mudah putus saat ditarik kencang",
+            "Cocok untuk mesin otomatis, semi-otomatis, maupun klem manual",
+            "Permukaan rata anti-macet pada saluran mesin strapping"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Pengikat & Pengaman"
+            },
+            {
+                "key": "Lebar Tali",
+                "val": "9 mm, 12 mm, 15 mm, 19 mm"
+            },
+            {
+                "key": "Material",
+                "val": "PP Strapping Band & Heavy Duty PET"
+            }
+        ]
+    },
+    {
+        "id": "pkg-sabuk-kargo",
+        "categoryId": "packaging",
+        "subCategory": "pengikat-pengaman",
+        "subCategoryName": "Pengikat & Pengaman",
+        "name": "Sabuk Kargo (Ratchet Cargo Strap)",
+        "categoryName": "Packaging",
+        "tag": "Heavy Lashing",
+        "badge": "Truk & Kontainer",
+        "shortDesc": "Sabuk pengikat kargo muatan berat dengan tuas ratchet pengunci presisi untuk pengamanan logistik truk dan kontainer.",
+        "fullDesc": "Ratchet tie down cargo lashing strap berbahan anyaman polyester tenun tebal dengan gesper pengunci baja kuat. Mencegah muatan bergeser atau terguling selama perjalanan darat jarak jauh.",
+        "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Mekanisme tuas ratchet mengunci sangat kuat dan mudah dikencangkan",
+            "Kait besi berlapis galvanis tahan karat dan cuaca ekstrem",
+            "Standar kapasitas beban teruji aman untuk logistik kargo"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Pengikat & Pengaman"
+            },
+            {
+                "key": "Lebar Sabuk",
+                "val": "2 Inch (50 mm) & 1 Inch (25 mm)"
+            },
+            {
+                "key": "Kapasitas Beban",
+                "val": "1 Ton, 3 Ton, hingga 5 Ton (Break Strength)"
+            }
+        ]
+    },
+    {
+        "id": "pkg-goodie-bag",
+        "categoryId": "packaging",
+        "subCategory": "kemasan-kain",
+        "subCategoryName": "Kemasan Kain",
+        "name": "Goodie Bag Kain (Custom & Original)",
+        "categoryName": "Packaging",
+        "tag": "Custom Branding",
+        "badge": "Kemasan Kain",
+        "shortDesc": "Kemasan tas berbahan kain spunbond dan canvas untuk membungkus, melindungi, dan mengemas berbagai barang perusahaan.",
+        "fullDesc": "Goodie bag ramah lingkungan dengan bahan non-woven spunbond atau kanvas tebal. Dapat dipesan polos (original) maupun custom sablon logo perusahaan untuk souvenir event kantor, kemasan belanja produk, dan corporate gift.",
+        "image": "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bahan kain spunbond tebal 75-100 gsm kuat dipakai berulang kali",
+            "Jahitan dan press rapi dengan daya angkut hingga 10 kg",
+            "Pilihan warna lengkap dan sablon logo tajam presisi"
+        ],
+        "specs": [
+            {
+                "key": "Subkategori",
+                "val": "Kemasan Kain"
+            },
+            {
+                "key": "Material",
+                "val": "Spunbond Non-Woven, Blacu, Canvas"
+            },
+            {
+                "key": "Model",
+                "val": "Tali Pegangan (Handle Bag), Box Bag, Tali Serut"
+            }
+        ]
+    },
+    {
+        "id": "atk-pulpen",
+        "categoryId": "stationery",
+        "name": "Pulpen Kantor (Ballpoint Pen)",
+        "categoryName": "Office Stationery",
+        "tag": "ATK Harian",
+        "badge": "Alat Tulis",
+        "shortDesc": "Pulpen kantor berkualitas dengan tinta lancar, tidak mudah bocor, dan nyaman digenggam untuk operasional harian.",
+        "fullDesc": "Pulpen tinta gel dan semi-gel dengan mata pena presisi 0.5 - 0.7 mm. Mengalir lancar tanpa macet, cepat kering, dan sangat nyaman digunakan untuk penulisan berkas dan tanda tangan dokumen resmi perusahaan.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Tinta hitam & biru pekat",
+            "Grip nyaman anti-slip",
+            "Kemasan box isi 12 pcs hemat grosir"
+        ],
+        "specs": [
+            {
+                "key": "Jenis",
+                "val": "Ballpoint Pen 0.5 mm & 0.7 mm"
+            },
+            {
+                "key": "Warna Tinta",
+                "val": "Hitam, Biru, Merah"
+            }
+        ]
+    },
+    {
+        "id": "atk-pensil",
+        "categoryId": "stationery",
+        "name": "Pensil Kayu 2B & Pensil Mekanik",
+        "categoryName": "Office Stationery",
+        "tag": "ATK Harian",
+        "badge": "Alat Tulis",
+        "shortDesc": "Pensil kayu grade 2B dan pensil mekanik presisi untuk kebutuhan gambar teknik, draft arsip, dan catatan kerja.",
+        "fullDesc": "Pensil grafit kualitas terbaik dengan lead hitam pekat tidak mudah patah saat diraut atau ditekan. Tersedia tipe pensil kayu 2B standar komputer serta pensil mekanik 0.5 mm elegan untuk staf kantor.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Grafit hitam merata",
+            "Mudah dihapus tanpa merusak kertas",
+            "Cocok untuk draft teknik & memo"
+        ],
+        "specs": [
+            {
+                "key": "Tipe",
+                "val": "Pensil Kayu 2B & Pensil Mekanik 0.5 mm"
+            },
+            {
+                "key": "Kemasan",
+                "val": "Lusin (12 pcs)"
+            }
+        ]
+    },
+    {
+        "id": "atk-spidol",
+        "categoryId": "stationery",
+        "name": "Spidol Whiteboard & Permanent Marker",
+        "categoryName": "Office Stationery",
+        "tag": "Meeting & Gudang",
+        "badge": "Marker",
+        "shortDesc": "Spidol whiteboard mudah dihapus dan spidol permanen anti-luntur untuk penandaan dus kargo dan papan rapat.",
+        "fullDesc": "Spidol papan tulis (whiteboard) dengan tinta pekat mudah dihapus bersih tanpa residu, serta spidol permanen tahan air untuk penulisan label dus kemasan logistik di gudang.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Ujung spidol tebal & presisi (chisel / round tip)",
+            "Tinta cepat kering tidak bleber",
+            "Tersedia opsi isi ulang tinta"
+        ],
+        "specs": [
+            {
+                "key": "Varian",
+                "val": "Whiteboard Marker & Permanent Marker"
+            },
+            {
+                "key": "Warna",
+                "val": "Hitam, Biru, Merah"
+            }
+        ]
+    },
+    {
+        "id": "atk-map-plastik",
+        "categoryId": "stationery",
+        "name": "Map Plastik (Folder One / Business File)",
+        "categoryName": "Office Stationery",
+        "tag": "Pengarsipan",
+        "badge": "Arsip Plastik",
+        "shortDesc": "Map plastik folio F4 dengan acco pengunci (snelhecter) untuk menyimpan dokumen penawaran dan arsip kantor.",
+        "fullDesc": "Map plastik business file ukuran folio F4 berbahan plastik PP transparan tebal dengan penjepit logam fleksibel (acco snelhecter). Melindungi lembaran dokumen penting agar tidak tercecer, kusut, atau terkena cipratan air.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Cover bening elegan untuk halaman depan",
+            "Plastik tebal awet tidak mudah sobek",
+            "Penjepit acco kuat"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "Folio / F4"
+            },
+            {
+                "key": "Warna Punggung",
+                "val": "Biru, Merah, Kuning, Hijau, Hitam"
+            }
+        ]
+    },
+    {
+        "id": "atk-map-kertas",
+        "categoryId": "stationery",
+        "name": "Map Kertas (Stopmap Folio & Buffalo)",
+        "categoryName": "Office Stationery",
+        "tag": "Administrasi",
+        "badge": "Arsip Dokumen",
+        "shortDesc": "Map kertas karton tebal stopmap folio dan map buffalo untuk penyimpanan berkas administrasi dan surat menyurat.",
+        "fullDesc": "Stopmap kertas folio dengan kuping pengunci berkas di kedua sisi serta map berbahan kertas buffalo tebal bertekstur. Ideal untuk mengelompokkan dokumen kontrak, surat jalan, dan berkas kepegawaian.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Kertas karton kaku dan tebal",
+            "Mudah ditulisi judul dokumen",
+            "Harga pengadaan sangat ekonomis"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "Folio (F4)"
+            },
+            {
+                "key": "Material",
+                "val": "Kertas Brief Card / Karton Buffalo"
+            }
+        ]
+    },
+    {
+        "id": "atk-kertas-hvs",
+        "categoryId": "stationery",
+        "name": "Kertas HVS (A4, F4, A3 70-80 gsm)",
+        "categoryName": "Office Stationery",
+        "tag": "Kebutuhan Pokok",
+        "badge": "Cetak & Fotokopi",
+        "shortDesc": "Kertas HVS putih bersih dengan gramatur 70 & 80 gsm anti-jam untuk mesin printer laser, inkjet, dan fotokopi.",
+        "fullDesc": "Kertas HVS berkualitas tinggi dengan tingkat keputihan maksimal (high whiteness) dan opasitas tinggi yang mendukung cetak bolak-balik tanpa tembus tinta. Anti-jam pada semua merek printer kantor.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Potongan sudut presisi anti paper jam",
+            "Hasil cetak teks & grafik tajam kontras",
+            "Kemasan rim 500 lembar rapi"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "A4 (210x297mm), F4/Folio (215x330mm), A3"
+            },
+            {
+                "key": "Gramatur",
+                "val": "70 gsm & 80 gsm"
+            }
+        ]
+    },
+    {
+        "id": "atk-box-file",
+        "categoryId": "stationery",
+        "name": "Box File (Kotak Arsip Dokumen)",
+        "categoryName": "Office Stationery",
+        "tag": "Manajemen Meja",
+        "badge": "Kerapian Kantor",
+        "shortDesc": "Kotak arsip vertikal berbahan plastik dan karton tebal untuk merapikan majalah, ordner, dan berkas di meja kerja.",
+        "fullDesc": "Box file vertikal kokoh untuk menampung kumpulan dokumen, katalog produk, map, dan buku kerja secara teratur di atas meja kantor maupun di rak lemari arsip.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Struktur kokoh tidak mudah roboh",
+            "Tersedia kantong label indeks pada punggung",
+            "Tampilan profesional"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Plastik PP Tebal & Karton Laminasi"
+            },
+            {
+                "key": "Lebar Punggung",
+                "val": "7 cm - 10 cm"
+            }
+        ]
+    },
+    {
+        "id": "atk-amplop",
+        "categoryId": "stationery",
+        "name": "Amplop Surat (Putih & Cokelat)",
+        "categoryName": "Office Stationery",
+        "tag": "Korespondensi",
+        "badge": "Surat Resmi",
+        "shortDesc": "Amplop surat kantor warna putih berperakat dan amplop cokelat dinas berbagai ukuran untuk pengiriman berkas resmi.",
+        "fullDesc": "Amplop kantor berkualitas dengan lem perekat instan (self-adhesive seal). Tersedia varian amplop putih polos ukuran standar dan amplop cokelat tali/seal untuk dokumen tebal, invoice, dan surat kontrak.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Lem penutup kuat menjaga kerahasiaan berkas",
+            "Kertas tebal tidak tembus pandang",
+            "Pilihan ukuran lengkap"
+        ],
+        "specs": [
+            {
+                "key": "Tipe",
+                "val": "Amplop Putih No. 104, 110 & Amplop Cokelat Folio/A4"
+            },
+            {
+                "key": "Penutup",
+                "val": "Peel & Seal Lem Instan"
+            }
+        ]
+    },
+    {
+        "id": "atk-sticky-notes",
+        "categoryId": "stationery",
+        "name": "Sticky Notes (Catatan Tempel)",
+        "categoryName": "Office Stationery",
+        "tag": "Memo & Reminder",
+        "badge": "Memo Tempel",
+        "shortDesc": "Kertas catatan tempel aneka warna neon dengan lem ramah permukaan yang tidak meninggalkan bekas lem saat dilepas.",
+        "fullDesc": "Sticky notes memo pad praktis untuk menandai halaman berkas, mencatat pesan telepon penting, dan to-do list kerja. Daya rekat pas dan bisa dipindah-pindah tanpa merusak permukaan kertas.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Lem repositionable tidak membekas",
+            "Warna cerah mencolok mudah terlihat",
+            "Kertas nyaman ditulisi pulpen/pensil"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "3 x 3 inch (76x76mm) & Page Marker Strip"
+            },
+            {
+                "key": "Warna",
+                "val": "Kuning, Pink, Hijau, Oranye Neon"
+            }
+        ]
+    },
+    {
+        "id": "atk-stapler",
+        "categoryId": "stationery",
+        "name": "Stapler & Isi Staples Kantor",
+        "categoryName": "Office Stationery",
+        "tag": "Pengikat Dokumen",
+        "badge": "Alat Kantor",
+        "shortDesc": "Alat hekter stapler meja ergonomis dan isi staples baja kuat untuk menyatukan tumpukan dokumen kantor.",
+        "fullDesc": "Stapler kantor berbahan logam dengan casing ergonomis anti-selip. Tersedia stapler ukuran standar No. 10, No. 3 (24/6), hingga heavy duty stapler untuk menjilid berkas tebal hingga 100+ lembar.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Mekanisme tekan ringan dan anti-jamming",
+            "Bodi logam awet pemakaian bertahun-tahun",
+            "Isi staples tajam menusuk rapi"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran Stapler",
+                "val": "No. 10, No. 3 (24/6 & 26/6), Heavy Duty"
+            },
+            {
+                "key": "Kapasitas",
+                "val": "10 - 100+ Lembar HVS"
+            }
+        ]
+    },
+    {
+        "id": "atk-paper-clip",
+        "categoryId": "stationery",
+        "name": "Paper Clip (Klip Kertas Logam)",
+        "categoryName": "Office Stationery",
+        "tag": "Klip Berkas",
+        "badge": "Aksesoris Meja",
+        "shortDesc": "Klip kertas logam berlapis anti-karat untuk menyatukan lembaran dokumen sementara tanpa merusak kertas.",
+        "fullDesc": "Penjepit kertas model oval kawat baja berlapis nikel anti-karat dan vinyl warna. Sangat praktis untuk mengelompokkan lembaran kertas kerja harian tanpa perlu melubangi kertas.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Ujung kawat halus tidak merobek kertas",
+            "Tahan karat dan awet berulang kali",
+            "Tersedia kemasan box ekonomis"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "No. 3 (Kecil - 28mm) & No. 5 (Besar - 50mm)"
+            },
+            {
+                "key": "Kemasan",
+                "val": "Box isi 100 pcs"
+            }
+        ]
+    },
+    {
+        "id": "atk-binder-clip",
+        "categoryId": "stationery",
+        "name": "Binder Clip (Klip Penjepit Baja)",
+        "categoryName": "Office Stationery",
+        "tag": "Penjepit Tebal",
+        "badge": "Baja Kuat",
+        "shortDesc": "Klip penjepit berkas baja hitam dengan tuas tangkai fleksibel untuk menjepit tumpukan dokumen tebal dengan sangat kuat.",
+        "fullDesc": "Binder clip baja pegas hitam berkualitas tinggi dengan tangkai krom lipat. Menghasilkan daya jepit super kuat untuk mengamankan berkas laporan keuangan, bundel invoice, dan draft tebal tanpa lepas.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Baja pegas elastis kuat tidak kendor",
+            "Tangkai krom fleksibel bisa dilepas",
+            "Tersedia nomor ukuran lengkap"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "No. 105 (15mm), No. 107 (19mm), No. 155 (32mm), No. 200 (41mm), No. 260 (51mm)"
+            },
+            {
+                "key": "Kemasan",
+                "val": "Box isi 12 pcs"
+            }
+        ]
+    },
+    {
+        "id": "atk-cutter",
+        "categoryId": "stationery",
+        "name": "Cutter & Pisau Utilitas Kantor",
+        "categoryName": "Office Stationery",
+        "tag": "Alat Potong",
+        "badge": "Presisi & Tajam",
+        "shortDesc": "Pisau pemotong kertas dan pembuka kardus paket dengan kunci pengaman pisau otomatis (auto-lock).",
+        "fullDesc": "Cutter serbaguna dengan grip ergonomis dan mata pisau baja SK5 ekstra tajam. Dilengkapi mekanisme auto-lock pengaman bilah pisau serta pemecah mata pisau tumpul pada bagian ujung penutup.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bilah pisau tajam presisi",
+            "Sistem pengunci pisau aman saat memotong",
+            "Tersedia refill isi ulang mata cutter"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "Cutter Kecil (A-300 / 9mm) & Cutter Besar (L-500 / 18mm)"
+            },
+            {
+                "key": "Bahan Pisau",
+                "val": "High Carbon Steel SK5"
+            }
+        ]
+    },
+    {
+        "id": "atk-gunting",
+        "categoryId": "stationery",
+        "name": "Gunting Kantor Stainless Steel",
+        "categoryName": "Office Stationery",
+        "tag": "Alat Potong",
+        "badge": "Ergonomis",
+        "shortDesc": "Gunting serbaguna bilah stainless steel anti-karat dengan gagang karet ergonomis untuk pemotongan rapi dan nyaman.",
+        "fullDesc": "Gunting kantor berkualitas tinggi dengan bilah baja nirkarat (stainless steel) tajam dan presisi. Gagang berlapis karet lembut memastikan kenyamanan tangan staf saat memotong kertas, plastik, dan lakban dalam jumlah banyak.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bilah stainless tahan karat dan awet tajam",
+            "Gagang ergonomis tidak membuat jari pegal",
+            "Potongan halus dan lurus"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "Panjang 6.5 Inch, 7 Inch, 8.5 Inch"
+            },
+            {
+                "key": "Material",
+                "val": "Stainless Steel + Rubber Handle"
+            }
+        ]
+    },
+    {
+        "id": "atk-highlighter",
+        "categoryId": "stationery",
+        "name": "Highlighter (Spidol Penanda Teks)",
+        "categoryName": "Office Stationery",
+        "tag": "Penanda Teks",
+        "badge": "Warna Neon",
+        "shortDesc": "Spidol penanda teks warna terang mencolok dengan ujung chisel tip untuk menandai poin penting pada laporan kerja.",
+        "fullDesc": "Spidol penanda teks (stabilo) dengan pigmen fluorescent cerah berbasis air (water-based) yang cepat kering dan tidak merembes ke balik kertas. Ujung miring chisel tip memungkinkan penandaan garis tebal maupun garis bawah halus.",
+        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Warna neon cerah kontras terbaca jelas",
+            "Tidak melunturkan tinta pulpen atau fotokopi",
+            "Tutup kedap udara mencegah spidol kering"
+        ],
+        "specs": [
+            {
+                "key": "Warna",
+                "val": "Kuning Neon, Hijau, Oranye, Pink, Biru"
+            },
+            {
+                "key": "Tipe Ujung",
+                "val": "Chisel Tip 1 - 4 mm"
+            }
+        ]
+    },
+    {
+        "id": "safety-helm",
+        "categoryId": "safety",
+        "name": "Helm Safety (Safety Helmet)",
+        "categoryName": "Safety Equipment",
+        "tag": "Pelindung Kepala",
+        "badge": "Standar SNI & ANSI",
+        "shortDesc": "Helm pelindung kepala industri standar SNI / ANSI dengan suspensi putar (fastrac) dan tali dagu untuk kenyamanan kerja proyek.",
+        "fullDesc": "Helm keselamatan kerja bersertifikasi standar SNI dan ANSI Z89.1 berbahan plastik ABS / High-Density Polyethylene yang tahan benturan keras. Dilengkapi suspensi peredam kejut 4 hingga 6 titik serta tali dagu elastis.",
+        "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Tahan benturan vertikal dan samping",
+            "Suspensi putar mudah disesuaikan dengan lingkar kepala",
+            "Pilihan warna standar K3 lengkap"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "ABS / HDPE Impact Resistant"
+            },
+            {
+                "key": "Pilihan Warna",
+                "val": "Putih (Manajer/Tamu), Kuning (Operator), Biru, Merah, Oranye"
+            }
+        ]
+    },
+    {
+        "id": "safety-sarung-tangan",
+        "categoryId": "safety",
+        "name": "Sarung Tangan Safety (Safety Gloves)",
+        "categoryName": "Safety Equipment",
+        "tag": "Perlindungan Tangan",
+        "badge": "Anti-Gores & Slip",
+        "shortDesc": "Sarung tangan kerja katun bintik, PU coating, nitrile, dan kulit tahan panas untuk keselamatan tangan teknisi pabrik.",
+        "fullDesc": "Rangkaian sarung tangan keselamatan industri untuk berbagai jenis pekerjaan: sarung tangan katun rajut bintik karet untuk handling gudang, sarung tangan PU/Nitrile untuk kontak oli/kimia, dan sarung tangan kulit las tahan percikan api.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya cengkeram kuat anti-slip",
+            "Nyaman berpori sirkulasi udara baik",
+            "Melindungi dari lecet, sayatan, dan bahan kimia"
+        ],
+        "specs": [
+            {
+                "key": "Varian",
+                "val": "Katun Bintik, Nitrile Palm Coated, PU Coating, Kulit Las"
+            },
+            {
+                "key": "Ukuran",
+                "val": "M, L, XL"
+            }
+        ]
+    },
+    {
+        "id": "safety-rompi",
+        "categoryId": "safety",
+        "name": "Rompi Safety (Reflective Safety Vest)",
+        "categoryName": "Safety Equipment",
+        "tag": "Visibilitas Tinggi",
+        "badge": "Pita Scotlight",
+        "shortDesc": "Rompi keselamatan bahan jaring dan polyester dengan pita reflektor scotlight terang untuk visibilitas optimal siang dan malam.",
+        "fullDesc": "Rompi K3 visibilitas tinggi dengan bahan polyester/jaring breathable yang sejuk dipakai di lapangan. Dilengkapi pita reflektif scotlight yang memantulkan cahaya saat terpapar lampu sorot kendaraan di area gelap.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Pita reflektor bersinar terang saat malam",
+            "Bahan jaring adem dan tidak panas",
+            "Dilengkapi ritsleting / velcro dan kantong serbaguna"
+        ],
+        "specs": [
+            {
+                "key": "Warna",
+                "val": "Hijau Stabilo (Lime) & Oranye Terang"
+            },
+            {
+                "key": "Model",
+                "val": "Rompi Jaring V, Rompi Proyek 4 Kantong Ritsleting"
+            }
+        ]
+    },
+    {
+        "id": "safety-respirator",
+        "categoryId": "safety",
+        "name": "Respirator & Masker Industri",
+        "categoryName": "Safety Equipment",
+        "tag": "Perlindungan Nafas",
+        "badge": "Filter Partikel & Gas",
+        "shortDesc": "Masker respirator half-face dan masker partikulat N95/KN95 untuk menyaring debu pabrik, gas kimia, dan partikel berbahaya.",
+        "fullDesc": "Perlindungan pernapasan komprehensif mulai dari masker partikulat debu sekali pakai hingga respirator half-mask silicone dengan cartridge filter ganda untuk menyerap uap organik kimia, gas asam, dan asap las.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Filtrasi partikel mikro efisien hingga 95%+",
+            "Bahan silikon lembut menutup rapat wajah",
+            "Tali elastis dapat disetel nyaman"
+        ],
+        "specs": [
+            {
+                "key": "Tipe",
+                "val": "Respirator Half Face Double Cartridge & Masker N95/KN95"
+            },
+            {
+                "key": "Aplikasi",
+                "val": "Pabrik kimia, pengecatan spet, penggilingan debu, tambang"
+            }
+        ]
+    },
+    {
+        "id": "safety-kacamata",
+        "categoryId": "safety",
+        "name": "Kacamata Safety (Safety Glasses)",
+        "categoryName": "Safety Equipment",
+        "tag": "Perlindungan Mata",
+        "badge": "Anti-Fog & UV",
+        "shortDesc": "Kacamata pelindung mata lensa polikarbonat tahan benturan, anti-gores, dan anti-embun untuk teknisi lapangan.",
+        "fullDesc": "Kacamata safety dengan lensa polikarbonat bening/gelap bersertifikasi ANSI Z87.1. Mampu menahan serpihan gerinda tajam, percikan zat kimia ringan, serta radiasi sinar UV dengan bantalan hidung yang nyaman.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Lensa polikarbonat tahan benturan kecepatan tinggi",
+            "Lapisan anti-fog (anti embun) dan anti-scratch",
+            "Desain sporty ringan"
+        ],
+        "specs": [
+            {
+                "key": "Lensa",
+                "val": "Clear (Bening), Dark (Hitam/Sun), Yellow (Kontras)"
+            },
+            {
+                "key": "Standar",
+                "val": "ANSI Z87.1 & CE EN166"
+            }
+        ]
+    },
+    {
+        "id": "safety-boots",
+        "categoryId": "safety",
+        "name": "Safety Boots (Sepatu Boot Karet)",
+        "categoryName": "Safety Equipment",
+        "tag": "Area Basah & Kimia",
+        "badge": "Waterproof",
+        "shortDesc": "Sepatu boot karet PVC tahan air, lumpur, oli, dan cairan kimia untuk area basah, proyek drainase, dan perkebunan.",
+        "fullDesc": "Sepatu boot kerja berbahan PVC sintetis tebal yang 100% kedap air. Memiliki sol karet bergerigi tebal anti-slip untuk mencegah terpeleset di area lantai licin, genangan oli, atau lumpur proyek konstruksi.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "100% tahan air dan cairan pembersih kimia",
+            "Sol anti-slip traksi tinggi di medan licin",
+            "Bahan karet lentur dan tidak kaku"
+        ],
+        "specs": [
+            {
+                "key": "Tinggi",
+                "val": "Pendek (Mata Kaki) & Tinggi (Betis)"
+            },
+            {
+                "key": "Ukuran",
+                "val": "38 - 44"
+            }
+        ]
+    },
+    {
+        "id": "safety-face-shield",
+        "categoryId": "safety",
+        "name": "Face Shield (Pelindung Wajah Visor)",
+        "categoryName": "Safety Equipment",
+        "tag": "Perlindungan Wajah Penuh",
+        "badge": "Full Face Protection",
+        "shortDesc": "Pelindung muka bening visor polikarbonat dengan headgear putar untuk melindungi mata dan wajah dari percikan gerinda dan kimia.",
+        "fullDesc": "Face shield industri dengan visor polikarbonat jernih dan bingkai aluminium fleksibel. Melindungi seluruh area wajah dari loncatan serpihan logam gerinda, debu pekat, dan percikan cairan kimia berbahaya.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Area pandang luas tanpa distorsi visual",
+            "Headgear ratchet putar mudah disetel pas di kepala",
+            "Visor dapat diangkat ke atas dengan engsel fleksibel"
+        ],
+        "specs": [
+            {
+                "key": "Material Visor",
+                "val": "Clear Polycarbonate Tebal 1 - 2 mm"
+            },
+            {
+                "key": "Aplikasi",
+                "val": "Grinding, pemotongan besi, lab kimia, welding helper"
+            }
+        ]
+    },
+    {
+        "id": "safety-baju-pelindung",
+        "categoryId": "safety",
+        "name": "Baju Pelindung (Coverall / Hazmat)",
+        "categoryName": "Safety Equipment",
+        "tag": "Proteksi Tubuh",
+        "badge": "Wearpack & Coverall",
+        "shortDesc": "Pakaian kerja coverall katun wearpack dan coverall disposable pelindung dari debu kimia, cat, dan cairan berbahaya.",
+        "fullDesc": "Penyediaan pakaian pelindung tubuh lengkap mulai dari wearpack katun drill industri dengan pita scotlight untuk mekanik pabrik, hingga baju coverall microporous spunbond tahan cipratan cairan kimia dan partikel berbahaya.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bahan kuat anti-robek dan jahitan ganda",
+            "Tersedia tipe washable (cuci ulang) dan disposable",
+            "Dilengkapi ritsleting tertutup dan karet elastis"
+        ],
+        "specs": [
+            {
+                "key": "Varian",
+                "val": "Coverall Katun Wearpack Proyek & Coverall Disposable Hazmat"
+            },
+            {
+                "key": "Ukuran",
+                "val": "M, L, XL, XXL"
+            }
+        ]
+    },
+    {
+        "id": "safety-harness",
+        "categoryId": "safety",
+        "name": "Safety Harness (Full Body Harness)",
+        "categoryName": "Safety Equipment",
+        "tag": "Kerja di Ketinggian",
+        "badge": "Fall Arrest System",
+        "shortDesc": "Sabuk pengaman tubuh penuh lengkap dengan lanyard absorber dan big hook karabiner untuk keselamatan kerja di ketinggian.",
+        "fullDesc": "Full body harness dengan webbing polyester berkekuatan tinggi dan D-ring penahan jatuh di bagian punggung dan dada. Memenuhi standar keselamatan kerja ketinggian (Working at Height) di pabrik dan konstruksi.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya tahan tarik beban webbing lebih dari 22 kN",
+            "Dilengkapi shock energy absorber peredam hentakan",
+            "Gesper pengunci presisi dan mudah disetel"
+        ],
+        "specs": [
+            {
+                "key": "Tipe",
+                "val": "Full Body Harness with Single / Double Big Hook Lanyard"
+            },
+            {
+                "key": "Standar",
+                "val": "EN361, EN355 & ANSI Z359"
+            }
+        ]
+    },
+    {
+        "id": "safety-sepatu",
+        "categoryId": "safety",
+        "name": "Sepatu Safety (Steel Toe Shoes)",
+        "categoryName": "Safety Equipment",
+        "tag": "Pelindung Kaki Pabrik",
+        "badge": "Ujung Besi 200J",
+        "shortDesc": "Sepatu keselamatan kerja kulit asli dengan pelindung ujung besi (steel toe cap) tahan benturan dan sol anti-paku anti-slip.",
+        "fullDesc": "Sepatu safety standar industri dengan pelindung besi penahan benturan 200 Joule pada bagian jari kaki serta plat baja anti-tusuk di sol bawah. Nyaman dipakai seharian dengan insole empuk dan sol polyurethane tahan oli.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Steel toe cap melindungi kaki dari kejatuhan benda berat",
+            "Sol PU tahan minyak, bensin, dan cairan asam",
+            "Kulit asli tahan gesek dan awet"
+        ],
+        "specs": [
+            {
+                "key": "Model",
+                "val": "Low Cut (Pendek Tali/Slip-on) & Mid Cut / Boots"
+            },
+            {
+                "key": "Ukuran",
+                "val": "38 - 45"
+            }
+        ]
+    },
+    {
+        "id": "safety-apar",
+        "categoryId": "safety",
+        "name": "APAR (Alat Pemadam Api Ringan)",
+        "categoryName": "Safety Equipment",
+        "tag": "Tanggap Darurat Api",
+        "badge": "Dry Chemical & CO2",
+        "shortDesc": "Tabung pemadam kebakaran media dry chemical powder dan CO2 bersertifikasi dinas pemadam untuk pabrik, kantor, dan gudang.",
+        "fullDesc": "Tabung pemadam api ringan (APAR) siap pakai dengan media serbuk kimia kering (ABC Dry Chemical Powder) atau Gas CO2. Efektif memadamkan api kelas A (benda padat), kelas B (cairan mudah terbakar), dan kelas C (kelistrikan).",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Indikator pressure gauge presisi siap pantau",
+            "Sertifikasi dinas penanggulangan kebakaran resmi",
+            "Termasuk bracket gantung dinding"
+        ],
+        "specs": [
+            {
+                "key": "Kapasitas",
+                "val": "1 kg, 3 kg, 4.5 kg, 6 kg, 9 kg, hingga Trolley 25-50 kg"
+            },
+            {
+                "key": "Media",
+                "val": "ABC Powder & Carbon Dioxide (CO2)"
+            }
+        ]
+    },
+    {
+        "id": "safety-cone",
+        "categoryId": "safety",
+        "name": "Safety Cone (Traffic Cone Pengatur Area)",
+        "categoryName": "Safety Equipment",
+        "tag": "Pembatas Area",
+        "badge": "Pita Reflektif",
+        "shortDesc": "Kerucut lalu lintas bahan PVC fleksibel oranye dengan pita stiker scotlight untuk pembatas area bahaya dan parkir industri.",
+        "fullDesc": "Traffic cone pengaman berbahan PVC lentur tahan tabrak yang tidak mudah pecah saat terlindas roda kendaraan. Dilengkapi pita reflektif putih/kuning yang memantulkan cahaya di malam hari untuk keamanan lalu lintas gudang.",
+        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bahan PVC fleksibel kembali ke bentuk semula saat terlindas",
+            "Dasar base pemberat kokoh tidak mudah tumbang ditiup angin",
+            "Warna oranye cerah tahan cuaca terik"
+        ],
+        "specs": [
+            {
+                "key": "Tinggi",
+                "val": "45 cm, 70 cm, 75 cm, 90 cm"
+            },
+            {
+                "key": "Fitur",
+                "val": "Pita Reflektif Scotlight Double Ring"
+            }
+        ]
+    },
+    {
+        "id": "chem-pelumas-anti-karat",
+        "categoryId": "chemical",
+        "name": "Pelumas Anti Karat (Penetrating Oil)",
+        "categoryName": "Chemical",
+        "tag": "Perawatan Mesin",
+        "badge": "Lubricant & Anti-Rust",
+        "shortDesc": "Cairan pelumas penetrasi cepat untuk melonggarkan baut mur macet, membersihkan karat, dan melindungi logam dari korosi.",
+        "fullDesc": "Pelumas semprot serbaguna berdaya penetrasi tinggi yang mampu menembus celah tersempit untuk melonggarkan komponen berkarat, menghentikan derit engsel, menghilangkan kelembapan pada kelistrikan, serta melapisi permukaan besi dari korosi.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya penetrasi instan ke sela drat baut berkarat",
+            "Meninggalkan lapisan film tipis pencegah karat baru",
+            "Dilengkapi sedotan pipa semprot presisi"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Aerosol Can 400 - 500 ml & Jerigen 5 Liter"
+            },
+            {
+                "key": "Fungsi",
+                "val": "Penetrating, Lubricating, Water Displacing"
+            }
+        ]
+    },
+    {
+        "id": "chem-pembersih-lantai",
+        "categoryId": "chemical",
+        "name": "Pembersih Lantai (Floor Cleaner)",
+        "categoryName": "Chemical",
+        "tag": "Sanitasi Gedung",
+        "badge": "Konsentrat Wangi",
+        "shortDesc": "Cairan pembersih lantai konsentrat wangi segar untuk membersihkan kotoran membandel di lantai kantor, keramik, dan epoxy.",
+        "fullDesc": "Formula pembersih lantai konsentrat dengan daya bersih maksimal yang ampuh mengangkat debu, noda minyak, dan kotoran tanpa merusak kilau permukaan lantai. Menghadirkan keharuman segar yang tahan lama di ruangan.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Busa terkontrol cepat kering tanpa licin",
+            "Aman untuk lantai keramik, marmer, granit, dan epoxy",
+            "Hemat takaran pemakaian"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Jerigen 4 Liter & 5 Liter"
+            },
+            {
+                "key": "Aroma",
+                "val": "Apple, Lemon, Lavender, Floral Fresh"
+            }
+        ]
+    },
+    {
+        "id": "chem-pembersih-kaca",
+        "categoryId": "chemical",
+        "name": "Pembersih Kaca (Glass Cleaner)",
+        "categoryName": "Chemical",
+        "tag": "Kaca Bening",
+        "badge": "Anti-Streak",
+        "shortDesc": "Cairan pembersih kaca formula cepat kering tanpa meninggalkan bercak noda untuk jendela, cermin, dan partisi kantor.",
+        "fullDesc": "Cairan pembersih kaca khusus yang efektif mengangkat kotoran debu, bekas sidik jari, dan noda minyak pada kaca gedung perkantoran, meja display, dan cermin. Cepat menguap tanpa meninggalkan goresan pelangi.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Formula anti-static menghambat debu menempel kembali",
+            "Cepat kering tanpa perlu dibilas",
+            "Kaca bening berkilau maksimal"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Spray Bottle 500 ml & Jerigen Refill 5 Liter"
+            },
+            {
+                "key": "Warna Cairan",
+                "val": "Biru Bening"
+            }
+        ]
+    },
+    {
+        "id": "chem-pembersih-piring",
+        "categoryId": "chemical",
+        "name": "Pembersih Piring (Dishwashing Liquid)",
+        "categoryName": "Chemical",
+        "tag": "Pantry & Kantin",
+        "badge": "Anti-Lemak",
+        "shortDesc": "Sabun cuci piring busa melimpah dengan formula ekstrak jeruk nipis yang ampuh melunturkan sisa lemak minyak kantin dan pantry.",
+        "fullDesc": "Sabun pencuci piring cair grade korporat yang kental dan berdaya cuci tinggi. Mampu membersihkan noda lemak masakan membandel pada peralatan makan dan minum dengan cepat, mudah dibilas, serta higienis.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Formula ampuh angkat lemak sekali bilas",
+            "Lembut di tangan dan tidak menyebabkan kulit kering",
+            "Aroma segar jeruk nipis menghilangkan bau amis"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Jerigen 4 Liter & 5 Liter"
+            },
+            {
+                "key": "Aroma",
+                "val": "Ekstrak Jeruk Nipis / Lemon Fresh"
+            }
+        ]
+    },
+    {
+        "id": "chem-sabun-cuci-tangan",
+        "categoryId": "chemical",
+        "name": "Sabun Cuci Tangan (Liquid Hand Soap)",
+        "categoryName": "Chemical",
+        "tag": "Higienitas Karyawan",
+        "badge": "Antibakteri & Lembut",
+        "shortDesc": "Sabun cuci tangan cair antibakteri berbusa lembut dengan pelembap kulit untuk wastafel toilet kantor dan fasilitas publik.",
+        "fullDesc": "Cairan pencuci tangan antibakteri yang efektif membunuh 99.9% kuman dan bakteri di tangan. Mengandung pelembap alami sehingga kulit tetap halus dan lembut meski sering mencuci tangan.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Perlindungan antibakteri teruji laboratorium",
+            "Busa melimpah dan mudah dibilas bersih",
+            "Aroma buah dan bunga segar tahan lama"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Botol Pump 500 ml & Jerigen Refill 5 Liter"
+            },
+            {
+                "key": "Aroma",
+                "val": "Strawberry, Apple, Lemon, Jasmine"
+            }
+        ]
+    },
+    {
+        "id": "chem-pengharum-ruangan",
+        "categoryId": "chemical",
+        "name": "Pengharum Ruangan (Air Freshener)",
+        "categoryName": "Chemical",
+        "tag": "Kesegaran Kantor",
+        "badge": "Otomatis & Semprot",
+        "shortDesc": "Pengharum ruangan spray dan kaleng refill dispenser otomatis untuk menghadirkan kenyamanan udara bersih di ruang kerja dan lobi.",
+        "fullDesc": "Pengharum ruangan konsentrat berkualitas tinggi untuk menetralkan bau tak sedap dan menghadirkan suasana ruangan yang wangi, segar, dan menenangkan. Cocok untuk lobi kantor, ruang meeting, dan toilet gedung.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Wangi tahan lama dan partikel semprot halus",
+            "Tersedia refill kaleng cocok untuk semua mesin dispenser otomatis",
+            "Tidak membuat bercak noda pada dinding/karpet"
+        ],
+        "specs": [
+            {
+                "key": "Format",
+                "val": "Refill Kaleng Otomatis 300 ml & Manual Spray"
+            },
+            {
+                "key": "Varian Aroma",
+                "val": "Coffee, Lemon, Lavender, Green Tea, Orange"
+            }
+        ]
+    },
+    {
+        "id": "chem-karbol",
+        "categoryId": "chemical",
+        "name": "Karbol Wangi & Antiseptik Pinus",
+        "categoryName": "Chemical",
+        "tag": "Disinfeksi Toilet",
+        "badge": "Minyak Pinus Alami",
+        "shortDesc": "Cairan karbol antiseptik beraroma pinus alami untuk membersihkan, mendisinfeksi, dan menghilangkan bau pesing toilet.",
+        "fullDesc": "Karbol antiseptik dengan kandungan minyak pinus murni yang ampuh membasmi kuman penyakit, bakteri, dan jamur pada lantai toilet, saluran pembuangan air, dan tempat sampah basah. Mengusir bau tak sedap seketika.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Membunuh kuman dan bakteri membandel",
+            "Aroma khas pinus alami menyegarkan area lembap",
+            "Formula kental konsentrat hemat pemakaian"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Jerigen 4 Liter & 5 Liter"
+            },
+            {
+                "key": "Kandungan",
+                "val": "Pine Oil Konsentrat Antiseptik"
+            }
+        ]
+    },
+    {
+        "id": "chem-handsanitizer",
+        "categoryId": "chemical",
+        "name": "Hand Sanitizer (Cair & Gel)",
+        "categoryName": "Chemical",
+        "tag": "Sanitasi Cepat",
+        "badge": "Alkohol 70%",
+        "shortDesc": "Pembersih tangan antiseptik dengan kandungan alkohol 70% food grade yang ampuh membunuh kuman tanpa perlu dibilas air.",
+        "fullDesc": "Hand sanitizer dengan standar kesehatan medis yang mengandung 70% Ethyl Alcohol murni serta formula pelembap lidah buaya (Aloe Vera). Praktis digunakan di meja resepsionis, pintu masuk gedung, dan area kantin.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Efektif membunuh 99.9% kuman, virus, dan bakteri",
+            "Cepat meresap kering tanpa meninggalkan rasa lengket",
+            "Food grade aman untuk penggunaan harian"
+        ],
+        "specs": [
+            {
+                "key": "Kadar Alkohol",
+                "val": "70% Food Grade"
+            },
+            {
+                "key": "Kemasan",
+                "val": "Botol Pump 500 ml & Jerigen Refill 5 Liter"
+            }
+        ]
+    },
+    {
+        "id": "chem-disinfectant",
+        "categoryId": "chemical",
+        "name": "Disinfectant Konsentrat Industri",
+        "categoryName": "Chemical",
+        "tag": "Sterilisasi Fasilitas",
+        "badge": "Permukaan Higienis",
+        "shortDesc": "Cairan disinfektan konsentrat berspektrum luas untuk sterilisasi ruangan pabrik, meja kerja, gagang pintu, dan peralatan.",
+        "fullDesc": "Formula cairan disinfektan siap semprot maupun konsentrat pengenceran untuk sanitasi menyeluruh fasilitas kerja industri, gudang ekspedisi, dan armada operasional. Bebas korosif terhadap logam.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Membasmi spektrum luas bakteri patogen dan virus",
+            "Aman disemprotkan pada permukaan logam, kayu, dan plastik",
+            "Tidak meninggalkan residu beracun"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Jerigen 5 Liter & Drum 20 Liter"
+            },
+            {
+                "key": "Penggunaan",
+                "val": "Sprayer manual, fogging ruangan, lap permukaan"
+            }
+        ]
+    },
+    {
+        "id": "chem-detergen-cair",
+        "categoryId": "chemical",
+        "name": "Detergen Cair (Liquid Detergent)",
+        "categoryName": "Chemical",
+        "tag": "Pencucian Industri",
+        "badge": "Pembersih Tekstil",
+        "shortDesc": "Detergen cair konsentrat rendah busa untuk pencucian kain majun, seragam kerja kotor, dan linen fasilitas perusahaan.",
+        "fullDesc": "Detergen cair konsentrat dengan daya penetrasi serat kain yang tinggi untuk merontokkan noda oli, gemuk, tanah, dan noda keringat pada seragam kerja pabrik serta kain lap operasional. Ramah pada mesin cuci.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya bersih noda minyak dan oli sangat efektif",
+            "Rendah busa (low foam) menjaga keawetan mesin cuci",
+            "Warna pakaian tetap cerah tidak kusam"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Jerigen 5 Liter & 20 Liter"
+            },
+            {
+                "key": "Aroma",
+                "val": "Fresh Floral / Lavender"
+            }
+        ]
+    },
+    {
+        "id": "chem-parfum-laundry",
+        "categoryId": "chemical",
+        "name": "Parfum Laundry Konsentrat",
+        "categoryName": "Chemical",
+        "tag": "Pewangi Pakaian",
+        "badge": "Keharuman Tahan Lama",
+        "shortDesc": "Pewangi pakaian konsentrat kualitas laundry untuk disemprotkan saat finishing setrika seragam karyawan perusahaan.",
+        "fullDesc": "Parfum pakaian berbahan dasar pelarut khusus grade laundry profesional yang tidak meninggalkan bercak kuning pada kain putih. Menghadirkan wangi mewah yang tahan disimpan berhari-hari di lemari.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Keharuman mewah dan sangat awet",
+            "Formula anti-apek dan anti-jamur pakaian",
+            "Cepat kering saat disemprotkan"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Botol Spray 1 Liter & Jerigen 5 Liter"
+            },
+            {
+                "key": "Aroma Populer",
+                "val": "Sakura, Snappy, Ocean Fresh, Downy Red"
+            }
+        ]
+    },
+    {
+        "id": "chem-softener",
+        "categoryId": "chemical",
+        "name": "Softener (Pelembut & Pelicin Pakaian)",
+        "categoryName": "Chemical",
+        "tag": "Kenyamanan Seragam",
+        "badge": "Pelembut Kain",
+        "shortDesc": "Cairan pelembut dan pelicin serat pakaian dengan formula antistatik agar seragam karyawan halus dan mudah disetrika.",
+        "fullDesc": "Cairan pelembut konsentrat untuk bilasan akhir pencucian yang melembutkan serat kain kaku, mencegah kusut berlebih, dan menghilangkan listrik statis pada pakaian sintetis.",
+        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Membuat serat kain halus dan lembut bersentuhan dengan kulit",
+            "Mempermudah dan mempercepat proses setrika",
+            "Wangi segar menempel sepanjang hari kerja"
+        ],
+        "specs": [
+            {
+                "key": "Kemasan",
+                "val": "Jerigen 5 Liter"
+            },
+            {
+                "key": "Aroma",
+                "val": "Soft Blue Floral & Pink Blossom"
+            }
+        ]
+    },
+    {
+        "id": "cons-amplas",
+        "categoryId": "consumable",
+        "name": "Amplas (Sandpaper Roll & Sheet)",
+        "categoryName": "Consumable",
+        "tag": "Finishing Material",
+        "badge": "Grit Kasar - Halus",
+        "shortDesc": "Amplas kertas dan kain berkualitas tinggi berbagai nomor grit untuk proses penghalusan permukaan besi, kayu, dan bodi kendaraan.",
+        "fullDesc": "Kertas amplas tahan air (waterproof silicon carbide) dan kain amplas roll fleksibel untuk pengamplasan kering maupun basah. Memberikan hasil perataan dan penghalusan permukaan yang presisi sebelum proses pengecatan.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Serat butiran tajam dan tidak cepat rontok",
+            "Dapat digunakan basah (dengan air) maupun kering",
+            "Pilihan grit lengkap dari kasar hingga super halus"
+        ],
+        "specs": [
+            {
+                "key": "Pilihan Grit",
+                "val": "Grit 60, 80, 100, 120, 240, 400, 600, 800, 1000, 2000"
+            },
+            {
+                "key": "Bentuk",
+                "val": "Lembaran (Sheet 9x11 inch) & Roll Meteran"
+            }
+        ]
+    },
+    {
+        "id": "cons-cutting-tools",
+        "categoryId": "consumable",
+        "name": "Cutting Tools (Mata Gerinda & Batu Potong)",
+        "categoryName": "Consumable",
+        "tag": "Fabrikasi Logam",
+        "badge": "Batu Potong Besi",
+        "shortDesc": "Mata gerinda potong tipis dan batu gerinda asah/poles logam stainless steel berkualitas tinggi anti-pecah.",
+        "fullDesc": "Batu gerinda potong (cutting wheel) ukuran 4 inch dan 14 inch bertulang jaring fiber ganda yang aman dan tahan putaran tinggi. Memberikan potongan besi, holo, dan stainless steel yang cepat, presisi, serta minim serpihan panas.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bilah tipis 1.0 - 1.2 mm memotong sangat cepat dan hemat bahan",
+            "Konstruksi jaring penguat ganda mencegah pecah bilah",
+            "Tahan panas pada putaran mesin gerinda hingga 15.000 RPM"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "4 Inch (105 x 1.2 x 16 mm) & 14 Inch (Mesin Cut Off)"
+            },
+            {
+                "key": "Aplikasi",
+                "val": "Potong Besi, Baja, Pipa, Stainless Steel"
+            }
+        ]
+    },
+    {
+        "id": "cons-kain-majun",
+        "categoryId": "consumable",
+        "name": "Kain Majun (Kain Lap Industri)",
+        "categoryName": "Consumable",
+        "tag": "Bengkel & Mesin",
+        "badge": "Daya Serap Oli",
+        "shortDesc": "Kain lap katun majun jahit tumpuk dan lembaran tanpa jahit untuk menyerap oli mesin, pelumas, dan cairan industri.",
+        "fullDesc": "Kain majun katun sisa bahan tekstil pilihan dengan daya serap cairan dan minyak yang sangat tinggi. Pilihan hemat nomor satu bagi teknisi pabrik dan bengkel untuk membersihkan mesin, suku cadang berminyak, dan area kerja.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya serap oli, solar, dan minyak sangat cepat",
+            "Bahan katun murni tidak menggores permukaan logam",
+            "Kemasan karung ball hemat pengadaan massal"
+        ],
+        "specs": [
+            {
+                "key": "Varian",
+                "val": "Majun Jahit Tumpuk (Campur/Putih) & Majun Lembaran Lembut"
+            },
+            {
+                "key": "Kemasan",
+                "val": "Karung 25 kg / 50 kg"
+            }
+        ]
+    },
+    {
+        "id": "cons-microfiber",
+        "categoryId": "consumable",
+        "name": "Kain Lap Microfiber Halus",
+        "categoryName": "Consumable",
+        "tag": "Pembersih Presisi",
+        "badge": "Bebas Goresan",
+        "shortDesc": "Lap kain serat mikro berdaya serap tinggi yang mengangkat debu halus tanpa meninggalkan serat kain ataupun goresan.",
+        "fullDesc": "Lap microfiber kualitas premium berbahan 80% polyester dan 20% polyamide dengan kerapatan serat tinggi. Mampu mengikat partikel debu mikro, sidik jari, dan tetesan air pada kaca, layar elektronik, bodi mobil, dan lensa optik.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Menyerap air hingga 7 kali bobot kainnya",
+            "Tidak meninggalkan serat debu (lint-free)",
+            "Dapat dicuci dan digunakan kembali ratusan kali"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "40 x 40 cm (Gramatur 300 - 350 GSM)"
+            },
+            {
+                "key": "Warna",
+                "val": "Kuning, Biru, Hijau, Merah"
+            }
+        ]
+    },
+    {
+        "id": "cons-kanebo",
+        "categoryId": "consumable",
+        "name": "Kanebo (Plas Chamois)",
+        "categoryName": "Consumable",
+        "tag": "Pengering Cepat",
+        "badge": "Daya Serap Super",
+        "shortDesc": "Lap sintetis PVA berpori rapat dengan daya hisap air luar biasa untuk mengeringkan bodi armada dan permukaan basah secara kilat.",
+        "fullDesc": "Lap sintetis plas chamois berbahan PVA berkualitas tinggi dengan serat penguat jaring di bagian tengah. Mampu menyerap air seketika tanpa meninggalkan bercak tetesan air pada kaca dan permukaan cat bodi kendaraan operasional.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya hisap air instan sekali usap",
+            "Struktur berserat jaring kuat tidak mudah sobek",
+            "Dilengkapi tabung penyimpanan kedap udara"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "Standar (43 x 32 cm) & Jumbo (66 x 43 cm)"
+            },
+            {
+                "key": "Ketebalan",
+                "val": "0.2 cm"
+            }
+        ]
+    },
+    {
+        "id": "cons-sapu",
+        "categoryId": "consumable",
+        "name": "Sapu Lantai (Indoor Broom)",
+        "categoryName": "Consumable",
+        "tag": "Kebersihan Ruangan",
+        "badge": "Nilon & Ijuk",
+        "shortDesc": "Sapu lantai berbahan serat nilon halus dan ijuk tebal dengan gagang pipa besi kokoh berlapis anti-karat untuk kantor dan pabrik.",
+        "fullDesc": "Sapu pembersih lantai dengan susunan serabut nilon elastis yang efektif menyapu kotoran debu, rambut, dan pasir halus pada lantai keramik, kayu, maupun semen halus tanpa bertebaran.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Serabut sapu padat dan tidak mudah rontok",
+            "Gagang ergonomis ringan namun kokoh tidak mudah bengkok",
+            "Sudut sapu lebar mempercepat pekerjaan"
+        ],
+        "specs": [
+            {
+                "key": "Material Serabut",
+                "val": "Nilon Sintetis Lembut & Serat Ijuk Alami"
+            },
+            {
+                "key": "Panjang Gagang",
+                "val": "110 - 120 cm"
+            }
+        ]
+    },
+    {
+        "id": "cons-kain-pel",
+        "categoryId": "consumable",
+        "name": "Kain Pel & Gagang (Cotton Mop)",
+        "categoryName": "Consumable",
+        "tag": "Pembersih Lantai",
+        "badge": "Katun Tebal",
+        "shortDesc": "Kain pel sumbu katun tebal berdaya serap air maksimal lengkap dengan gagang aluminium dan jepitan pengganti praktis.",
+        "fullDesc": "Set alat pel lantai komersial dengan kepala benang katun rajut tebal yang mampu mengangkat kotoran basah dan tumpahan cairan secara efisien. Kepala pel dapat dilepas dan dicuci atau diganti secara berkala.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Benang katun tebal menyerap air banyak dan tidak meninggalkan sisa serat",
+            "Gagang kokoh tahan tekanan saat mengepel lantai",
+            "Tersedia refill kain pel pengganti"
+        ],
+        "specs": [
+            {
+                "key": "Bahan",
+                "val": "Katun Benang Putih Tebal 300 - 400 gram"
+            },
+            {
+                "key": "Gagang",
+                "val": "Pipa Logam Berlapis PVC / Aluminium"
+            }
+        ]
+    },
+    {
+        "id": "cons-sapu-lidi",
+        "categoryId": "consumable",
+        "name": "Sapu Lidi (Gudang & Luar Ruang)",
+        "categoryName": "Consumable",
+        "tag": "Area Luar",
+        "badge": "Lidi Pilihan",
+        "shortDesc": "Sapu lidi kelapa tua pilihan dengan ikatan kawat baja kokoh untuk membersihkan area halaman, aspal, dan lantai gudang.",
+        "fullDesc": "Sapu lidi pohon kelapa yang diikat kuat menggunakan kawat baja dan pegangan ergonomis. Sangat tangguh untuk membersihkan daun kering, kerikil, dan sampah kasar pada area luar ruangan, paving block, dan area loading dock pabrik.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Lidi tebal, lentur, dan tidak mudah patah saat menggesek aspal",
+            "Ikatan kawat sangat kencang dan tidak mudah lepas",
+            "Efektif membersihkan sampah kasar di luar gedung"
+        ],
+        "specs": [
+            {
+                "key": "Tipe",
+                "val": "Sapu Lidi Gagang Kayu Panjang & Sapu Lidi Pendek"
+            },
+            {
+                "key": "Panjang",
+                "val": "90 cm - 120 cm"
+            }
+        ]
+    },
+    {
+        "id": "cons-wiper",
+        "categoryId": "consumable",
+        "name": "Wiper Lantai & Kaca (Floor & Window Squeegee)",
+        "categoryName": "Consumable",
+        "tag": "Penarik Air",
+        "badge": "Karet Fleksibel",
+        "shortDesc": "Wiper penarik air karet sintetis fleksibel untuk mengeringkan genangan air di lantai toilet, gudang, dan jendela kaca gedung.",
+        "fullDesc": "Alat penarik air (wiper/squeegee) dengan bilah karet elastis bermutu tinggi yang menempel rapat pada permukaan lantai atau kaca. Memudahkan pengeringan air seketika tanpa perlu menggunakan banyak lap kain.",
+        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Bilah karet lentur membersihkan air sekali tarik",
+            "Rangka besi galvanis kokoh anti-karat",
+            "Menghemat waktu pengeringan lantai basah"
+        ],
+        "specs": [
+            {
+                "key": "Varian",
+                "val": "Wiper Lantai Gagang Panjang (Lebar 45cm, 55cm) & Wiper Kaca Tangan"
+            },
+            {
+                "key": "Bahan Karet",
+                "val": "Sponge Rubber / Silicone Strip"
+            }
+        ]
+    },
+    {
+        "id": "print-banner-tarik",
+        "categoryId": "printing",
+        "name": "Banner Tarik (Roll Up Banner Aluminium)",
+        "categoryName": "Printing",
+        "tag": "Promosi Kantor",
+        "badge": "Display Portabel",
+        "shortDesc": "Display promosi sistem tarik gulung berbahan rangka aluminium eksklusif dengan cetak visual resolusi tinggi untuk event dan lobi kantor.",
+        "fullDesc": "Roll up banner sistem gulung otomatis dengan kaki aluminium kokoh dan tas jinjing praktis. Dicetak menggunakan bahan Albatros atau Luster berkualitas tinggi dengan laminasi doff/glossy yang anti-luntur dan tidak melengkung.",
+        "image": "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Rangka aluminium kokoh, elegan, dan tahan lama",
+            "Praktis dipasang dan digulung kembali hanya dalam 30 detik",
+            "Hasil cetak resolusi tajam fotorealistis"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran Standar",
+                "val": "60 x 160 cm, 80 x 200 cm, 85 x 200 cm"
+            },
+            {
+                "key": "Media Cetak",
+                "val": "Albatros / Luster + Laminasi Doff / Glossy"
+            }
+        ]
+    },
+    {
+        "id": "print-banner-x",
+        "categoryId": "printing",
+        "name": "Banner X (X-Banner Stand)",
+        "categoryName": "Printing",
+        "tag": "Ekonomis & Ringan",
+        "badge": "Tripod Rangka X",
+        "shortDesc": "Stand banner display rangka kaki silang X fleksibel dan ekonomis untuk memajang informasi promosi di dalam ruangan.",
+        "fullDesc": "X-Banner display promosi ekonomis dengan rangka fiberglass dan tiang pengait silang X yang elastis dan ringan. Sangat cocok untuk menampilkan informasi promo produk, petunjuk arah event, dan pengumuman instansi.",
+        "image": "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Harga sangat ekonomis dan bobot ringan mudah dipindah",
+            "Bahan visual flexi atau albatros dengan ring mata ayam kuat di 4 sudut",
+            "Mudah dibongkar pasang dan disimpan dalam sarung"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "60 x 160 cm & 80 x 180 cm"
+            },
+            {
+                "key": "Rangka",
+                "val": "Fiberglass / Besi Ringan + Sarung Spunbond"
+            }
+        ]
+    },
+    {
+        "id": "print-spanduk",
+        "categoryId": "printing",
+        "name": "Spanduk & Banner Outdoor (Flexi)",
+        "categoryName": "Printing",
+        "tag": "Outdoor Tahan Cuaca",
+        "badge": "Flexi High-Res",
+        "shortDesc": "Cetak spanduk kain flexi tebal tahan panas terik dan hujan badai lengkap dengan finishing ring mata ayam untuk luar ruangan.",
+        "fullDesc": "Layanan cetak spanduk luar ruangan menggunakan bahan vinyl flexi bergramatur tebal (280 - 440 gsm). Dicetak menggunakan mesin digital outdoor solvent beresolusi tinggi yang tahan cuaca panas dan hujan hingga berbulan-bulan.",
+        "image": "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Tahan air hujan dan panas terik matahari (waterproof & UV resistant)",
+            "Warna cetak kontras pekat dan tajam dari kejauhan",
+            "Finishing lipat keliling press + ring mata ayam siap pasang"
+        ],
+        "specs": [
+            {
+                "key": "Bahan Flexi",
+                "val": "Flexi Standar 280g, Flexi Korea 380g, Flexi Jerman 440g"
+            },
+            {
+                "key": "Ukuran",
+                "val": "Bebas Custom (Lebar hingga 3.2 meter tanpa sambungan)"
+            }
+        ]
+    },
+    {
+        "id": "print-kartu-nama",
+        "categoryId": "printing",
+        "name": "Kartu Nama Perusahaan (Business Card)",
+        "categoryName": "Printing",
+        "tag": "Identitas Bisnis",
+        "badge": "Art Carton Eksklusif",
+        "shortDesc": "Cetak kartu nama bisnis profesional kertas tebal 260-310 gsm dengan pilihan laminasi doff lembut atau glossy berkilau.",
+        "fullDesc": "Kartu nama profesional berstandar korporat dicetak pada kertas Art Carton tebal berkualitas menggunakan mesin cetak digital offset resolusi tinggi. Memberikan impresi pertama yang kredibel dan elegan saat berkenalan dengan mitra dan klien bisnis.",
+        "image": "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Potongan sudut rapi dan presisi",
+            "Warna akurat sesuai identitas brand perusahaan",
+            "Kemasan box mika plastik eksklusif isi 100 kartu"
+        ],
+        "specs": [
+            {
+                "key": "Ukuran",
+                "val": "9 x 5.5 cm / 9 x 5 cm"
+            },
+            {
+                "key": "Material & Finishing",
+                "val": "Art Carton 260 / 310 gsm + Laminasi Doff / Glossy Bolak-balik"
+            }
+        ]
+    },
+    {
+        "id": "print-stiker-custom",
+        "categoryId": "printing",
+        "name": "Stiker Custom (Label & Cutting Sticker)",
+        "categoryName": "Printing",
+        "tag": "Branding Kemasan",
+        "badge": "Vinyl & Chromo",
+        "shortDesc": "Cetak stiker label kemasan produk dan stiker cutting bentuk kustom berbahan vinyl anti-air dan kertas chromo tajam.",
+        "fullDesc": "Solusi cetak stiker label kemasan toples, botol, dus kargo, dan stiker logo merchandise perusahaan. Tersedia pilihan stiker Vinyl tahan air/sobek, stiker Chromo ekonomis, stiker Transparan, serta stiker cutting bentuk bebas (kiss cut / die cut).",
+        "image": "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80",
+        "gallery": [
+            "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80"
+        ],
+        "advantages": [
+            "Daya rekat lem sangat kuat pada kaca, plastik, maupun kardus",
+            "Tahan air (waterproof) dan tidak luntur untuk produk frozen/minuman",
+            "Potongan mesin cutting otomatis presisi mengikuti kontur pola logo"
+        ],
+        "specs": [
+            {
+                "key": "Material",
+                "val": "Stiker Vinyl Putih, Vinyl Transparan, Stiker Chromo, Hologram"
+            },
+            {
+                "key": "Metode Potong",
+                "val": "Kiss Cut (Lembaran) & Die Cut (Potong Putus Satuan)"
+            }
+        ]
     }
-  ],
+],
 
   clients: [
     {
@@ -806,7 +2612,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V3';
+const STORAGE_KEY = 'KMS_APP_DATA_V5';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -928,6 +2734,15 @@ function initCloudSync() {
     if (doc.exists) {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
+      // Auto-upgrade cloud catalog if fewer than 40 products exist
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 2 || (cloudData.products && cloudData.products.length < 40)) {
+        merged.products = DEFAULT_KMS_DATA.products;
+        merged.categories = DEFAULT_KMS_DATA.categories;
+        merged.catalogVersion = 2;
+        if (kmsDb) {
+          kmsDb.collection('cms').doc('website_data').set(merged).catch(() => {});
+        }
+      }
       if (cloudData.company) {
         merged.company = Object.assign({}, DEFAULT_KMS_DATA.company, cloudData.company);
         if (cloudData.company.contacts) {
