@@ -6,6 +6,7 @@
 
 let currentLang = 'id';
 let currentCategory = 'all';
+let currentSubCategory = 'all';
 let searchQuery = '';
 let selectedProduct = null;
 
@@ -801,6 +802,7 @@ function initHomeCategories() {
 
 function navigateToCategory(catId) {
   currentCategory = catId;
+  currentSubCategory = 'all';
   window.location.hash = 'products';
   setTimeout(() => {
     updateCategoryPillState();
@@ -836,7 +838,13 @@ function initCatalogFilters() {
 
 function filterCategory(catId) {
   currentCategory = catId;
+  currentSubCategory = 'all';
   updateCategoryPillState();
+  renderProducts();
+}
+
+function filterSubCategory(subId) {
+  currentSubCategory = subId;
   renderProducts();
 }
 
@@ -863,7 +871,41 @@ function updateCategoryPillState() {
 function renderProducts() {
   const grid = document.getElementById('products-catalog-grid');
   const countElem = document.getElementById('product-count-display');
+  const subFilterBar = document.getElementById('subcategory-filter-bar');
   if (!grid) return;
+
+  // Render Subcategory Tabs for categories that have subcategories (e.g. Kemasan / Packaging - 3 klik)
+  if (subFilterBar) {
+    if (currentCategory !== 'all') {
+      const categoryProducts = (window.KMS_DATA.products || []).filter(p => p.categoryId === currentCategory);
+      const subcategories = [...new Set(categoryProducts.map(p => p.subCategory).filter(Boolean))];
+
+      if (subcategories.length > 0) {
+        subFilterBar.classList.remove('hidden');
+        let subHtml = `
+          <button onclick="filterSubCategory('all')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${currentSubCategory === 'all' ? 'bg-corporate text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}">
+            Semua Subkategori (${categoryProducts.length})
+          </button>
+        `;
+        subcategories.forEach(sub => {
+          const subCount = categoryProducts.filter(p => p.subCategory === sub).length;
+          const isActive = currentSubCategory === sub;
+          subHtml += `
+            <button onclick="filterSubCategory('${sub}')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${isActive ? 'bg-corporate text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}">
+              ${sub} (${subCount})
+            </button>
+          `;
+        });
+        subFilterBar.innerHTML = subHtml;
+      } else {
+        subFilterBar.classList.add('hidden');
+        subFilterBar.innerHTML = '';
+      }
+    } else {
+      subFilterBar.classList.add('hidden');
+      subFilterBar.innerHTML = '';
+    }
+  }
 
   let filtered = window.KMS_DATA.products || [];
 
@@ -871,11 +913,16 @@ function renderProducts() {
     filtered = filtered.filter(p => p.categoryId === currentCategory);
   }
 
+  if (currentSubCategory !== 'all') {
+    filtered = filtered.filter(p => p.subCategory === currentSubCategory);
+  }
+
   if (searchQuery) {
     filtered = filtered.filter(p => 
       p.name.toLowerCase().includes(searchQuery) ||
       (p.shortDesc && p.shortDesc.toLowerCase().includes(searchQuery)) ||
-      (p.categoryName && p.categoryName.toLowerCase().includes(searchQuery))
+      (p.categoryName && p.categoryName.toLowerCase().includes(searchQuery)) ||
+      (p.subCategory && p.subCategory.toLowerCase().includes(searchQuery))
     );
   }
 
@@ -889,7 +936,7 @@ function renderProducts() {
         <i data-lucide="package-x" class="w-12 h-12 text-slate-400 mx-auto mb-3"></i>
         <h4 class="font-heading font-bold text-slate-800 text-base mb-1">Produk Tidak Ditemukan</h4>
         <p class="text-xs text-slate-500 max-w-sm mx-auto mb-4">
-          Tidak ada produk yang cocok dengan kata kunci "${searchQuery}". Silakan hubungi tim kami untuk pengadaan khusus.
+          Tidak ada produk yang cocok dengan pencarian atau filter yang dipilih. Silakan hubungi tim kami untuk pengadaan khusus.
         </p>
         <button onclick="openInquiryModal()" class="btn-gold px-5 py-2 rounded-lg text-xs font-semibold">
           Tanyakan Kebutuhan Khusus
@@ -906,7 +953,7 @@ function renderProducts() {
         <div class="relative h-48 bg-slate-50 overflow-hidden cursor-pointer" onclick="openProductDetailView('${p.id}')">
           <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
           <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-sm text-corporate shadow-sm">
-            ${p.categoryName || 'Produk'}
+            ${p.subCategory || p.categoryName || 'Produk'}
           </span>
           ${p.tag ? `
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-500 text-slate-950">
@@ -915,6 +962,10 @@ function renderProducts() {
           ` : ''}
         </div>
         <div class="p-5">
+          <div class="flex items-center gap-1.5 mb-1.5 flex-wrap">
+            <span class="text-[10px] font-bold text-amber-700 bg-amber-100/70 px-2 py-0.5 rounded">${p.categoryName || ''}</span>
+            ${p.subCategory ? `<span class="text-[10px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">${p.subCategory}</span>` : ''}
+          </div>
           <h3 class="font-heading font-extrabold text-base text-corporate-dark mb-1.5 line-clamp-1 hover:text-corporate cursor-pointer" onclick="openProductDetailView('${p.id}')">
             ${p.name}
           </h3>
@@ -951,9 +1002,9 @@ function showProductDetail(productId) {
 
   showView('product-detail');
 
-  document.getElementById('detail-breadcrumb-cat').textContent = product.categoryName;
+  document.getElementById('detail-breadcrumb-cat').textContent = product.subCategory ? `${product.categoryName} / ${product.subCategory}` : product.categoryName;
   document.getElementById('detail-breadcrumb-name').textContent = product.name;
-  document.getElementById('detail-badge').textContent = product.badge || product.categoryName;
+  document.getElementById('detail-badge').textContent = product.badge || product.subCategory || product.categoryName;
   document.getElementById('detail-title').textContent = product.name;
   document.getElementById('detail-short-desc').textContent = product.fullDesc || product.shortDesc;
 
