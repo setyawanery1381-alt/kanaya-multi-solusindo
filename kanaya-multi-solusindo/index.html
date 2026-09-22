@@ -381,9 +381,9 @@
                      alt="PT Kanaya Multi Solusindo Corporate Building" 
                      class="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-corporate-dark/80 via-transparent to-transparent flex items-end p-6">
-                  <div class="bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-lg flex items-center gap-3 max-w-sm">
-                    <div class="w-10 h-10 rounded-lg bg-corporate text-amber-400 font-black font-heading flex items-center justify-center">
-                      KMS
+                  <div class="bg-white/95 backdrop-blur-md rounded-xl p-3 sm:p-4 shadow-lg flex items-center gap-3 max-w-sm border border-white/60">
+                    <div class="h-10 w-12 flex items-center justify-center flex-shrink-0">
+                      <img src="assets/logos/kms-logo.png" alt="PT Kanaya Multi Solusindo" class="max-h-full max-w-full object-contain">
                     </div>
                     <div>
                       <div class="font-heading font-bold text-sm text-corporate-dark">PT Kanaya Multi Solusindo</div>
@@ -585,8 +585,8 @@
             <p class="text-sm text-blue-100 mt-1 max-w-xl">Profil resmi, visi misi, dan komitmen PT Kanaya Multi Solusindo sebagai mitra pengadaan industri terpercaya.</p>
           </div>
           <div class="hidden md:block">
-            <div class="w-24 h-24 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center p-3">
-              <img src="assets/logos/kms-logo-white.png?v=2.9" alt="PT Kanaya Multi Solusindo" class="max-h-full max-w-full object-contain">
+            <div class="w-24 h-24 rounded-2xl bg-white shadow-md border border-white/40 flex items-center justify-center p-3">
+              <img src="assets/logos/kms-logo.png" alt="PT Kanaya Multi Solusindo" class="max-h-full max-w-full object-contain">
             </div>
           </div>
         </div>
@@ -710,15 +710,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Nilai Perusahaan -->
-        <div class="text-center max-w-xl mx-auto mb-10">
-          <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark">Nilai Perusahaan</h3>
-          <div class="w-12 h-1 bg-amber-500 mx-auto mt-2 rounded-full"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="about-values-grid">
-          <!-- Populated dynamically -->
-        </div>
       </div>
     </section>
 
@@ -777,26 +768,6 @@
 
           <!-- Right Product Grid -->
           <div class="lg:col-span-9">
-            <!-- Banner Request Produk Khusus (PRD 3 Custom Inquiry) -->
-            <div class="mb-6 bg-gradient-to-r from-corporate-dark via-corporate to-corporate-ocean rounded-2xl p-5 sm:p-6 text-white shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-blue-400/20">
-              <div class="flex items-start sm:items-center gap-3.5">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-400 flex items-center justify-center flex-shrink-0 shadow-sm">
-                  <i data-lucide="package-plus" class="w-6 h-6"></i>
-                </div>
-                <div>
-                  <h4 class="font-heading font-extrabold text-base sm:text-lg text-white">
-                    Produk yang Anda Cari Belum Ada di Katalog?
-                  </h4>
-                  <p class="text-xs sm:text-sm text-blue-100 mt-0.5 max-w-xl leading-relaxed">
-                    Kami siap melayani pengadaan manual sesuai spesifikasi teknis dan SOP perusahaan Anda.
-                  </p>
-                </div>
-              </div>
-              <button onclick="openCustomProductModal()" class="btn-gold px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold inline-flex items-center gap-2 shadow whitespace-nowrap self-start sm:self-auto hover:scale-105 transition-transform">
-                <i data-lucide="edit-3" class="w-4 h-4"></i>
-                <span>Request Produk Khusus</span>
-              </button>
-            </div>
 
             <div class="flex items-center justify-between mb-4">
               <div class="text-sm text-slate-600">
@@ -1110,196 +1081,163 @@
       <div class="max-w-7xl mx-auto px-4 md:px-8 py-14">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          <!-- Left: Contact Details (PRD 10) -->
+          <!-- Left: Contact Details (Matching Reference Design) -->
           <div class="lg:col-span-5 space-y-8">
             <div>
-              <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Saluran Komunikasi</span>
-              <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark mt-1 mb-3">
-                Hubungi Kami
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-xs font-bold text-corporate uppercase tracking-wider">HUBUNGI KAMI</span>
+                <span class="w-8 h-0.5 bg-corporate/40"></span>
+              </div>
+              <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#1e293b] leading-tight mb-4">
+                Kami Siap Membantu<br>Kebutuhan Anda
               </h2>
-              <p class="text-slate-600 text-sm leading-relaxed">
-                Sampaikan kebutuhan produk Anda kepada Kanaya Multi Solusindo. Tim kami siap membantu menindaklanjuti kebutuhan pengadaan sesuai informasi yang Anda berikan.
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Jangan ragu untuk menghubungi kami. Tim kami siap memberikan informasi yang Anda butuhkan, baik untuk pertanyaan produk, kerjasama, maupun kebutuhan lainnya.
               </p>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-6">
               <!-- WhatsApp -->
-              <a id="contact-wa-link" href="https://wa.me/628131052840" target="_blank" rel="noopener" 
-                 class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 bg-white hover:border-emerald-500 hover:shadow-md transition group" title="Hubungi via WhatsApp">
-                <div class="w-11 h-11 rounded-xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0">
                   <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                     <path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.25-1.38c1.45.79 3.08 1.22 4.79 1.22 5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.82 14.17c-.24.68-1.4 1.34-1.95 1.42-.51.07-1.18.1-3.41-.82-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.26-.28.57-.35.77-.35.19 0 .39 0 .56.01.18.01.42-.07.65.48.24.58.82 2 .89 2.15.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.17-.32.39-.46.52-.15.15-.31.31-.13.62.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.37 2.46 1.52.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.1.79 1.79.88 1.98.09.19.15.32.15.54 0 .22-.24 1.22-.48 1.9z"/>
                   </svg>
                 </div>
                 <div>
-                  <div class="text-xs font-bold text-slate-500 uppercase">WhatsApp Resmi Inquiry</div>
-                  <div class="font-extrabold text-corporate-dark text-base" id="contact-wa-display">0813-1052-840</div>
-                  <div class="text-xs text-emerald-600 font-semibold mt-0.5">Chat Langsung WhatsApp (Respon Cepat) &rarr;</div>
-                </div>
-              </a>
-
-              <!-- Email -->
-              <div class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 bg-white">
-                <div class="w-11 h-11 rounded-xl bg-blue-50 text-corporate flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-corporate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                  </svg>
-                </div>
-                <div class="space-y-1">
-                  <div class="text-xs font-bold text-slate-500 uppercase">Email Resmi Perusahaan</div>
-                  <div>
-                    <span class="text-[11px] text-slate-400">Sales &amp; Inquiry:</span>
-                    <a id="contact-email-sales-link" href="mailto:sales@kanayamulti.com" class="text-sm font-bold text-corporate hover:underline block">
-                      <span id="contact-email-sales">sales@kanayamulti.com</span>
-                    </a>
-                  </div>
-                  <div>
-                    <span class="text-[11px] text-slate-400">Administrasi:</span>
-                    <a id="contact-email-admin-link" href="mailto:admin@kanayamulti.com" class="text-sm font-bold text-slate-700 hover:text-corporate hover:underline block">
-                      <span id="contact-email-admin">admin@kanayamulti.com</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Address -->
-              <div class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 bg-white">
-                <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
-                  <i data-lucide="map-pin" class="w-5 h-5"></i>
-                </div>
-                <div class="flex-1">
-                  <div class="text-xs font-bold text-slate-500 uppercase">Alamat Kantor</div>
-                  <div class="text-sm text-slate-800 leading-snug font-medium" id="contact-address-display">
-                    Ruko Sentra EM.6 Harapan Indah - Bekasi - Jawa Barat
-                  </div>
-                  <a id="contact-address-map-link" href="https://maps.google.com/?q=Ruko+Sentra+EM.6+Harapan+Indah+Bekasi" target="_blank" rel="noopener" class="text-xs text-amber-600 font-bold hover:underline inline-flex items-center gap-1 mt-1.5" title="Buka Petunjuk Arah di Google Maps">
-                    <span>Lihat di Google Maps</span> &rarr;
+                  <div class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">WHATSAPP</div>
+                  <div class="font-extrabold text-[#1e293b] text-base" id="contact-wa-display">0813-1052-840</div>
+                  <a id="contact-wa-link" href="https://wa.me/628131052840" target="_blank" rel="noopener" class="text-xs text-slate-500 hover:text-emerald-600 font-medium inline-flex items-center gap-1 mt-0.5">
+                    <span>Chat langsung via WhatsApp</span> &rarr;
                   </a>
                 </div>
               </div>
 
-              <!-- Instagram -->
-              <a id="contact-ig-link" href="https://instagram.com/kanayamultisolusindo" target="_blank" rel="noopener" 
-                 class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 bg-white hover:border-pink-500 hover:shadow-md transition group" title="Buka Instagram Resmi">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              <!-- Email -->
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                   </svg>
                 </div>
                 <div>
-                  <div class="text-xs font-bold text-slate-500 uppercase">Instagram Resmi</div>
-                  <div class="font-extrabold text-corporate-dark text-base" id="contact-ig-display">@kanayamultisolusindo</div>
-                  <div class="text-xs text-pink-600 font-semibold mt-0.5">Kunjungi Profil &amp; Portfolio Instagram &rarr;</div>
+                  <div class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">EMAIL</div>
+                  <div class="font-extrabold text-[#1e293b] text-base" id="contact-email-sales">sales@kanayamulti.com</div>
+                  <a id="contact-email-sales-link" href="mailto:sales@kanayamulti.com" class="text-xs text-slate-500 hover:text-blue-600 font-medium inline-flex items-center gap-1 mt-0.5">
+                    <span>Kami akan segera merespon</span> &rarr;
+                  </a>
                 </div>
-              </a>
+              </div>
 
-              <!-- TikTok Resmi -->
-              <a id="contact-tiktok-link" href="https://www.tiktok.com/@pt_kanayamultisolusindo?_r=1&_t=ZS-99aLXp9ql8C" target="_blank" rel="noopener" 
-                 class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-800 hover:shadow-md transition group" title="Buka TikTok Resmi PT Kanaya Multi Solusindo">
-                <div class="w-11 h-11 rounded-xl bg-slate-950 text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                  </svg>
+              <!-- Address -->
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="map-pin" class="w-5 h-5 text-slate-700"></i>
                 </div>
                 <div>
-                  <div class="text-xs font-bold text-slate-500 uppercase">TikTok Resmi</div>
-                  <div class="font-extrabold text-corporate-dark text-base" id="contact-tiktok-display">@pt_kanayamultisolusindo</div>
-                  <div class="text-xs text-slate-700 font-semibold mt-0.5">Tonton Video &amp; Profil TikTok &rarr;</div>
+                  <div class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">ALAMAT KANTOR</div>
+                  <div class="font-extrabold text-[#1e293b] text-sm sm:text-base leading-snug" id="contact-address-display">
+                    Ruko Sentra EM.6 Harapan Indah - Bekasi - Jawa Barat
+                  </div>
+                  <a id="contact-address-map-link" href="https://maps.google.com/?q=Ruko+Sentra+EM.6+Harapan+Indah+Bekasi" target="_blank" rel="noopener" class="text-xs text-slate-500 hover:text-corporate font-medium inline-flex items-center gap-1 mt-0.5">
+                    <span>Lihat di Google Maps</span> &rarr;
+                  </a>
                 </div>
-              </a>
-
-              <!-- LinkedIn Resmi -->
-              <a id="contact-linkedin-link" href="https://www.linkedin.com/in/pt-kanaya-multi-solusindo-661959435/" target="_blank" rel="noopener" 
-                 class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-600 hover:shadow-md transition group" title="Buka LinkedIn Resmi PT Kanaya Multi Solusindo">
-                <div class="w-11 h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">
-                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37z"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="text-xs font-bold text-slate-500 uppercase">LinkedIn Resmi Perusahaan</div>
-                  <div class="font-extrabold text-corporate-dark text-base" id="contact-linkedin-display">PT Kanaya Multi Solusindo</div>
-                  <div class="text-xs text-blue-600 font-semibold mt-0.5">Koneksi Bisnis &amp; Profil Korporat &rarr;</div>
-                </div>
-              </a>
+              </div>
             </div>
 
-            <!-- Map Mockup Card -->
-            <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-corporate-softBlue p-5 text-center">
-              <div class="flex items-center justify-center gap-2 text-corporate font-bold text-xs mb-2">
-                <i data-lucide="navigation" class="w-4 h-4"></i>
-                <span>Area Distribusi: Jabodetabek &amp; Seluruh Indonesia</span>
+            <!-- Social Media strip matching reference image -->
+            <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h4 class="font-bold text-sm text-[#1e293b]">Ikuti Kami di Media Sosial</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Dapatkan update terbaru seputar produk, proyek, dan aktivitas kami.</p>
               </div>
-              <p class="text-xs text-slate-500">
-                Pengiriman dapat dilakukan via armada internal maupun ekspedisi kargo terpercaya.
-              </p>
+              <div class="flex items-center gap-2.5 flex-shrink-0">
+                <a id="contact-ig-link" href="https://instagram.com/kanayamultisolusindo" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl border border-slate-200 bg-white hover:border-pink-500 hover:text-pink-600 text-slate-700 flex items-center justify-center transition shadow-xs" title="Instagram">
+                  <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                <a id="contact-tiktok-link" href="https://www.tiktok.com/@pt_kanayamultisolusindo?_r=1&_t=ZS-99aLXp9ql8C" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl border border-slate-200 bg-white hover:border-slate-800 hover:text-slate-900 text-slate-700 flex items-center justify-center transition shadow-xs" title="TikTok">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                  </svg>
+                </a>
+                <a id="contact-linkedin-link" href="https://www.linkedin.com/in/pt-kanaya-multi-solusindo-661959435/" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl border border-slate-200 bg-white hover:border-blue-600 hover:text-blue-700 text-slate-700 flex items-center justify-center transition shadow-xs" title="LinkedIn">
+                  <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+              </div>
             </div>
           </div>
 
-          <!-- Right: Inquiry Form (PRD 10) -->
-          <div class="lg:col-span-7 bg-white rounded-2xl p-8 sm:p-10 border border-slate-200 shadow-xl shadow-slate-100">
-            <h3 class="font-heading font-extrabold text-xl text-corporate-dark mb-1">
+          <!-- Right: Inquiry Form (Matching Reference Design) -->
+          <div class="lg:col-span-7 bg-[#f8fafc] rounded-3xl p-7 sm:p-10 border border-slate-100 shadow-sm">
+            <h3 class="font-heading font-extrabold text-2xl text-[#1e293b] mb-1.5">
               Formulir Permintaan Pengadaan
             </h3>
-            <p class="text-xs sm:text-sm text-slate-500 mb-6">
+            <p class="text-xs sm:text-sm text-slate-500 mb-7">
               Lengkapi formulir di bawah ini untuk mendapatkan penawaran resmi dari tim kami.
             </p>
 
             <form id="contact-inquiry-form" onsubmit="handleInquirySubmit(event)" class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label for="form-name" class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap *</label>
+                  <label for="form-name" class="block text-xs font-semibold text-slate-700 mb-1.5">Nama Lengkap *</label>
                   <input type="text" id="form-name" required placeholder="Contoh: Budi Pratama" 
-                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-corporate focus:outline-none">
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-corporate focus:border-transparent focus:outline-none placeholder:text-slate-400">
                 </div>
                 <div>
-                  <label for="form-company" class="block text-xs font-bold text-slate-700 mb-1">Nama Perusahaan *</label>
+                  <label for="form-company" class="block text-xs font-semibold text-slate-700 mb-1.5">Nama Perusahaan *</label>
                   <input type="text" id="form-company" required placeholder="Contoh: PT Surya Industri" 
-                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-corporate focus:outline-none">
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-corporate focus:border-transparent focus:outline-none placeholder:text-slate-400">
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label for="form-email" class="block text-xs font-bold text-slate-700 mb-1">Email Kantor *</label>
+                  <label for="form-email" class="block text-xs font-semibold text-slate-700 mb-1.5">Email Kantor *</label>
                   <input type="email" id="form-email" required placeholder="email@perusahaan.com" 
-                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-corporate focus:outline-none">
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-corporate focus:border-transparent focus:outline-none placeholder:text-slate-400">
                 </div>
                 <div>
-                  <label for="form-wa" class="block text-xs font-bold text-slate-700 mb-1">Nomor WhatsApp *</label>
+                  <label for="form-wa" class="block text-xs font-semibold text-slate-700 mb-1.5">Nomor WhatsApp *</label>
                   <input type="tel" id="form-wa" required placeholder="08xxxxxxxxxx" 
-                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-corporate focus:outline-none">
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-corporate focus:border-transparent focus:outline-none placeholder:text-slate-400">
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label for="form-product" class="block text-xs font-bold text-slate-700 mb-1">Produk / Kebutuhan *</label>
-                  <input type="text" id="form-product" required placeholder="Misal: Plastic Stretch Film, Kardus Box" 
-                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-corporate focus:outline-none">
+                  <label for="form-product" class="block text-xs font-semibold text-slate-700 mb-1.5">Produk / Kebutuhan *</label>
+                  <select id="form-product" required 
+                          class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-corporate focus:border-transparent focus:outline-none text-slate-700">
+                    <option value="" disabled selected>Pilih produk atau kebutuhan</option>
+                    <option value="Plastic Industri">Plastic Industri (Stretch Film, OPP, CPP, PVC, Nylon)</option>
+                    <option value="Kemasan / Packaging">Kemasan / Packaging (Kardus, Palet, Box, Strapping)</option>
+                    <option value="Alat Tulis Kantor (ATK)">Alat Tulis Kantor / Stationery</option>
+                    <option value="Perlengkapan APD & Safety">Perlengkapan APD &amp; Safety Equipment</option>
+                    <option value="Bahan Kimia Pembersih & Perawatan">Bahan Kimia Pembersih &amp; Chemical</option>
+                    <option value="Perlengkapan Kebersihan & Consumable">Perlengkapan Kebersihan &amp; Consumable</option>
+                    <option value="Percetakan & Media Promosi">Percetakan &amp; Printing Promosi</option>
+                    <option value="Pengadaan Khusus Lainnya">Pengadaan Khusus / Custom Lainnya</option>
+                  </select>
                 </div>
                 <div>
-                  <label for="form-qty" class="block text-xs font-bold text-slate-700 mb-1">Jumlah / Kuantitas (opsional)</label>
+                  <label for="form-qty" class="block text-xs font-semibold text-slate-700 mb-1.5">Jumlah / Kuantitas (opsional)</label>
                   <input type="text" id="form-qty" placeholder="Misal: 100 Roll / 500 Pcs" 
-                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-corporate focus:outline-none">
+                         class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-corporate focus:border-transparent focus:outline-none placeholder:text-slate-400">
                 </div>
               </div>
 
               <div>
-                <label for="form-message" class="block text-xs font-bold text-slate-700 mb-1">Pesan / Spesifikasi Tambahan *</label>
+                <label for="form-message" class="block text-xs font-semibold text-slate-700 mb-1.5">Pesan / Spesifikasi Tambahan *</label>
                 <textarea id="form-message" rows="4" required placeholder="Tuliskan detail spesifikasi, ukuran, ketebalan, atau estimasi jadwal pengiriman yang Anda butuhkan..." 
-                          class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-corporate focus:outline-none"></textarea>
+                          class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-corporate focus:border-transparent focus:outline-none placeholder:text-slate-400"></textarea>
               </div>
 
-              <!-- Submit and Direct WhatsApp Buttons -->
-              <div class="pt-2 flex flex-col sm:flex-row gap-3">
-                <button type="submit" class="btn-gold flex-1 py-3.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2 shadow">
+              <!-- Submit Button matching image4.png -->
+              <div class="pt-2">
+                <button type="submit" class="w-full bg-[#f59e0b] hover:bg-[#d97706] text-white font-bold py-3.5 px-6 rounded-xl shadow-sm hover:shadow transition flex items-center justify-center gap-2 text-sm">
                   <i data-lucide="send" class="w-4 h-4"></i>
                   <span>Kirim Permintaan</span>
-                </button>
-                <button type="button" onclick="sendInquiryViaWA()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition shadow">
-                  <i data-lucide="message-circle" class="w-4 h-4"></i>
-                  <span>Kirim via WhatsApp</span>
                 </button>
               </div>
             </form>
