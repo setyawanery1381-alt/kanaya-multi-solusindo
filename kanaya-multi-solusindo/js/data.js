@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 2,
+  catalogVersion: 3,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -2504,49 +2504,70 @@ const DEFAULT_KMS_DATA = {
       shortName: "PT. AK",
       logo: "assets/logos/client-anugerah.svg",
       industry: "Technology & Industrial Consulting"
+    },
+    {
+      id: "client-psb",
+      name: "CV Pangan Sukses Bersama (PSB)",
+      shortName: "PSB",
+      logo: "assets/logos/client-pangan-sukses-bersama.png",
+      industry: "Food & Beverage Manufacturing"
+    },
+    {
+      id: "client-lju",
+      name: "PT Lingga Jaya Utama (LJU)",
+      shortName: "LJU",
+      logo: "assets/logos/client-lingga-jaya-utama.png",
+      industry: "General Trading & Industrial Supplier"
+    },
+    {
+      id: "client-nanotech",
+      name: "PT Ananda Putra Nanotech Indonesia",
+      shortName: "Nanotech",
+      logo: "assets/logos/client-nanotech.png",
+      industry: "Nanotechnology & Surface Protection"
     }
   ],
 
   gallery: [
     {
       id: "gal-1",
-      title: "Kegiatan Distribusi",
+      title: "Distribusi",
       category: "Distribusi",
       desc: "Proses pemuatan dan penyiapan muatan produk suplai untuk pengiriman tepat waktu ke gudang pelanggan.",
       image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "gal-2",
-      title: "Warehouse & Storage",
-      category: "Fasilitas",
+      title: "Gudang",
+      category: "Gudang",
       desc: "Manajemen penyimpanan stok barang dengan sistem racking teratur dan terjaga kebersihannya.",
       image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "gal-3",
-      title: "Meeting / Office",
-      category: "Aktivitas",
+      title: "Rapat",
+      category: "Rapat",
       desc: "Koordinasi internal tim pengadaan dan konsultasi spesifikasi kebutuhan solusi mitra bisnis.",
       image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "gal-4",
-      title: "Armada Pengiriman",
-      category: "Logistik",
+      title: "Pengiriman",
+      category: "Pengiriman",
       desc: "Armada logistik terpercaya siap menjangkau berbagai kawasan industri di Jabodetabek dan sekitarnya.",
       image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "gal-5",
-      title: "Aktivitas Perusahaan",
-      category: "Operasional",
+      title: "Aktivitas",
+      category: "Aktivitas",
       desc: "Pemeriksaan kualitas berkala (quality check) memastikan barang yang dikirim sesuai standar spesifikasi.",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "gal-6",
-      title: "Tim & Konsultasi",
-      category: "Human Capital",
+      title: "Tim Kami",
+      category: "Tim Kami",
       desc: "Tim profesional kami yang berkomitmen mendampingi setiap tahapan pengadaan perusahaan Anda.",
       image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
     }
@@ -2612,7 +2633,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V5';
+const STORAGE_KEY = 'KMS_APP_DATA_V6';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2734,11 +2755,13 @@ function initCloudSync() {
     if (doc.exists) {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
-      // Auto-upgrade cloud catalog if fewer than 40 products exist
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 2 || (cloudData.products && cloudData.products.length < 40)) {
+      // Auto-upgrade cloud catalog if fewer than 40 products exist or version < 3
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 3 || (cloudData.products && cloudData.products.length < 40)) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
-        merged.catalogVersion = 2;
+        merged.clients = DEFAULT_KMS_DATA.clients;
+        merged.gallery = DEFAULT_KMS_DATA.gallery;
+        merged.catalogVersion = 3;
         if (kmsDb) {
           kmsDb.collection('cms').doc('website_data').set(merged).catch(() => {});
         }
