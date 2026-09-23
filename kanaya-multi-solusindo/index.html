@@ -2287,6 +2287,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
   <script src="js/data.js?v=2.9"></script>
   <script src="js/app.js?v=2.9"></script>
+  <script src="js/i18n.js?v=3.0"></script>
 
   <!-- Hero Slides Synchronizer & Enhanced Renderer (Guarantees Instant Live Update via Single-File Upload) -->
   <script>
@@ -2363,16 +2364,99 @@
         }
       ];
 
+      // 4 Curated High-Definition Hero Slides (English)
+      const curatedHeroSlidesEn = [
+        {
+          id: "slide-1",
+          badge: "General Supplier & B2B Procurement Partner",
+          title: "Trusted General Supplier for Operational & Business Needs",
+          subtitle: "PT Kanaya Multi Solusindo is an integrated procurement partner delivering high-quality industrial products.",
+          image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
+          tag: "Fast & Official Supply",
+          highlights: [
+            "Complete & Ready-to-Supply Product Catalog",
+            "Official Corporate Legality & Valid VAT Tax Invoices",
+            "Nationwide Delivery Across Industrial Estates"
+          ],
+          btnPrimaryText: "View Products",
+          btnPrimaryLink: "#products",
+          btnSecondaryText: "Contact Us",
+          btnSecondaryLink: "#contact"
+        },
+        {
+          id: "slide-2",
+          badge: "Packaging & Industrial Plastic Material",
+          title: "Comprehensive Industrial Packaging & Stretch Film Solutions",
+          subtitle: "Supplying premium Plastic Stretch Film, heavy-duty bubble wrap, OPP adhesive tape, and corrugated boxes for maximum cargo protection.",
+          image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=85",
+          tag: "Pallet Cargo Protection",
+          highlights: [
+            "Plastic Stretch Film Hand & Machine Rolls",
+            "Heavy-Duty Bubble Wrap & Corrugated Cartons",
+            "Industrial & Export-Ready Cargo Standards"
+          ],
+          btnPrimaryText: "Plastic Catalog",
+          btnPrimaryLink: "#products",
+          btnSecondaryText: "Request Quote",
+          btnSecondaryLink: "#contact"
+        },
+        {
+          id: "slide-3",
+          badge: "Workplace Safety & HSE Standards",
+          title: "Personal Protective Equipment (PPE) & Industrial Safety Supplies",
+          subtitle: "Supporting HSE compliance across factories, warehouses, and industrial construction projects with certified safety gear.",
+          image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
+          tag: "HSE Certified Standards",
+          highlights: [
+            "Safety Helmets, High-Vis Vests, Eyewear & Work Gloves",
+            "Factory & Construction Grade Safety Footwear",
+            "Comprehensive Protection for Industrial Workforce"
+          ],
+          btnPrimaryText: "PPE Supplies",
+          btnPrimaryLink: "#products",
+          btnSecondaryText: "Safety Consultation",
+          btnSecondaryLink: "#contact"
+        },
+        {
+          id: "slide-4",
+          badge: "Trusted B2B Procurement Partner",
+          title: "More Than a Supplier, We Are Your Strategic Business Partner",
+          subtitle: "Strong business partnerships are built on integrity, rapid supply chain, verified product quality, and long-term service commitment.",
+          image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=85",
+          tag: "Long-Term Partnership",
+          highlights: [
+            "Flexible Terms of Payment (TOP) Facility",
+            "Dedicated & Responsive Corporate Account Manager",
+            "Guaranteed Product Quality & Service Excellence"
+          ],
+          btnPrimaryText: "Our Clients",
+          btnPrimaryLink: "#clients",
+          btnSecondaryText: "Start Partnership",
+          btnSecondaryLink: "#contact"
+        }
+      ];
+
       function applyEnhancedHero() {
         if (!window.KMS_DATA) window.KMS_DATA = {};
-        window.KMS_DATA.heroSlides = curatedHeroSlides;
+        let activeLang = window.currentLang;
+        if (!activeLang) {
+          try {
+            activeLang = localStorage.getItem('KMS_CURRENT_LANG');
+          } catch (e) {}
+        }
+        if (!activeLang) {
+          const browserLang = (navigator.language || navigator.userLanguage || (navigator.languages && navigator.languages[0]) || '').toLowerCase();
+          activeLang = browserLang.startsWith('en') ? 'en' : 'id';
+        }
+        window.currentLang = activeLang;
 
-        window.renderHeroSlides = function() {
+        window.renderHeroSlides = function(langOverride) {
+          const lang = langOverride || window.currentLang || 'id';
+          const slides = (lang === 'en') ? curatedHeroSlidesEn : curatedHeroSlides;
+          window.KMS_DATA.heroSlides = slides;
           const wrapper = document.getElementById('hero-slides-wrapper');
           const dotsContainer = document.getElementById('hero-dots-container');
           if (!wrapper || !dotsContainer) return;
-
-          const slides = window.KMS_DATA.heroSlides || [];
           if (slides.length === 0) return;
 
           wrapper.innerHTML = slides.map((slide, idx) => `
@@ -2396,12 +2480,12 @@
                   <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap">
                     <a href="${slide.btnPrimaryLink || '#products'}" onclick="navigateTo('${(slide.btnPrimaryLink || 'products').replace('#', '')}')" 
                        class="btn-gold px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold flex items-center justify-center gap-1.5 sm:gap-2 shadow">
-                      <span>${slide.btnPrimaryText || 'Lihat Produk'}</span>
+                      <span>${slide.btnPrimaryText || (lang === 'en' ? 'View Products' : 'Lihat Produk')}</span>
                       <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                     </a>
                     <a href="${slide.btnSecondaryLink || '#contact'}" onclick="navigateTo('${(slide.btnSecondaryLink || 'contact').replace('#', '')}')" 
                        class="btn-outline-navy px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold transition flex items-center justify-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-sm">
-                      <span>${slide.btnSecondaryText || 'Hubungi Kami'}</span>
+                      <span>${slide.btnSecondaryText || (lang === 'en' ? 'Contact Us' : 'Hubungi Kami')}</span>
                     </a>
                   </div>
                 </div>
