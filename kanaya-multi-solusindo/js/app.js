@@ -819,7 +819,7 @@ function initCatalogFilters() {
 
   let html = `
     <button onclick="filterCategory('all')" id="cat-pill-all" class="cat-pill w-full text-left px-3.5 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-200/70 active">
-      Semua Kategori (${window.KMS_DATA.products.length})
+      ${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'All Categories' : 'Semua Kategori'} (${window.KMS_DATA.products.length})
     </button>
   `;
 
@@ -976,11 +976,11 @@ function renderProducts() {
       </div>
       <div class="px-5 pb-5 pt-0 grid grid-cols-2 gap-2">
         <button onclick="openProductDetailView('${p.id}')" class="py-2 rounded-lg border border-slate-200 hover:border-corporate hover:text-corporate text-xs font-bold text-slate-700 transition text-center">
-          Lihat Detail
+          ${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'View Details' : 'Lihat Detail'}
         </button>
         <button onclick="quickInquireProduct('${p.id}')" class="btn-gold py-2 rounded-lg text-xs font-bold text-center flex items-center justify-center gap-1">
           <i data-lucide="send" class="w-3.5 h-3.5"></i>
-          <span>Inquiry</span>
+          <span>${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Inquire' : 'Inquiry'}</span>
         </button>
       </div>
     </div>
@@ -1410,16 +1410,22 @@ Produk di atas belum terdaftar di katalog website. Mohon informasi ketersediaan 
  * ==================== BILINGUAL TRANSLATOR ====================
  */
 function setLanguage(lang) {
-  currentLang = lang;
-  const btnId = document.getElementById('lang-id');
-  const btnEn = document.getElementById('lang-en');
-
-  if (lang === 'en') {
-    btnEn.className = 'px-2.5 py-0.5 rounded-full font-semibold bg-amber-500 text-slate-950 transition-all';
-    btnId.className = 'px-2.5 py-0.5 rounded-full font-medium text-slate-300 hover:text-white transition-all';
+  if (typeof window.setLanguageKms === 'function') {
+    window.setLanguageKms(lang);
+  } else if (typeof window.applyKmsLanguage === 'function') {
+    window.applyKmsLanguage(lang);
   } else {
-    btnId.className = 'px-2.5 py-0.5 rounded-full font-semibold bg-amber-500 text-slate-950 transition-all';
-    btnEn.className = 'px-2.5 py-0.5 rounded-full font-medium text-slate-300 hover:text-white transition-all';
+    currentLang = lang;
+    const btnId = document.getElementById('lang-id');
+    const btnEn = document.getElementById('lang-en');
+
+    if (lang === 'en') {
+      if (btnEn) btnEn.className = 'px-2.5 py-0.5 rounded-full font-semibold bg-amber-500 text-slate-950 transition-all';
+      if (btnId) btnId.className = 'px-2.5 py-0.5 rounded-full font-medium text-slate-300 hover:text-white transition-all';
+    } else {
+      if (btnId) btnId.className = 'px-2.5 py-0.5 rounded-full font-semibold bg-amber-500 text-slate-950 transition-all';
+      if (btnEn) btnEn.className = 'px-2.5 py-0.5 rounded-full font-medium text-slate-300 hover:text-white transition-all';
+    }
   }
 }
 
