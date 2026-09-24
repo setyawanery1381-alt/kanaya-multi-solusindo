@@ -1,0 +1,13 @@
+<!-- Hitachi Construction Machinery Logo SVG -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" fill="none">
+  <g transform="translate(10, 12)">
+    <path d="M0 8h10v14H24V8h10v34H24V28H10v14H0V8z" fill="#E60012"/>
+    <path d="M40 8h10v34H40V8z" fill="#E60012"/>
+    <path d="M56 8h28v7H75v27H65V15H56V8z" fill="#E60012"/>
+    <path d="M88 8h10l12 34h-10l-2-6h-12l-2 6H76L88 8zm6 10l-4 12h8l-4-12z" fill="#E60012"/>
+    <path d="M125 15c-3-2-7-3-10-3-8 0-14 6-14 14s6 14 14 14c4 0 8-1 11-4l5 6c-4 4-10 6-16 6-13 0-23-10-23-22s10-22 23-22c6 0 12 2 17 6l-6 7z" fill="#E60012"/>
+    <path d="M136 8h10v14h14V8h10v34h-10V28h-14v14h-10V8z" fill="#E60012"/>
+    <path d="M176 8h10v34h-10V8z" fill="#E60012"/>
+  </g>
+  <text x="120" y="62" font-family="'Inter', sans-serif" font-size="8.5" font-weight="600" fill="#64748B" text-anchor="middle" letter-spacing="0.2">PT. Hitachi Construction Machinery Indonesia</text>
+</svg>
