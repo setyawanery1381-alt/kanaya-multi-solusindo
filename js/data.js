@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 4,
+  catalogVersion: 5,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -2481,6 +2481,86 @@ const DEFAULT_KMS_DATA = {
   }
 ],
 
+  clients: [
+    {
+      id: "client-hitachi",
+      name: "PT. Hitachi Construction Machinery Indonesia",
+      shortName: "Hitachi",
+      logo: "assets/logos/client-hitachi.svg",
+      industry: "Heavy Machinery & Construction"
+    },
+    {
+      id: "client-mics",
+      name: "PT MICS STEEL INDONESIA",
+      shortName: "MICS Steel",
+      logo: "assets/logos/client-mics.svg",
+      industry: "Steel & Metallurgy Manufacturing"
+    },
+    {
+      id: "client-kandia",
+      name: "Kandia Tirta Engineering",
+      shortName: "Kandia Tirta",
+      logo: "assets/logos/client-kandia.svg",
+      industry: "Engineering & Water Solutions"
+    },
+    {
+      id: "client-tms",
+      name: "PT Tembaga Mulia Semanan, Tbk",
+      shortName: "TMS",
+      logo: "assets/logos/client-tms.svg",
+      industry: "Copper & Wire Manufacturing"
+    },
+    {
+      id: "client-chengtian",
+      name: "PT. Chengtian Weiye Indonesia",
+      shortName: "Chengtian Weiye",
+      logo: "assets/logos/client-chengtian.svg",
+      industry: "Smart Card & Electronics"
+    },
+    {
+      id: "client-adhibeton",
+      name: "PT Adhimix Precast Indonesia",
+      shortName: "Adhibeton",
+      logo: "assets/logos/client-adhibeton.svg",
+      industry: "Ready-Mix Concrete & Precast"
+    },
+    {
+      id: "client-enkei",
+      name: "ENKEI INDONESIA",
+      shortName: "ENKEI",
+      logo: "assets/logos/client-enkei.svg",
+      industry: "Automotive Wheel Manufacturing"
+    },
+    {
+      id: "client-anugerah",
+      name: "PT. ANUGERAH CIPTA KREASINDO",
+      shortName: "PT. AK",
+      logo: "assets/logos/client-anugerah.svg",
+      industry: "Technology & Industrial Consulting"
+    },
+    {
+      id: "client-psb",
+      name: "CV Pangan Sukses Bersama (PSB)",
+      shortName: "PSB",
+      logo: "assets/logos/client-pangan-sukses-bersama.png",
+      industry: "Food & Beverage Manufacturing"
+    },
+    {
+      id: "client-lju",
+      name: "PT Lingga Jaya Utama (LJU)",
+      shortName: "LJU",
+      logo: "assets/logos/client-lingga-jaya-utama.png",
+      industry: "General Trading & Industrial Supplier"
+    },
+    {
+      id: "client-nanotech",
+      name: "PT Ananda Putra Nanotech Indonesia",
+      shortName: "Nanotech",
+      logo: "assets/logos/client-nanotech.png",
+      industry: "Nanotechnology & Surface Protection"
+    }
+  ],
+
   gallery: [
   {
     "id": "gal-1",
@@ -2616,7 +2696,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V7';
+const STORAGE_KEY = 'KMS_APP_DATA_V8';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2739,12 +2819,12 @@ function initCloudSync() {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
       // Auto-upgrade cloud catalog if fewer than 40 products exist or version < 3
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 4 || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash')))) {
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 5 || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
         merged.clients = DEFAULT_KMS_DATA.clients;
         merged.gallery = DEFAULT_KMS_DATA.gallery;
-        merged.catalogVersion = 4;
+        merged.catalogVersion = 5;
         if (kmsDb) {
           kmsDb.collection('cms').doc('website_data').set(merged).catch(() => {});
         }
