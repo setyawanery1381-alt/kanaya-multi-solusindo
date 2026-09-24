@@ -2285,9 +2285,9 @@
   <!-- Firebase App & Firestore SDKs (Compat v10.8.0) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="js/data.js?v=2.9"></script>
-  <script src="js/app.js?v=2.9"></script>
-  <script src="js/i18n.js?v=3.0"></script>
+  <script src="js/data.js?v=3.6"></script>
+  <script src="js/app.js?v=3.6"></script>
+  <script src="js/i18n.js?v=3.6"></script>
 
   <!-- Hero Slides Synchronizer & Enhanced Renderer (Guarantees Instant Live Update via Single-File Upload) -->
   <script>
@@ -2459,8 +2459,10 @@
           if (!wrapper || !dotsContainer) return;
           if (slides.length === 0) return;
 
+          const curSlideIdx = (typeof currentSlideIndex !== 'undefined') ? currentSlideIndex : (window.currentSlideIndex || 0);
+
           wrapper.innerHTML = slides.map((slide, idx) => `
-            <div class="hero-slide ${idx === currentSlideIndex ? 'active' : ''}" id="hero-slide-${idx}">
+            <div class="hero-slide ${idx === curSlideIdx ? 'active' : ''}" id="hero-slide-${idx}">
               <!-- Slide Background Image with Clearer Visibility -->
               <img src="${slide.image}" alt="${slide.title}" class="hero-slide-bg">
               
@@ -2494,7 +2496,7 @@
           `).join('');
 
           dotsContainer.innerHTML = slides.map((_, idx) => `
-            <div onclick="goToHeroSlide(${idx})" class="slide-dot ${idx === currentSlideIndex ? 'active' : ''}" id="slide-dot-${idx}"></div>
+            <div onclick="goToHeroSlide(${idx})" class="slide-dot ${idx === curSlideIdx ? 'active' : ''}" id="slide-dot-${idx}"></div>
           `).join('');
 
           if (window.lucide) lucide.createIcons();
