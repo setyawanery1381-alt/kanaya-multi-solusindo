@@ -4,14 +4,24 @@
  * Enhanced with Direct Photo / Image File Upload (FileReader & Base64 Compression)
  */
 
-let currentLang = 'id';
+window.currentLang = (function() {
+  try {
+    const s = localStorage.getItem('KMS_CURRENT_LANG');
+    if (s) return s;
+  } catch (e) {}
+  const b = (typeof navigator !== 'undefined' ? (navigator.language || (navigator.languages && navigator.languages[0]) || '') : '').toLowerCase();
+  return b.startsWith('en') ? 'en' : 'id';
+})();
+var currentLang = window.currentLang;
+window.currentSlideIndex = 0;
+var currentSlideIndex = 0;
+
 let currentCategory = 'all';
 let currentSubCategory = 'all';
 let searchQuery = '';
 let selectedProduct = null;
 
 // Hero Slideshow State
-let currentSlideIndex = 0;
 let slideInterval = null;
 const SLIDE_DURATION = 5000; // 5 seconds per slide
 let isSlidePaused = false;
@@ -282,10 +292,14 @@ function refreshAllPublicContent() {
   if (homeAboutText) homeAboutText.innerHTML = data.company.aboutShort;
 
   const aboutFullBox = document.getElementById('about-full-text');
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
   if (aboutFullBox) {
-    const paragraphs = data.company.aboutFull.split('\n\n');
+    const text = isEn 
+      ? "PT Kanaya Multi Solusindo is an Indonesian private enterprise specializing in general procurement and supply chain solutions for corporate and industrial sectors.\n\nFounded with a vision to become an agile, dependable partner, we bridge industrial enterprises with high-grade supplies ranging from plastic packaging, logistics consumables, office stationery, to safety gear and specialty products."
+      : (data.company.aboutFull || '');
+    const paragraphs = text.split('\n\n');
     aboutFullBox.innerHTML = `
-      <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark mb-4">Profil Perusahaan</h2>
+      <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark mb-4">${isEn ? 'Company Profile' : 'Profil Perusahaan'}</h2>
       <div class="w-12 h-1 bg-amber-500 mb-6 rounded-full"></div>
       ${paragraphs.map(p => `<p>${p}</p>`).join('')}
     `;
@@ -293,11 +307,21 @@ function refreshAllPublicContent() {
 
   // Vision & Mission
   const visionText = document.getElementById('about-vision-text');
-  if (visionText) visionText.textContent = `"${data.vision}"`;
+  if (visionText) {
+    visionText.textContent = isEn 
+      ? `"To become an independent, distinguished, trustworthy enterprise oriented towards sustainability, and capable of creating meaningful positive impact for the surrounding environment."`
+      : `"${data.vision}"`;
+  }
 
   const missionsList = document.getElementById('about-missions-list');
   if (missionsList) {
-    missionsList.innerHTML = data.missions.map((m, idx) => `
+    const missions = isEn ? [
+      "Providing high-grade procurement supplies and services with uncompromising consistency and efficiency.",
+      "Developing sustainable B2B partnerships grounded in transparency, integrity, and reciprocal growth.",
+      "Delivering scheduled and adaptive delivery solutions aligned with strict operational timelines of client factories.",
+      "Contributing responsibly toward social and environmental sustainability across our operations."
+    ] : data.missions;
+    missionsList.innerHTML = missions.map((m, idx) => `
       <li class="flex items-start gap-4">
         <span class="w-7 h-7 rounded-full bg-corporate text-amber-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
         <p class="text-slate-700 text-sm leading-relaxed">${m}</p>
@@ -325,19 +349,21 @@ function refreshAllPublicContent() {
  * Render Bagian Mengapa Perusahaan Memilih Bermitra dengan Kanaya & 4 Jaminan Kemitraan
  */
 function renderWhyKanayaSection() {
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
   const whyData = (window.KMS_DATA && window.KMS_DATA.whyKanaya) || (typeof DEFAULT_KMS_DATA !== 'undefined' ? DEFAULT_KMS_DATA.whyKanaya : null);
   if (!whyData) return;
 
   const badgeEl = document.getElementById('about-why-badge');
   const titleEl = document.getElementById('about-why-title');
   const subtitleEl = document.getElementById('about-why-subtitle');
-  if (badgeEl && whyData.badge) badgeEl.textContent = whyData.badge;
-  if (titleEl && whyData.title) titleEl.textContent = whyData.title;
-  if (subtitleEl && whyData.subtitle) subtitleEl.textContent = whyData.subtitle;
+  if (badgeEl) badgeEl.textContent = isEn ? "B2B COMPETITIVE ADVANTAGE" : (whyData.badge || "Keunggulan Kompetitif B2B");
+  if (titleEl) titleEl.textContent = isEn ? "Why Do Leading Companies Partner with Kanaya?" : (whyData.title || "Mengapa Perusahaan Memilih Bermitra dengan Kanaya?");
+  if (subtitleEl) subtitleEl.textContent = isEn ? "We are not just a goods supplier, but a strategic procurement partner ensuring official legality, authentic product quality, and punctual supply schedules for smooth industrial operations." : (whyData.subtitle || "Kami bukan sekadar penyedia barang, melainkan mitra strategis pengadaan...");
 
   const grid = document.getElementById('about-why-grid');
-  if (grid && whyData.items) {
-    grid.innerHTML = whyData.items.map((val, idx) => {
+  if (grid) {
+    const items = (isEn && window.KMS_WHY_ITEMS_I18N && window.KMS_WHY_ITEMS_I18N.en) ? window.KMS_WHY_ITEMS_I18N.en : (whyData.items || []);
+    grid.innerHTML = items.map((val, idx) => {
       const icon = idx === 0 ? 'shield-check' : idx === 1 ? 'user-check' : 'award';
       const gradient = idx === 0 ? 'from-blue-600 to-corporate' : idx === 1 ? 'from-amber-500 to-amber-600' : 'from-emerald-600 to-teal-700';
       const badgeClass = idx === 0 ? 'bg-blue-50 text-blue-800 border-blue-200' : idx === 1 ? 'bg-amber-50 text-amber-800 border-amber-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200';
@@ -354,7 +380,7 @@ function renderWhyKanayaSection() {
                 <i data-lucide="${icon}" class="w-7 h-7"></i>
               </div>
               <span class="text-[11px] font-bold px-3 py-1 rounded-full border ${badgeClass} shadow-xs">
-                ${val.badge || 'Keunggulan'}
+                ${val.badge || (isEn ? 'Advantage' : 'Keunggulan')}
               </span>
             </div>
             <h4 class="font-heading font-extrabold text-xl text-corporate-dark mb-3 tracking-tight">
@@ -363,51 +389,55 @@ function renderWhyKanayaSection() {
             <p class="text-slate-600 leading-relaxed text-sm mb-6">
               ${val.desc}
             </p>
-            <div class="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
-              ${points.map(pt => `
-                <div class="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
-                  <span>${pt}</span>
-                </div>
-              `).join('')}
-            </div>
           </div>
-          <div class="pt-2">
-            <a href="#contact" onclick="navigateTo('contact')" class="text-xs font-bold text-corporate hover:text-amber-600 inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-              <span>Konsultasikan Kebutuhan</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
+          <ul class="space-y-3 pt-6 border-t border-slate-100">
+            ${points.map(pt => `
+              <li class="flex items-start gap-2.5 text-xs text-slate-700">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                <span class="font-medium">${pt}</span>
+              </li>
+            `).join('')}
+          </ul>
         </div>
       `;
     }).join('');
   }
 
   // Guarantees strip
-  if (whyData.guarantees && Array.isArray(whyData.guarantees)) {
-    const strip = document.getElementById('about-guarantees-strip');
-    if (strip) {
-      const colors = [
-        { bg: 'bg-blue-50', text: 'text-corporate', icon: 'file-check-2' },
-        { bg: 'bg-amber-50', text: 'text-amber-600', icon: 'clock' },
-        { bg: 'bg-emerald-50', text: 'text-emerald-600', icon: 'shield-check' },
-        { bg: 'bg-purple-50', text: 'text-purple-600', icon: 'truck' }
-      ];
-      strip.innerHTML = whyData.guarantees.map((g, idx) => {
-        const c = colors[idx] || colors[0];
-        return `
-          <div class="flex items-center gap-3.5">
-            <div class="w-12 h-12 rounded-xl ${c.bg} ${c.text} flex items-center justify-center flex-shrink-0 shadow-xs">
-              <i data-lucide="${g.icon || c.icon}" class="w-6 h-6"></i>
-            </div>
-            <div>
-              <div class="text-sm font-bold text-slate-900">${g.title}</div>
-              <div class="text-xs text-slate-500">${g.desc}</div>
-            </div>
+  const strip = document.getElementById('about-guarantees-strip');
+  if (strip) {
+    const colors = [
+      { bg: 'bg-blue-50', text: 'text-corporate', icon: 'file-check-2' },
+      { bg: 'bg-amber-50', text: 'text-amber-600', icon: 'clock' },
+      { bg: 'bg-emerald-50', text: 'text-emerald-600', icon: 'shield-check' },
+      { bg: 'bg-purple-50', text: 'text-purple-600', icon: 'truck' }
+    ];
+    const guarantees = isEn ? [
+      { title: "Valid Tax Invoices", desc: "Official PT legality & VAT compliant", icon: "file-check-2" },
+      { title: "Fast Response", desc: "Quotations within hours", icon: "clock" },
+      { title: "Quality Guarantee", desc: "Factory original standard", icon: "shield-check" },
+      { title: "On-Time Supply", desc: "Reliable distribution fleet", icon: "truck" }
+    ] : (whyData.guarantees || [
+      { title: "Faktur Pajak Sah", desc: "Legalitas PT & PPN resmi", icon: "file-check-2" },
+      { title: "Fast Response", desc: "Penawaran hitungan jam", icon: "clock" },
+      { title: "Jaminan Kualitas", desc: "Standar pabrik teruji", icon: "shield-check" },
+      { title: "Tepat Waktu", desc: "Armada pasokan andal", icon: "truck" }
+    ]);
+
+    strip.innerHTML = guarantees.map((g, idx) => {
+      const c = colors[idx] || colors[0];
+      return `
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl ${c.bg} ${c.text} flex items-center justify-center flex-shrink-0 shadow-xs">
+            <i data-lucide="${g.icon || c.icon}" class="w-6 h-6"></i>
           </div>
-        `;
-      }).join('');
-    }
+          <div>
+            <div class="text-sm font-bold text-slate-900">${g.title}</div>
+            <div class="text-xs text-slate-500">${g.desc}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
   }
 
   if (window.lucide) lucide.createIcons();
@@ -771,13 +801,22 @@ function initHomeCategories() {
   const container = document.getElementById('home-categories-grid');
   if (!container) return;
 
-  container.innerHTML = window.KMS_DATA.categories.map(cat => `
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  const catI18n = (window.KMS_CATEGORIES_I18N && window.KMS_CATEGORIES_I18N[isEn ? 'en' : 'id']) || {};
+
+  container.innerHTML = window.KMS_DATA.categories.map(cat => {
+    const cData = catI18n[cat.id] || {};
+    const desc = cData.desc || cat.desc;
+    const itemCount = cData.itemCount || cat.itemCount || (isEn ? 'Procurement Solution' : 'Solusi Pengadaan');
+    const btnText = isEn ? 'View Products' : 'Lihat Produk';
+
+    return `
     <div class="bg-white rounded-2xl overflow-hidden card-hover group flex flex-col justify-between">
       <div>
         <div class="relative h-48 overflow-hidden bg-slate-100">
           <img src="${cat.image}" alt="${cat.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           <div class="absolute top-3 left-3 bg-corporate text-amber-400 text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
-            ${cat.itemCount || 'Solusi Pengadaan'}
+            ${itemCount}
           </div>
         </div>
         <div class="p-6">
@@ -785,18 +824,19 @@ function initHomeCategories() {
             ${cat.name}
           </h3>
           <p class="text-slate-600 text-sm leading-relaxed line-clamp-2">
-            ${cat.desc}
+            ${desc}
           </p>
         </div>
       </div>
       <div class="px-6 pb-6 pt-0">
         <button onclick="navigateToCategory('${cat.id}')" class="w-full py-2.5 rounded-lg border border-slate-200 hover:border-corporate hover:bg-corporate hover:text-white text-xs font-bold text-slate-700 transition flex items-center justify-center gap-1.5">
-          <span>Lihat Produk</span>
+          <span>${btnText}</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </button>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
   initIcons();
 }
 
@@ -823,11 +863,16 @@ function initCatalogFilters() {
     </button>
   `;
 
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
   window.KMS_DATA.categories.forEach(cat => {
     const count = window.KMS_DATA.products.filter(p => p.categoryId === cat.id).length;
+    let catTitle = cat.name;
+    if (isEn && window.KMS_CATEGORIES_I18N && window.KMS_CATEGORIES_I18N.en && window.KMS_CATEGORIES_I18N.en[cat.id]) {
+      catTitle = window.KMS_CATEGORIES_I18N.en[cat.id].title;
+    }
     html += `
       <button onclick="filterCategory('${cat.id}')" id="cat-pill-${cat.id}" class="cat-pill w-full text-left px-3.5 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-200/70">
-        ${cat.name} ${count > 0 ? `(${count})` : ''}
+        ${catTitle} ${count > 0 ? `(${count})` : ''}
       </button>
     `;
   });
@@ -859,11 +904,16 @@ function updateCategoryPillState() {
 
   const titleElem = document.getElementById('active-category-title');
   if (titleElem) {
+    const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
     if (currentCategory === 'all') {
-      titleElem.textContent = 'Semua Kategori';
+      titleElem.textContent = isEn ? 'All Categories' : 'Semua Kategori';
     } else {
       const cat = window.KMS_DATA.categories.find(c => c.id === currentCategory);
-      titleElem.textContent = cat ? cat.name : 'Kategori';
+      let catTitle = cat ? cat.name : (isEn ? 'Category' : 'Kategori');
+      if (isEn && cat && window.KMS_CATEGORIES_I18N && window.KMS_CATEGORIES_I18N.en && window.KMS_CATEGORIES_I18N.en[cat.id]) {
+        catTitle = window.KMS_CATEGORIES_I18N.en[cat.id].title;
+      }
+      titleElem.textContent = catTitle;
     }
   }
 }
@@ -874,7 +924,9 @@ function renderProducts() {
   const subFilterBar = document.getElementById('subcategory-filter-bar');
   if (!grid) return;
 
-  // Render Subcategory Tabs for categories that have subcategories (e.g. Kemasan / Packaging - 3 klik)
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+
+  // Render Subcategory Tabs for categories that have subcategories
   if (subFilterBar) {
     if (currentCategory !== 'all') {
       const categoryProducts = (window.KMS_DATA.products || []).filter(p => p.categoryId === currentCategory);
@@ -882,17 +934,19 @@ function renderProducts() {
 
       if (subcategories.length > 0) {
         subFilterBar.classList.remove('hidden');
+        const allSubText = isEn ? 'All Subcategories' : 'Semua Subkategori';
         let subHtml = `
           <button onclick="filterSubCategory('all')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${currentSubCategory === 'all' ? 'bg-corporate text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}">
-            Semua Subkategori (${categoryProducts.length})
+            ${allSubText} (${categoryProducts.length})
           </button>
         `;
         subcategories.forEach(sub => {
           const subCount = categoryProducts.filter(p => p.subCategory === sub).length;
           const isActive = currentSubCategory === sub;
+          const subLabel = isEn ? ((window.KMS_SUBCAT_I18N && window.KMS_SUBCAT_I18N[sub]) || sub) : sub;
           subHtml += `
             <button onclick="filterSubCategory('${sub}')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${isActive ? 'bg-corporate text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}">
-              ${sub} (${subCount})
+              ${subLabel} (${subCount})
             </button>
           `;
         });
@@ -918,12 +972,16 @@ function renderProducts() {
   }
 
   if (searchQuery) {
-    filtered = filtered.filter(p => 
-      p.name.toLowerCase().includes(searchQuery) ||
-      (p.shortDesc && p.shortDesc.toLowerCase().includes(searchQuery)) ||
-      (p.categoryName && p.categoryName.toLowerCase().includes(searchQuery)) ||
-      (p.subCategory && p.subCategory.toLowerCase().includes(searchQuery))
-    );
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(p => {
+      const en = (window.KMS_PRODUCTS_EN && window.KMS_PRODUCTS_EN[p.id]) || {};
+      return p.name.toLowerCase().includes(q) ||
+        (en.name && en.name.toLowerCase().includes(q)) ||
+        (p.shortDesc && p.shortDesc.toLowerCase().includes(q)) ||
+        (en.shortDesc && en.shortDesc.toLowerCase().includes(q)) ||
+        (p.categoryName && p.categoryName.toLowerCase().includes(q)) ||
+        (p.subCategory && p.subCategory.toLowerCase().includes(q));
+    });
   }
 
   if (countElem) {
@@ -934,12 +992,12 @@ function renderProducts() {
     grid.innerHTML = `
       <div class="col-span-full py-16 text-center bg-slate-50 rounded-2xl border border-slate-200">
         <i data-lucide="package-x" class="w-12 h-12 text-slate-400 mx-auto mb-3"></i>
-        <h4 class="font-heading font-bold text-slate-800 text-base mb-1">Produk Tidak Ditemukan</h4>
+        <h4 class="font-heading font-bold text-slate-800 text-base mb-1">${isEn ? 'No Products Found' : 'Produk Tidak Ditemukan'}</h4>
         <p class="text-xs text-slate-500 max-w-sm mx-auto mb-4">
-          Tidak ada produk yang cocok dengan pencarian atau filter yang dipilih. Silakan hubungi tim kami untuk pengadaan khusus.
+          ${isEn ? 'No products matched your search or selected filter. Please contact our team for custom procurement needs.' : 'Tidak ada produk yang cocok dengan pencarian atau filter yang dipilih. Silakan hubungi tim kami untuk pengadaan khusus.'}
         </p>
         <button onclick="openInquiryModal()" class="btn-gold px-5 py-2 rounded-lg text-xs font-semibold">
-          Tanyakan Kebutuhan Khusus
+          ${isEn ? 'Inquire Custom Needs' : 'Tanyakan Kebutuhan Khusus'}
         </button>
       </div>
     `;
@@ -947,44 +1005,57 @@ function renderProducts() {
     return;
   }
 
-  grid.innerHTML = filtered.map(p => `
+  grid.innerHTML = filtered.map(p => {
+    const en = (window.KMS_PRODUCTS_EN && window.KMS_PRODUCTS_EN[p.id]) || {};
+    const pName = isEn ? (en.name || p.name) : p.name;
+    const pShortDesc = isEn ? (en.shortDesc || p.shortDesc || '') : (p.shortDesc || '');
+    const pTag = isEn ? (en.tag || (window.KMS_TAGS_EN && window.KMS_TAGS_EN[p.tag]) || p.tag) : p.tag;
+    const pBadge = isEn ? (en.badge || (window.KMS_BADGES_EN && window.KMS_BADGES_EN[p.badge]) || p.badge) : p.badge;
+    const pSubCat = isEn ? ((window.KMS_SUBCAT_I18N && window.KMS_SUBCAT_I18N[p.subCategory]) || p.subCategory) : p.subCategory;
+    let pCatName = p.categoryName || '';
+    if (isEn && window.KMS_CATEGORIES_I18N && window.KMS_CATEGORIES_I18N.en && window.KMS_CATEGORIES_I18N.en[p.categoryId]) {
+      pCatName = window.KMS_CATEGORIES_I18N.en[p.categoryId].title;
+    }
+
+    return `
     <div class="bg-white rounded-2xl overflow-hidden card-hover flex flex-col justify-between border border-slate-200">
       <div>
         <div class="relative h-48 bg-slate-50 overflow-hidden cursor-pointer" onclick="openProductDetailView('${p.id}')">
-          <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+          <img src="${p.image}" alt="${pName}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
           <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-sm text-corporate shadow-sm">
-            ${p.subCategory || p.categoryName || 'Produk'}
+            ${pSubCat || pCatName || (isEn ? 'Product' : 'Produk')}
           </span>
-          ${p.tag ? `
+          ${pTag ? `
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-500 text-slate-950">
-              ${p.tag}
+              ${pTag}
             </span>
           ` : ''}
         </div>
         <div class="p-5">
           <div class="flex items-center gap-1.5 mb-1.5 flex-wrap">
-            <span class="text-[10px] font-bold text-amber-700 bg-amber-100/70 px-2 py-0.5 rounded">${p.categoryName || ''}</span>
-            ${p.subCategory ? `<span class="text-[10px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">${p.subCategory}</span>` : ''}
+            <span class="text-[10px] font-bold text-amber-700 bg-amber-100/70 px-2 py-0.5 rounded">${pCatName}</span>
+            ${pSubCat ? `<span class="text-[10px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">${pSubCat}</span>` : ''}
           </div>
           <h3 class="font-heading font-extrabold text-base text-corporate-dark mb-1.5 line-clamp-1 hover:text-corporate cursor-pointer" onclick="openProductDetailView('${p.id}')">
-            ${p.name}
+            ${pName}
           </h3>
           <p class="text-xs text-slate-600 leading-relaxed line-clamp-2 mb-4">
-            ${p.shortDesc || ''}
+            ${pShortDesc}
           </p>
         </div>
       </div>
       <div class="px-5 pb-5 pt-0 grid grid-cols-2 gap-2">
         <button onclick="openProductDetailView('${p.id}')" class="py-2 rounded-lg border border-slate-200 hover:border-corporate hover:text-corporate text-xs font-bold text-slate-700 transition text-center">
-          ${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'View Details' : 'Lihat Detail'}
+          ${isEn ? 'View Details' : 'Lihat Detail'}
         </button>
         <button onclick="quickInquireProduct('${p.id}')" class="btn-gold py-2 rounded-lg text-xs font-bold text-center flex items-center justify-center gap-1">
           <i data-lucide="send" class="w-3.5 h-3.5"></i>
-          <span>${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Inquire' : 'Inquiry'}</span>
+          <span>${isEn ? 'Inquire' : 'Inquiry'}</span>
         </button>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   initIcons();
 }
@@ -999,73 +1070,145 @@ function openProductDetailView(productId) {
 function showProductDetail(productId) {
   const product = window.KMS_DATA.products.find(p => p.id === productId) || window.KMS_DATA.products[0];
   selectedProduct = product;
+  window.selectedProduct = product;
 
   showView('product-detail');
 
-  document.getElementById('detail-breadcrumb-cat').textContent = product.subCategory ? `${product.categoryName} / ${product.subCategory}` : product.categoryName;
-  document.getElementById('detail-breadcrumb-name').textContent = product.name;
-  document.getElementById('detail-badge').textContent = product.badge || product.subCategory || product.categoryName;
-  document.getElementById('detail-title').textContent = product.name;
-  document.getElementById('detail-short-desc').textContent = product.fullDesc || product.shortDesc;
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  const enP = (isEn && window.KMS_PRODUCTS_EN && window.KMS_PRODUCTS_EN[product.id]) ? window.KMS_PRODUCTS_EN[product.id] : null;
+
+  // Category & Subcategory translated names
+  let catName = product.categoryName;
+  if (isEn && window.KMS_CATEGORIES_I18N && window.KMS_CATEGORIES_I18N.en && window.KMS_CATEGORIES_I18N.en[product.categoryId]) {
+    catName = window.KMS_CATEGORIES_I18N.en[product.categoryId].title;
+  }
+  let subCatName = product.subCategory;
+  if (isEn && product.subCategory && window.KMS_SUBCAT_I18N && window.KMS_SUBCAT_I18N[product.subCategory]) {
+    subCatName = window.KMS_SUBCAT_I18N[product.subCategory];
+  }
+
+  const prodName = enP ? (enP.name || product.name) : product.name;
+  const prodBadge = isEn 
+    ? ((enP && enP.badge) || (window.KMS_BADGES_EN && window.KMS_BADGES_EN[product.badge]) || product.badge || subCatName || catName)
+    : (product.badge || subCatName || catName);
+  const prodDesc = enP 
+    ? (enP.fullDesc || enP.shortDesc || product.fullDesc || product.shortDesc)
+    : (product.fullDesc || product.shortDesc);
+
+  // Update Breadcrumb links in detail view
+  const crumbHome = document.querySelector('#view-product-detail .breadcrumb-container a[onclick*="navigateTo(\'home\')"]');
+  if (crumbHome) crumbHome.textContent = isEn ? 'Home' : 'Beranda';
+  const crumbProd = document.querySelector('#view-product-detail .breadcrumb-container a[onclick*="navigateTo(\'products\')"]');
+  if (crumbProd) crumbProd.textContent = isEn ? 'Products' : 'Produk';
+
+  const crumbCatEl = document.getElementById('detail-breadcrumb-cat');
+  if (crumbCatEl) crumbCatEl.textContent = subCatName ? `${catName} / ${subCatName}` : catName;
+  const crumbNameEl = document.getElementById('detail-breadcrumb-name');
+  if (crumbNameEl) crumbNameEl.textContent = prodName;
+  const badgeEl = document.getElementById('detail-badge');
+  if (badgeEl) badgeEl.textContent = prodBadge;
+  const titleEl = document.getElementById('detail-title');
+  if (titleEl) titleEl.textContent = prodName;
+  const descEl = document.getElementById('detail-short-desc');
+  if (descEl) descEl.textContent = prodDesc;
+
+  // Headings & CTA buttons in product detail
+  const advHeadingSpan = document.querySelector('#view-product-detail .bg-corporate-softBlue h4 span');
+  if (advHeadingSpan) advHeadingSpan.textContent = isEn ? 'Key Advantages:' : 'Keunggulan Utama:';
+
+  const specsHeadingSpan = document.querySelector('#view-product-detail div:not(.bg-corporate-softBlue) > h4 span');
+  if (specsHeadingSpan) specsHeadingSpan.textContent = isEn ? 'Technical Specifications:' : 'Spesifikasi Teknis:';
+
+  const btnInquirySpan = document.querySelector('#btn-inquiry-detail span');
+  if (btnInquirySpan) btnInquirySpan.textContent = isEn ? 'Submit Inquiry' : 'Ajukan Inquiry';
+
+  const btnDownloadSpan = document.querySelector('#view-product-detail button[onclick*="downloadProductCatalog"] span');
+  if (btnDownloadSpan) btnDownloadSpan.textContent = isEn ? 'Download Catalog' : 'Download Katalog';
+
+  const relatedHeading = document.querySelector('#view-product-detail .border-t.border-slate-200 h3');
+  if (relatedHeading) relatedHeading.textContent = isEn ? 'Other Products in this Category' : 'Produk Lainnya di Kategori Ini';
+
+  const relatedViewAll = document.querySelector('#view-product-detail .border-t.border-slate-200 a[onclick*="navigateTo(\'products\')"]');
+  if (relatedViewAll) relatedViewAll.textContent = isEn ? 'View All →' : 'Lihat Semua →';
 
   const mainImg = document.getElementById('detail-main-img');
-  mainImg.src = product.image;
-  mainImg.alt = product.name;
+  if (mainImg) {
+    mainImg.src = product.image;
+    mainImg.alt = prodName;
+  }
 
   const thumbsContainer = document.getElementById('detail-gallery-thumbs');
   const gallery = product.gallery && product.gallery.length ? product.gallery : [product.image];
-  thumbsContainer.innerHTML = gallery.map((imgUrl, idx) => `
-    <div onclick="changeDetailImage('${imgUrl}')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-slate-200 hover:border-amber-500 cursor-pointer flex-shrink-0">
-      <img src="${imgUrl}" alt="Thumb ${idx + 1}" class="w-full h-full object-cover">
-    </div>
-  `).join('');
+  if (thumbsContainer) {
+    thumbsContainer.innerHTML = gallery.map((imgUrl, idx) => `
+      <div onclick="changeDetailImage('${imgUrl}')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-slate-200 hover:border-amber-500 cursor-pointer flex-shrink-0">
+        <img src="${imgUrl}" alt="Thumb ${idx + 1}" class="w-full h-full object-cover">
+      </div>
+    `).join('');
+  }
 
   const advList = document.getElementById('detail-advantages-list');
-  const advantages = product.advantages || [
-    "Kualitas material teruji standar industri",
-    "Mendukung pengadaan reguler dan pesanan khusus",
-    "Layanan responsif dan pengiriman terjadwal"
-  ];
-  advList.innerHTML = advantages.map(adv => `
-    <li class="flex items-start gap-2.5">
-      <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
-      <span>${adv}</span>
-    </li>
-  `).join('');
+  const advantages = (enP && enP.advantages && enP.advantages.length) ? enP.advantages : (product.advantages || [
+    isEn ? "Industry-standard tested material quality" : "Kualitas material teruji standar industri",
+    isEn ? "Supports regular procurement and custom specifications" : "Mendukung pengadaan reguler dan pesanan khusus",
+    isEn ? "Responsive service and scheduled on-time delivery" : "Layanan responsif dan pengiriman terjadwal"
+  ]);
+  if (advList) {
+    advList.innerHTML = advantages.map(adv => `
+      <li class="flex items-start gap-2.5">
+        <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+        <span>${adv}</span>
+      </li>
+    `).join('');
+  }
 
   const specsTbody = document.getElementById('detail-specs-tbody');
-  const specs = product.specs || [
-    { key: "Kategori", val: product.categoryName },
-    { key: "Kondisi", val: "Baru / Original Pabrik" },
-    { key: "Minimum Order", val: "Dapat dikonsultasikan sesuai kebutuhan" }
-  ];
-  specsTbody.innerHTML = specs.map(s => `
-    <tr class="border-b border-slate-200">
-      <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-50 w-1/3">${s.key}</td>
-      <td class="py-2.5 px-4 text-slate-900">${s.val}</td>
-    </tr>
-  `).join('');
+  const specs = (enP && enP.specs && enP.specs.length) ? enP.specs : (product.specs || [
+    { key: isEn ? "Category" : "Kategori", val: catName },
+    { key: isEn ? "Condition" : "Kondisi", val: isEn ? "Brand New / Factory Original" : "Baru / Original Pabrik" },
+    { key: isEn ? "Minimum Order" : "Minimum Order", val: isEn ? "Consultable based on project requirements" : "Dapat dikonsultasikan sesuai kebutuhan" }
+  ]);
+  if (specsTbody) {
+    specsTbody.innerHTML = specs.map(s => `
+      <tr class="border-b border-slate-200">
+        <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-50 w-1/3">${s.key}</td>
+        <td class="py-2.5 px-4 text-slate-900">${s.val}</td>
+      </tr>
+    `).join('');
+  }
 
   const relatedGrid = document.getElementById('detail-related-grid');
   const related = window.KMS_DATA.products.filter(p => p.categoryId === product.categoryId && p.id !== product.id).slice(0, 4);
   
-  if (related.length > 0) {
-    relatedGrid.innerHTML = related.map(rel => `
-      <div class="bg-white rounded-xl overflow-hidden border border-slate-200 p-4 card-hover flex flex-col justify-between">
-        <div>
-          <div class="h-32 rounded-lg overflow-hidden mb-3 bg-slate-100">
-            <img src="${rel.image}" alt="${rel.name}" class="w-full h-full object-cover">
+  if (relatedGrid) {
+    if (related.length > 0) {
+      relatedGrid.innerHTML = related.map(rel => {
+        const relEn = (isEn && window.KMS_PRODUCTS_EN && window.KMS_PRODUCTS_EN[rel.id]) ? window.KMS_PRODUCTS_EN[rel.id] : null;
+        let relCatName = rel.categoryName;
+        if (isEn && window.KMS_CATEGORIES_I18N && window.KMS_CATEGORIES_I18N.en && window.KMS_CATEGORIES_I18N.en[rel.categoryId]) {
+          relCatName = window.KMS_CATEGORIES_I18N.en[rel.categoryId].title;
+        }
+        const relName = relEn ? (relEn.name || rel.name) : rel.name;
+        const btnText = isEn ? "View Details" : "Lihat Detail";
+        return `
+          <div class="bg-white rounded-xl overflow-hidden border border-slate-200 p-4 card-hover flex flex-col justify-between">
+            <div>
+              <div class="h-32 rounded-lg overflow-hidden mb-3 bg-slate-100">
+                <img src="${rel.image}" alt="${relName}" class="w-full h-full object-cover">
+              </div>
+              <div class="text-[10px] font-bold text-amber-600 uppercase mb-1">${relCatName}</div>
+              <h4 class="font-heading font-extrabold text-sm text-corporate-dark mb-2 line-clamp-1">${relName}</h4>
+            </div>
+            <button onclick="openProductDetailView('${rel.id}')" class="w-full py-1.5 text-xs font-bold text-corporate border border-slate-200 rounded-lg hover:bg-slate-50 mt-2">
+              ${btnText}
+            </button>
           </div>
-          <div class="text-[10px] font-bold text-amber-600 uppercase mb-1">${rel.categoryName}</div>
-          <h4 class="font-heading font-extrabold text-sm text-corporate-dark mb-2 line-clamp-1">${rel.name}</h4>
-        </div>
-        <button onclick="openProductDetailView('${rel.id}')" class="w-full py-1.5 text-xs font-bold text-corporate border border-slate-200 rounded-lg hover:bg-slate-50 mt-2">
-          Lihat Detail
-        </button>
-      </div>
-    `).join('');
-  } else {
-    relatedGrid.innerHTML = `<div class="col-span-full text-xs text-slate-500 italic">Tidak ada produk terkait lainnya pada kategori ini.</div>`;
+        `;
+      }).join('');
+    } else {
+      const emptyMsg = isEn ? "No other related products found in this category." : "Tidak ada produk terkait lainnya pada kategori ini.";
+      relatedGrid.innerHTML = `<div class="col-span-full text-xs text-slate-500 italic">${emptyMsg}</div>`;
+    }
   }
 
   initIcons();
@@ -1119,24 +1262,34 @@ function initGalleryGrid() {
   const container = document.getElementById('gallery-grid');
   if (!container) return;
 
-  container.innerHTML = window.KMS_DATA.gallery.map(item => `
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  const galI18n = (window.KMS_GALLERY_I18N && window.KMS_GALLERY_I18N[isEn ? 'en' : 'id']) || [];
+
+  container.innerHTML = window.KMS_DATA.gallery.map((item, idx) => {
+    const gData = galI18n[idx] || {};
+    const title = gData.title || item.title;
+    const category = gData.category || item.category;
+    const desc = gData.desc || item.desc;
+
+    return `
     <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 card-hover group">
       <div class="relative h-56 overflow-hidden bg-slate-100">
-        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <img src="${item.image}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         <span class="absolute top-3 left-3 bg-corporate text-amber-400 text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
-          ${item.category}
+          ${category}
         </span>
       </div>
       <div class="p-6">
         <h3 class="font-heading font-extrabold text-lg text-corporate-dark mb-2">
-          ${item.title}
+          ${title}
         </h3>
         <p class="text-slate-600 text-sm leading-relaxed">
-          ${item.desc}
+          ${desc}
         </p>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
   initIcons();
 }
 
@@ -1169,7 +1322,9 @@ function renderStatsBar() {
   const container = document.getElementById('why-stats-bar');
   if (!container) return;
 
-  const stats = window.KMS_DATA.stats || [];
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  const stats = (isEn && window.KMS_STATS_I18N && window.KMS_STATS_I18N.en) ? window.KMS_STATS_I18N.en : (window.KMS_DATA.stats || []);
+
   container.innerHTML = stats.map((st, idx) => `
     <div class="${idx > 0 ? 'border-t sm:border-t-0 sm:border-l border-slate-700/80 pt-6 sm:pt-0 sm:pl-6' : ''}">
       <div class="font-heading font-black text-3xl sm:text-4xl text-amber-400 mb-1">${st.number}</div>
@@ -2965,3 +3120,13 @@ function closeCmsModal() {
   const modal = document.getElementById('cms-editor-modal');
   if (modal) modal.classList.add('hidden');
 }
+
+// Expose core view rendering functions to window for i18n dynamic invocation
+window.renderProducts = renderProducts;
+window.initHomeCategories = initHomeCategories;
+window.initGalleryGrid = initGalleryGrid;
+window.renderSolutionsGrid = renderSolutionsGrid;
+window.renderWhyKanayaSection = renderWhyKanayaSection;
+window.renderStatsBar = renderStatsBar;
+window.showProductDetail = showProductDetail;
+window.initCatalogFilters = initCatalogFilters;
