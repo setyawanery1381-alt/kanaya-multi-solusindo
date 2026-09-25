@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 5,
+  catalogVersion: 6,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -229,7 +229,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Plastic",
         "title": "Material Plastik Industri",
         "desc": "Menyediakan beragam material plastik untuk memenuhi berbagai kebutuhan industri dan bisnis.",
-        "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=900&q=80",
+        "image": "assets/images/categories/plastic.jpg",
         "itemCount": "8 Produk Utama"
     },
     {
@@ -237,7 +237,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Packaging",
         "title": "Kemasan & Logistik",
         "desc": "Solusi kemasan kardus, plastik, kayu, pengikat, dan kain untuk pengemasan, penyimpanan, dan distribusi.",
-        "image": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80",
+        "image": "assets/images/categories/packaging.jpg",
         "itemCount": "5 Subkategori"
     },
     {
@@ -245,7 +245,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Office Stationery",
         "title": "Alat Tulis Kantor (ATK)",
         "desc": "Kebutuhan alat tulis dan perlengkapan kantor lengkap untuk mendukung aktivitas operasional perusahaan.",
-        "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=80",
+        "image": "assets/images/categories/stationery.jpg",
         "itemCount": "15 Produk"
     },
     {
@@ -253,7 +253,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Safety Equipment",
         "title": "Perlengkapan K3 & APD",
         "desc": "Perlengkapan keselamatan kerja berstandar untuk mendukung keamanan di lingkungan industri & proyek.",
-        "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
+        "image": "assets/images/categories/safety.jpg",
         "itemCount": "12 Produk"
     },
     {
@@ -261,7 +261,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Chemical",
         "title": "Chemical & Kebersihan",
         "desc": "Formula kimia pembersih, pelumas anti-karat, dan cairan sanitasi industri.",
-        "image": "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=900&q=80",
+        "image": "assets/images/categories/chemical.jpg",
         "itemCount": "12 Produk"
     },
     {
@@ -269,7 +269,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Consumable",
         "title": "Consumable Operasional",
         "desc": "Barang habis pakai, alat potong gerinda, kain majun, dan perlengkapan kebersihan rutin.",
-        "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=900&q=80",
+        "image": "assets/images/categories/consumable.jpg",
         "itemCount": "9 Produk"
     },
     {
@@ -277,7 +277,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Printing",
         "title": "Percetakan & Display",
         "desc": "Layanan cetak banner tarik, spanduk, kartu nama, dan stiker kustom perusahaan.",
-        "image": "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=900&q=80",
+        "image": "assets/images/categories/printing.jpg",
         "itemCount": "5 Produk"
     }
 ],
@@ -2696,7 +2696,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V8';
+const STORAGE_KEY = 'KMS_APP_DATA_V9';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2818,13 +2818,13 @@ function initCloudSync() {
     if (doc.exists) {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
-      // Auto-upgrade cloud catalog if fewer than 40 products exist or version < 3
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 5 || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
+      // Auto-upgrade cloud catalog if version < 6 or categories contain unsplash
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 6 || (cloudData.categories && cloudData.categories.some(c => c.image && c.image.includes('unsplash'))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
         merged.clients = DEFAULT_KMS_DATA.clients;
         merged.gallery = DEFAULT_KMS_DATA.gallery;
-        merged.catalogVersion = 5;
+        merged.catalogVersion = 6;
         if (kmsDb) {
           kmsDb.collection('cms').doc('website_data').set(merged).catch(() => {});
         }
