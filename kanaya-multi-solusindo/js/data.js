@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 6,
+  catalogVersion: 7,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -229,7 +229,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Plastic",
         "title": "Material Plastik Industri",
         "desc": "Menyediakan beragam material plastik untuk memenuhi berbagai kebutuhan industri dan bisnis.",
-        "image": "assets/images/categories/plastic.jpg",
+        "image": "assets/categories/plastic.jpg?v=3",
         "itemCount": "8 Produk Utama"
     },
     {
@@ -237,7 +237,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Packaging",
         "title": "Kemasan & Logistik",
         "desc": "Solusi kemasan kardus, plastik, kayu, pengikat, dan kain untuk pengemasan, penyimpanan, dan distribusi.",
-        "image": "assets/images/categories/packaging.jpg",
+        "image": "assets/categories/packaging.jpg?v=3",
         "itemCount": "5 Subkategori"
     },
     {
@@ -245,7 +245,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Office Stationery",
         "title": "Alat Tulis Kantor (ATK)",
         "desc": "Kebutuhan alat tulis dan perlengkapan kantor lengkap untuk mendukung aktivitas operasional perusahaan.",
-        "image": "assets/images/categories/stationery.jpg",
+        "image": "assets/categories/stationery.jpg?v=3",
         "itemCount": "15 Produk"
     },
     {
@@ -253,7 +253,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Safety Equipment",
         "title": "Perlengkapan K3 & APD",
         "desc": "Perlengkapan keselamatan kerja berstandar untuk mendukung keamanan di lingkungan industri & proyek.",
-        "image": "assets/images/categories/safety.jpg",
+        "image": "assets/categories/safety.jpg?v=3",
         "itemCount": "12 Produk"
     },
     {
@@ -261,7 +261,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Chemical",
         "title": "Chemical & Kebersihan",
         "desc": "Formula kimia pembersih, pelumas anti-karat, dan cairan sanitasi industri.",
-        "image": "assets/images/categories/chemical.jpg",
+        "image": "assets/categories/chemical.jpg?v=3",
         "itemCount": "12 Produk"
     },
     {
@@ -269,7 +269,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Consumable",
         "title": "Consumable Operasional",
         "desc": "Barang habis pakai, alat potong gerinda, kain majun, dan perlengkapan kebersihan rutin.",
-        "image": "assets/images/categories/consumable.jpg",
+        "image": "assets/categories/consumable.jpg?v=3",
         "itemCount": "9 Produk"
     },
     {
@@ -277,7 +277,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Printing",
         "title": "Percetakan & Display",
         "desc": "Layanan cetak banner tarik, spanduk, kartu nama, dan stiker kustom perusahaan.",
-        "image": "assets/images/categories/printing.jpg",
+        "image": "assets/categories/printing.jpg?v=3",
         "itemCount": "5 Produk"
     }
 ],
@@ -2696,7 +2696,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V9';
+const STORAGE_KEY = 'KMS_APP_DATA_V10';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2818,13 +2818,13 @@ function initCloudSync() {
     if (doc.exists) {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
-      // Auto-upgrade cloud catalog if version < 6 or categories contain unsplash
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 6 || (cloudData.categories && cloudData.categories.some(c => c.image && c.image.includes('unsplash'))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
+      // Auto-upgrade cloud catalog if version < 7 or categories contain unsplash or old images path
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 7 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
         merged.clients = DEFAULT_KMS_DATA.clients;
         merged.gallery = DEFAULT_KMS_DATA.gallery;
-        merged.catalogVersion = 6;
+        merged.catalogVersion = 7;
         if (kmsDb) {
           kmsDb.collection('cms').doc('website_data').set(merged).catch(() => {});
         }

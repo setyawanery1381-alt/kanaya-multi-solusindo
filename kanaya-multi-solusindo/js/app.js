@@ -814,7 +814,7 @@ function initHomeCategories() {
     <div class="bg-white rounded-2xl overflow-hidden card-hover group flex flex-col justify-between">
       <div>
         <div class="relative h-48 overflow-hidden bg-slate-100">
-          <img src="${cat.image}" alt="${cat.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <img src="${cat.image}" alt="${cat.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/images/categories/'+this.src.split('?')[0].split('/').pop();}else if(this.dataset.retried==='1'){this.dataset.retried='2';this.src='assets/categories/'+this.src.split('?')[0].split('/').pop();}else{this.onerror=null;this.src='assets/gallery/Distribusi.jpg';}">
           <div class="absolute top-3 left-3 bg-corporate text-amber-400 text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
             ${itemCount}
           </div>
@@ -2154,7 +2154,7 @@ function renderAdminCategories() {
   container.innerHTML = window.KMS_DATA.categories.map(cat => `
     <div class="p-4 border rounded-xl bg-slate-50 flex items-center justify-between gap-3">
       <div class="flex items-center gap-3">
-        <img src="${cat.image}" alt="${cat.name}" class="w-12 h-12 object-cover rounded-lg border">
+        <img src="${cat.image}" alt="${cat.name}" class="w-12 h-12 object-cover rounded-lg border" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/images/categories/'+this.src.split('?')[0].split('/').pop();}else{this.onerror=null;this.src='assets/gallery/Distribusi.jpg';}">
         <div>
           <h4 class="font-extrabold text-sm text-corporate-dark">${cat.name}</h4>
           <p class="text-[11px] text-slate-500">${cat.itemCount || ''}</p>
