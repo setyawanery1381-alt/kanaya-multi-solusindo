@@ -139,7 +139,7 @@ const KMS_I18N = {
     clientTrustNoteDesc: "PT Kanaya Multi Solusindo senantiasa menjaga hubungan kerja sama yang transparan, profesional, dan dapat diandalkan untuk menjamin kelancaran pasokan bisnis Anda.",
     
     // Solutions Page
-    solutionBannerTitle: "Solusi Pengadaan untuk Berbagai Kebutuhan",
+    solutionBannerTitle: "Solusi Untuk Setiap Kebutuhan Bisnis",
     solutionBannerSubtitle: "Menerjemahkan kategori produk menjadi solusi praktis dan efisien untuk setiap sektor bisnis Anda.",
     solutionIntro: "\"Setiap bisnis memiliki kebutuhan yang berbeda. Kanaya Multi Solusindo hadir dengan pilihan produk yang dapat mendukung kebutuhan bisnis, operasional, dan industri Anda.\"",
     solutionDiscussBtn: "Diskusikan Kebutuhan Anda",
@@ -427,92 +427,92 @@ const KMS_HERO_I18N = {
   id: [
     {
       id: "slide-1",
-      badge: "General Supplier & Mitra Pengadaan B2B",
-      title: "General Supplier Terpercaya untuk Kebutuhan Operasional & Bisnis",
-      subtitle: "PT Kanaya Multi Solusindo hadir sebagai mitra pengadaan terintegrasi dengan menyediakan beragam produk industri berkualitas prima.",
+      badge: "General Supplier & Procurement Partner",
+      title: "Solusi Pengadaan Untuk Setiap Kebutuhan Proyek",
+      subtitle: "Kami menyediakan beragam produk dan kebutuhan industri melalui layanan pengadaan yang praktis, responsif, dan terpercaya.",
       image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
       btnPrimaryText: "Lihat Produk",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Hubungi Kami",
+      btnSecondaryText: "Ajukan Permintaan",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-2",
-      badge: "Packaging & Material Plastik Industri",
-      title: "Solusi Lengkap Packaging & Plastic Stretch Film Industri",
-      subtitle: "Menyediakan Plastic Stretch Film kualitas prima, bubble wrap tebal, lakban OPP, dan kardus corrugated untuk proteksi kargo maksimal.",
+      badge: "Katalog Produk Lengkap & Terintegrasi",
+      title: "Beragam Produk Untuk Mendukung Kebutuhan Bisnis Anda",
+      subtitle: "Pilihan produk yang lengkap dan sesuai kebutuhan untuk menunjang berbagai aktivitas proyek, operasional, dan industri.",
       image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=85",
-      btnPrimaryText: "Katalog Plastik",
+      btnPrimaryText: "Katalog Produk",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Ajukan Penawaran",
+      btnSecondaryText: "Ajukan Permintaan",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-3",
-      badge: "Workplace Safety & Standar K3",
-      title: "Perlengkapan Keselamatan Kerja (APD) & Safety Industri",
-      subtitle: "Mendukung kepatuhan standar K3 di lingkungan kerja pabrik, pergudangan, dan proyek dengan perlengkapan keselamatan bersertifikasi.",
+      badge: "Layanan Profesional & Responsif",
+      title: "Memberikan Solusi, Membangun Kepercayaan",
+      subtitle: "Kami mengutamakan pelayanan yang responsif dan profesional untuk memastikan setiap kebutuhan ditangani dengan tepat.",
       image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
       btnPrimaryText: "Perlengkapan APD",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Konsultasi Safety",
+      btnSecondaryText: "Ajukan Permintaan",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-4",
-      badge: "Mitra Pengadaan B2B Terpercaya",
-      title: "Bukan Sekadar Penyedia, Kami Hadir sebagai Mitra Strategis",
-      subtitle: "Kerja sama yang baik dibangun melalui integritas, kecepatan suplai, kualitas produk teruji, dan komitmen pelayanan jangka panjang.",
+      badge: "Mitra Strategis Pengadaan B2B",
+      title: "Menjadi Partner Dalam Setiap Kebutuhan Pengadaan",
+      subtitle: "Dengan komitmen pada kualitas, ketepatan, dan pelayanan, kami siap mendukung kebutuhan bisnis dan proyek Anda.",
       image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=85",
-      btnPrimaryText: "Lihat Klien Kami",
-      btnPrimaryLink: "#clients",
-      btnSecondaryText: "Mulai Kerja Sama",
+      btnPrimaryText: "Hubungi Kami",
+      btnPrimaryLink: "#contact",
+      btnSecondaryText: "Ajukan Permintaan",
       btnSecondaryLink: "#contact"
     }
   ],
   en: [
     {
       id: "slide-1",
-      badge: "General Supplier & B2B Procurement Partner",
-      title: "Trusted General Supplier for Operational & Business Needs",
-      subtitle: "PT Kanaya Multi Solusindo is an integrated procurement partner delivering high-quality industrial products.",
+      badge: "General Supplier & Procurement Partner",
+      title: "Procurement Solutions for Every Project Need",
+      subtitle: "We provide diverse industrial products and requirements through practical, responsive, and reliable procurement services.",
       image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
       btnPrimaryText: "View Products",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Contact Us",
+      btnSecondaryText: "Submit Request",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-2",
-      badge: "Packaging & Industrial Plastic Material",
-      title: "Comprehensive Industrial Packaging & Stretch Film Solutions",
-      subtitle: "Supplying premium Plastic Stretch Film, heavy-duty bubble wrap, OPP adhesive tape, and corrugated boxes for maximum cargo protection.",
+      badge: "Comprehensive Product Catalog",
+      title: "Diverse Products to Support Your Business Needs",
+      subtitle: "Comprehensive product choices tailored to support various project, operational, and industrial activities.",
       image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=85",
-      btnPrimaryText: "Plastic Catalog",
+      btnPrimaryText: "Product Catalog",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Request Quote",
+      btnSecondaryText: "Submit Request",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-3",
-      badge: "Workplace Safety & HSE Standards",
-      title: "Personal Protective Equipment (PPE) & Industrial Safety Supplies",
-      subtitle: "Supporting HSE compliance across factories, warehouses, and industrial construction projects with certified safety gear.",
+      badge: "Professional & Responsive Service",
+      title: "Providing Solutions, Building Trust",
+      subtitle: "We prioritize responsive and professional service to ensure every requirement is handled precisely.",
       image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
       btnPrimaryText: "PPE Supplies",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Safety Consultation",
+      btnSecondaryText: "Submit Request",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-4",
-      badge: "Trusted B2B Procurement Partner",
-      title: "More Than a Supplier, We Are Your Strategic Business Partner",
-      subtitle: "Strong business partnerships are built on integrity, rapid supply chain, verified product quality, and long-term service commitment.",
+      badge: "Strategic B2B Procurement Partner",
+      title: "Your Partner for Every Procurement Need",
+      subtitle: "With a commitment to quality, precision, and service, we are ready to support your business and project needs.",
       image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=85",
-      btnPrimaryText: "Our Clients",
-      btnPrimaryLink: "#clients",
-      btnSecondaryText: "Start Partnership",
+      btnPrimaryText: "Contact Us",
+      btnPrimaryLink: "#contact",
+      btnSecondaryText: "Submit Request",
       btnSecondaryLink: "#contact"
     }
   ]
@@ -573,14 +573,14 @@ const KMS_SOLUTIONS_I18N = {
  */
 const KMS_STATS_I18N = {
   id: [
-    { number: "100+", label: "Mitra Perusahaan", sublabel: "B2B aktif di seluruh Indonesia" },
-    { number: "99.4%", label: "Tingkat Ketepatan", sublabel: "Jadwal pengiriman & logistik" },
-    { number: "71+", label: "Katalog Produk", sublabel: "Siap suplai dengan standar industri" }
+    { icon: "boxes", label: "Produk Lengkap", sublabel: "Solusi terpadu berbagai kategori" },
+    { icon: "users", label: "Klien Beragam", sublabel: "Melayani berbagai kebutuhan perusahaan dan instansi" },
+    { icon: "factory", label: "Sektor Industri", sublabel: "Menjangkau berbagai bidang usaha dan kebutuhan industri" }
   ],
   en: [
-    { number: "100+", label: "Corporate Partners", sublabel: "Active B2B clients nationwide" },
-    { number: "99.4%", label: "On-Time Dispatch Rate", sublabel: "Dependable logistics network" },
-    { number: "71+", label: "Catalog Products", sublabel: "Industrial grade ready stock" }
+    { icon: "boxes", label: "Complete Products", sublabel: "Integrated solutions across diverse categories" },
+    { icon: "users", label: "Diverse Clients", sublabel: "Serving various corporate and institutional needs" },
+    { icon: "factory", label: "Industrial Sectors", sublabel: "Reaching wide-ranging business fields and industry sectors" }
   ]
 };
 

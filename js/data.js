@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 7,
+  catalogVersion: 8,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -24,7 +24,7 @@ const DEFAULT_KMS_DATA = {
       tiktok: "@pt_kanayamultisolusindo",
       tiktokUrl: "https://www.tiktok.com/@pt_kanayamultisolusindo?_r=1&_t=ZS-99aLXp9ql8C",
       linkedin: "PT Kanaya Multi Solusindo",
-      linkedinUrl: "https://www.linkedin.com/in/pt-kanaya-multi-solusindo-661959435/",
+      linkedinUrl: "https://www.linkedin.com/company/pt-kanaya-multi-solusindo/",
       address: "Ruko Sentra EM.6 Harapan Indah - Bekasi - Jawa Barat",
       city: "Bekasi, Jawa Barat - Indonesia",
       operationalHours: "Senin - Jumat: 08:30 - 17:00 WIB",
@@ -37,9 +37,9 @@ const DEFAULT_KMS_DATA = {
   heroSlides: [
     {
       id: "slide-1",
-      badge: "General Supplier & B2B Procurement Partner",
-      title: "General Supplier Terpercaya untuk Kebutuhan Operasional & Bisnis",
-      subtitle: "PT Kanaya Multi Solusindo hadir sebagai mitra pengadaan terintegrasi dengan menyediakan beragam produk industri berkualitas prima.",
+      badge: "General Supplier & Procurement Partner",
+      title: "Solusi Pengadaan Untuk Setiap Kebutuhan Proyek",
+      subtitle: "Kami menyediakan beragam produk dan kebutuhan industri melalui layanan pengadaan yang praktis, responsif, dan terpercaya.",
       image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
       tag: "Suplai Cepat & Resmi",
       highlights: [
@@ -49,48 +49,48 @@ const DEFAULT_KMS_DATA = {
       ],
       btnPrimaryText: "Lihat Produk",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Hubungi Kami",
+      btnSecondaryText: "Ajukan Permintaan",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-2",
-      badge: "Packaging & Material Plastik Industri",
-      title: "Solusi Lengkap Packaging & Plastic Stretch Film Industri",
-      subtitle: "Menyediakan Plastic Stretch Film kualitas prima, bubble wrap tebal, lakban OPP, dan kardus corrugated untuk proteksi kargo maksimal.",
+      badge: "Katalog Produk Lengkap & Terintegrasi",
+      title: "Beragam Produk Untuk Mendukung Kebutuhan Bisnis Anda",
+      subtitle: "Pilihan produk yang lengkap dan sesuai kebutuhan untuk menunjang berbagai aktivitas proyek, operasional, dan industri.",
       image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=85",
       tag: "Proteksi Kargo Pallet",
       highlights: [
-        "Plastic Stretch Film Hand & Machine Roll",
-        "Bubble Wrap Tebal & Dus Corrugated Box",
-        "Standar Proteksi Kargo Industri & Siap Ekspor"
+        "Packaging, Plastic & Stretch Film Berkualitas",
+        "Office Stationery Lengkap untuk Operasional Harian",
+        "Standar Proteksi Kargo Industri & Kebutuhan Proyek"
       ],
-      btnPrimaryText: "Katalog Plastik",
+      btnPrimaryText: "Katalog Produk",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Ajukan Penawaran",
+      btnSecondaryText: "Ajukan Permintaan",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-3",
-      badge: "Workplace Safety & Standar K3",
-      title: "Perlengkapan Keselamatan Kerja (APD) & Safety Industri",
-      subtitle: "Mendukung kepatuhan standar K3 di lingkungan kerja pabrik, pergudangan, dan proyek dengan perlengkapan keselamatan bersertifikasi.",
+      badge: "Layanan Profesional & Responsif",
+      title: "Memberikan Solusi, Membangun Kepercayaan",
+      subtitle: "Kami mengutamakan pelayanan yang responsif dan profesional untuk memastikan setiap kebutuhan ditangani dengan tepat.",
       image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
-      tag: "Standar Sertifikasi K3",
+      tag: "Standar Mutu Teruji",
       highlights: [
-        "Helm Safety, Rompi K3, Kacamata & Sarung Tangan",
-        "Sepatu Safety Standar Pabrik & Konstruksi",
-        "Perlindungan Optimal Tenaga Kerja Industri"
+        "Respon Cepat & Konsultasi Spesifikasi Tepat",
+        "Kepatuhan Standar Mutu & Perlengkapan K3",
+        "Penawaran Transparan & Bersaing"
       ],
       btnPrimaryText: "Perlengkapan APD",
       btnPrimaryLink: "#products",
-      btnSecondaryText: "Konsultasi Safety",
+      btnSecondaryText: "Ajukan Permintaan",
       btnSecondaryLink: "#contact"
     },
     {
       id: "slide-4",
-      badge: "Mitra Pengadaan B2B Terpercaya",
-      title: "Bukan Sekadar Penyedia, Kami Hadir sebagai Mitra Strategis",
-      subtitle: "Kerja sama yang baik dibangun melalui integritas, kecepatan suplai, kualitas produk teruji, dan komitmen pelayanan jangka panjang.",
+      badge: "Mitra Strategis Pengadaan B2B",
+      title: "Menjadi Partner Dalam Setiap Kebutuhan Pengadaan",
+      subtitle: "Dengan komitmen pada kualitas, ketepatan, dan pelayanan, kami siap mendukung kebutuhan bisnis dan proyek Anda.",
       image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=85",
       tag: "Kemitraan Jangka Panjang",
       highlights: [
@@ -98,19 +98,19 @@ const DEFAULT_KMS_DATA = {
         "Dedicated Account Manager yang Responsif",
         "Garansi Mutu Produk & Pelayanan Prima"
       ],
-      btnPrimaryText: "Lihat Klien Kami",
-      btnPrimaryLink: "#clients",
-      btnSecondaryText: "Mulai Kerja Sama",
+      btnPrimaryText: "Hubungi Kami",
+      btnPrimaryLink: "#contact",
+      btnSecondaryText: "Ajukan Permintaan",
       btnSecondaryLink: "#contact"
     }
   ],
 
-  vision: "Menjadi perusahaan yang mandiri, unggul, terpercaya, dan berorientasi pada keberlanjutan, serta mampu memberikan dampak positif bagi lingkungan sekitar.",
+  vision: "Menjadi perusahaan yang ramah lingkungan, mandiri, unggul, dan terpercaya, serta menjadi pilihan utama customer di Indonesia dengan kemampuan bersaing di pasar nasional maupun internasional.",
   
   missions: [
-    "Memberikan produk dan pelayanan terbaik dengan mengutamakan kualitas, daya saing, serta solusi yang tepat sesuai kebutuhan pelanggan.",
-    "Membangun dan mempertahankan kepercayaan pelanggan melalui kinerja yang efektif, efisien, konsisten, dan profesional.",
-    "Menghadirkan solusi pengadaan yang inovatif dan tepat guna untuk mendukung kebutuhan serta perkembangan bisnis para mitra."
+    "Memberikan produk, kualitas, dan pelayanan terbaik dengan solusi yang kompetitif.",
+    "Membangun kepercayaan customer melalui kinerja yang efektif dan efisien.",
+    "Menghadirkan solusi bisnis yang inovatif bagi setiap perusahaan yang menjadi mitra kami."
   ],
 
   values: [
@@ -135,9 +135,9 @@ const DEFAULT_KMS_DATA = {
   ],
 
   stats: [
-    { number: "500+", label: "Produk Lengkap", sublabel: "Solusi terpadu berbagai kategori" },
-    { number: "100+", label: "Klien Korporat", sublabel: "Mitra B2B dan industri manufaktur" },
-    { number: "10+", label: "Sektor Industri", sublabel: "Otomotif, logam, logistik & perkantoran" }
+    { icon: "boxes", label: "Produk Lengkap", sublabel: "Solusi terpadu berbagai kategori" },
+    { icon: "users", label: "Klien Beragam", sublabel: "Melayani berbagai kebutuhan perusahaan dan instansi" },
+    { icon: "factory", label: "Sektor Industri", sublabel: "Menjangkau berbagai bidang usaha dan kebutuhan industri" }
   ],
 
   whyKanaya: {
@@ -558,15 +558,14 @@ const DEFAULT_KMS_DATA = {
     "categoryName": "Plastic",
     "tag": "Kaku & Tahan Kimia",
     "badge": "Wadah Industri",
-    "shortDesc": "Material kuat, kaku, dan tahan kimia untuk keranjang industri, drum, botol oli, jerigen, dan kantong sampah medis.",
-    "fullDesc": "Plastik HDPE (High-Density Polyethylene) memiliki struktur molekul padat yang menghasilkan kekuatan tarik tinggi, kekakuan ekstra, serta ketahanan luar biasa terhadap asam, pelarut, dan zat kimia. Menjadi pilihan nomor satu untuk jerigen kimia, drum industri, keranjang pabrik, botol oli mesin, dan kantong medis biohazard.",
+    "shortDesc": "Material kuat, kaku, dan tahan kimia untuk drum, botol oli, jerigen, dan kantong sampah medis.",
+    "fullDesc": "Plastik HDPE (High-Density Polyethylene) memiliki struktur molekul padat yang menghasilkan kekuatan tarik tinggi, kekakuan ekstra, serta ketahanan luar biasa terhadap asam, pelarut, dan zat kimia. Menjadi pilihan nomor satu untuk jerigen kimia, drum industri, botol oli mesin, dan kantong medis biohazard.",
     "image": "assets/products/plastic/covers/Cover_Plastik_HDPE.png",
     "gallery": [
       "assets/products/plastic/covers/Cover_Plastik_HDPE.png",
       "assets/products/plastic/hdpe/Botol_Oli.png",
       "assets/products/plastic/hdpe/Drum.png",
       "assets/products/plastic/hdpe/Jerigen.png",
-      "assets/products/plastic/hdpe/Keranjang_Industri.png",
       "assets/products/plastic/hdpe/Sampah_Medis.png"
     ],
     "advantages": [
@@ -581,7 +580,7 @@ const DEFAULT_KMS_DATA = {
       },
       {
         "key": "Aplikasi Utama",
-        "val": "Keranjang Industri, Drum Plastik, Botol Oli, Jerigen Kimia, Kantung Sampah Medis"
+        "val": "Drum Plastik, Botol Oli, Jerigen Kimia, Kantung Sampah Medis"
       },
       {
         "key": "Karakteristik",
@@ -2313,10 +2312,10 @@ const DEFAULT_KMS_DATA = {
     "badge": "Karet Fleksibel",
     "shortDesc": "Wiper penarik air karet sintetis fleksibel untuk mengeringkan genangan air di lantai toilet, gudang, dan jendela kaca gedung.",
     "fullDesc": "Alat penarik air (wiper/squeegee) dengan bilah karet elastis bermutu tinggi yang menempel rapat pada permukaan lantai atau kaca. Memudahkan pengeringan air seketika tanpa perlu menggunakan banyak lap kain.",
-    "image": "assets/products/consumable/Wiper_Lantai_&_Kaca_(Floor_&_Window_Squeegee)_1.png",
+    "image": "assets/products/consumable/Wiper_Lantai_&_Kaca_(Floor_&_Window_Squeegee).png",
     "gallery": [
-      "assets/products/consumable/Wiper_Lantai_&_Kaca_(Floor_&_Window_Squeegee)_1.png",
-      "assets/products/consumable/Wiper_Lantai_&_Kaca_(Floor_&_Window_Squeegee)_1.png"
+      "assets/products/consumable/Wiper_Lantai_&_Kaca_(Floor_&_Window_Squeegee).png",
+      "assets/products/consumable/Wiper_Lantai_&_Kaca_(Floor_&_Window_Squeegee).png"
     ],
     "advantages": [
       "Bilah karet lentur membersihkan air sekali tarik",
@@ -2486,7 +2485,7 @@ const DEFAULT_KMS_DATA = {
       id: "client-hitachi",
       name: "PT. Hitachi Construction Machinery Indonesia",
       shortName: "Hitachi",
-      logo: "assets/logos/client-hitachi.svg",
+      logo: "assets/logos/client-hitachi.png",
       industry: "Heavy Machinery & Construction"
     },
     {
@@ -2507,7 +2506,7 @@ const DEFAULT_KMS_DATA = {
       id: "client-tms",
       name: "PT Tembaga Mulia Semanan, Tbk",
       shortName: "TMS",
-      logo: "assets/logos/client-tms.svg",
+      logo: "assets/logos/client-tms.png",
       industry: "Copper & Wire Manufacturing"
     },
     {
@@ -2528,7 +2527,7 @@ const DEFAULT_KMS_DATA = {
       id: "client-enkei",
       name: "ENKEI INDONESIA",
       shortName: "ENKEI",
-      logo: "assets/logos/client-enkei.svg",
+      logo: "assets/logos/client-enkei.png",
       industry: "Automotive Wheel Manufacturing"
     },
     {
@@ -2621,20 +2620,8 @@ const DEFAULT_KMS_DATA = {
       "assets/gallery/Aktivitas_2.jpeg",
       "assets/gallery/Aktivitas_3.jpeg"
     ]
-  },
-  {
-    "id": "gal-6",
-    "title": "Tim Kami",
-    "category": "Tim Kami",
-    "desc": "Tim profesional kami yang berkomitmen mendampingi setiap tahapan pengadaan perusahaan Anda.",
-    "image": "assets/gallery/Rapat_2.png",
-    "gallery": [
-      "assets/gallery/Rapat_2.png",
-      "assets/gallery/Rapat_1.png",
-      "assets/gallery/Rapat_3.jpg"
-    ]
   }
-],
+  ],
 
   translations: {
     id: {
@@ -2696,7 +2683,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V10';
+const STORAGE_KEY = 'KMS_APP_DATA_V11';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2819,7 +2806,7 @@ function initCloudSync() {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
       // Auto-upgrade cloud catalog if version < 7 or categories contain unsplash or old images path
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 7 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 8 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
         merged.clients = DEFAULT_KMS_DATA.clients;

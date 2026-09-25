@@ -1326,12 +1326,13 @@ function renderStatsBar() {
   const stats = (isEn && window.KMS_STATS_I18N && window.KMS_STATS_I18N.en) ? window.KMS_STATS_I18N.en : (window.KMS_DATA.stats || []);
 
   container.innerHTML = stats.map((st, idx) => `
-    <div class="${idx > 0 ? 'border-t sm:border-t-0 sm:border-l border-slate-700/80 pt-6 sm:pt-0 sm:pl-6' : ''}">
-      <div class="font-heading font-black text-3xl sm:text-4xl text-amber-400 mb-1">${st.number}</div>
-      <div class="text-sm font-bold text-white">${st.label}</div>
-      <div class="text-xs text-slate-400 mt-1">${st.sublabel}</div>
+    <div class="${idx > 0 ? 'border-t sm:border-t-0 sm:border-l border-slate-700/80 pt-6 sm:pt-0 sm:pl-6' : ''} flex flex-col items-center justify-center text-center">
+      ${st.icon ? `<div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3"><i data-lucide="${st.icon}" class="w-6 h-6"></i></div>` : ''}
+      <div class="text-base sm:text-lg font-bold text-white mb-1">${st.label}</div>
+      <div class="text-xs sm:text-sm text-slate-300 max-w-xs text-center leading-relaxed">${st.sublabel}</div>
     </div>
   `).join('');
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /**
