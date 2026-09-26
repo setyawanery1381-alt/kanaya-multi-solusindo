@@ -273,14 +273,13 @@ const KMS_I18N = {
     aboutProfileHeading: "Company Profile",
     aboutVisionMissionHeading: "Vision & Mission",
     aboutVisionTitle: "Our Vision",
-    aboutVisionText: "\"To become an independent, distinguished, trustworthy, and sustainability-oriented enterprise capable of creating positive impacts for our community and environment.\"",
+    aboutVisionText: "\"To become an environmentally friendly, independent, superior, and trusted company, as well as the primary choice for customers in Indonesia with the ability to compete in national and international markets.\"",
     aboutVisionCommitment: "Sustainable Commitment & Integrity",
     aboutMissionTitle: "Company Mission",
     aboutMissions: [
-      "Providing premium quality products with verified industrial standards at competitive commercial rates.",
-      "Building long-term strategic partnerships rooted in corporate integrity, transparency, and mutual growth.",
-      "Delivering professional, highly responsive service and dependable on-time delivery for seamless business operations.",
-      "Practicing corporate governance focused on sustainable expansion, environmental responsibility, and legal compliance."
+      "Providing the best products, quality, and services with competitive solutions.",
+      "Building customer trust through effective and efficient performance.",
+      "Delivering innovative business solutions for every partner company."
     ],
     aboutWhyBadge: "B2B Competitive Edge",
     aboutWhyTitle: "Why Do Leading Companies Partner with Kanaya?",
@@ -340,9 +339,9 @@ const KMS_I18N = {
     clientTrustNoteDesc: "PT Kanaya Multi Solusindo consistently maintains transparent, professional, and reliable business partnerships to safeguard your operational supply chain.",
     
     // Solutions Page
-    solutionBannerTitle: "Procurement Solutions for Every Industry",
+    solutionBannerTitle: "Solutions for Every Business Need",
     solutionBannerSubtitle: "Translating comprehensive product categories into practical, cost-effective solutions for every business sector.",
-    solutionIntro: "\"Every business has distinct operational requirements. Kanaya Multi Solusindo provides curated supply solutions to empower your industrial growth.\"",
+    solutionIntro: "\"Every business has distinct needs. Kanaya Multi Solusindo provides curated product options to support your business, operational, and industrial requirements.\"",
     solutionDiscussBtn: "Discuss Your Requirements",
     whyKanayaHeading: "Why Choose Kanaya?",
     whyKanayaBadge: "Service Excellence",
