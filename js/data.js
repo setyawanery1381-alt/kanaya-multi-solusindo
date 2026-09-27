@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 9,
+  catalogVersion: 10,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -2682,7 +2682,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V12';
+const STORAGE_KEY = 'KMS_APP_DATA_V13';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2805,12 +2805,12 @@ function initCloudSync() {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
       // Auto-upgrade cloud catalog if version < 7 or categories contain unsplash or old images path
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 9 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 10 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
         merged.clients = DEFAULT_KMS_DATA.clients;
         merged.gallery = DEFAULT_KMS_DATA.gallery;
-        merged.catalogVersion = 9;
+        merged.catalogVersion = 10;
         merged.heroSlides = DEFAULT_KMS_DATA.heroSlides;
         merged.vision = DEFAULT_KMS_DATA.vision;
         merged.missions = DEFAULT_KMS_DATA.missions;

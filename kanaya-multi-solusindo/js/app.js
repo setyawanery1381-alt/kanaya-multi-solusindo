@@ -1029,11 +1029,6 @@ function renderProducts() {
           <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-sm text-corporate shadow-sm">
             ${pSubCat || pCatName || (isEn ? 'Product' : 'Produk')}
           </span>
-          ${pTag ? `
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-500 text-slate-950">
-              ${pTag}
-            </span>
-          ` : ''}
         </div>
         <div class="p-5">
           <div class="flex items-center gap-1.5 mb-1.5 flex-wrap">
@@ -1054,7 +1049,7 @@ function renderProducts() {
         </button>
         <button onclick="quickInquireProduct('${p.id}')" class="btn-gold py-2 rounded-lg text-xs font-bold text-center flex items-center justify-center gap-1">
           <i data-lucide="send" class="w-3.5 h-3.5"></i>
-          <span>${isEn ? 'Inquire' : 'Inquiry'}</span>
+          <span>${isEn ? 'Submit Request' : 'Ajukan Permintaan'}</span>
         </button>
       </div>
     </div>
@@ -1124,7 +1119,7 @@ function showProductDetail(productId) {
   if (specsHeadingSpan) specsHeadingSpan.textContent = isEn ? 'Technical Specifications:' : 'Spesifikasi Teknis:';
 
   const btnInquirySpan = document.querySelector('#btn-inquiry-detail span');
-  if (btnInquirySpan) btnInquirySpan.textContent = isEn ? 'Submit Inquiry' : 'Ajukan Inquiry';
+  if (btnInquirySpan) btnInquirySpan.textContent = isEn ? 'Submit Request' : 'Ajukan Permintaan';
 
   const btnDownloadSpan = document.querySelector('#view-product-detail button[onclick*="downloadProductCatalog"] span');
   if (btnDownloadSpan) btnDownloadSpan.textContent = isEn ? 'Download Catalog' : 'Download Katalog';
