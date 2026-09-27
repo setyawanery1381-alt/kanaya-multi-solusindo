@@ -388,7 +388,34 @@
         
         <!-- Slides Wrapper -->
         <div id="hero-slides-wrapper" class="w-full h-full min-h-[520px] lg:min-h-[580px] relative">
-          <!-- Dynamically Populated by renderHeroSlides() in app.js -->
+          <div class="hero-slide active" id="hero-slide-0">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85" alt="Solusi Pengadaan Untuk Setiap Kebutuhan Proyek" class="hero-slide-bg">
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-16 lg:py-24 w-full">
+              <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-200 text-corporate text-[11px] sm:text-xs font-bold mb-3 sm:mb-5 shadow-sm">
+                  <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                  <span>General Supplier & Procurement Partner</span>
+                </div>
+                <h2 class="font-heading text-2xl sm:text-4xl lg:text-5xl font-black leading-tight text-corporate-dark mb-3 sm:mb-5 break-words">
+                  Solusi Pengadaan Untuk Setiap Kebutuhan Proyek
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8 font-normal">
+                  Kami menyediakan beragam produk dan kebutuhan industri melalui layanan pengadaan yang praktis, responsif, dan terpercaya.
+                </p>
+                <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap">
+                  <a href="#products" onclick="navigateTo('products')" 
+                     class="btn-gold px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold flex items-center justify-center gap-1.5 sm:gap-2 shadow">
+                    <span>Lihat Produk</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                  </a>
+                  <a href="#contact" onclick="navigateTo('contact')" 
+                     class="btn-outline-navy px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold transition flex items-center justify-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-sm">
+                    <span>Ajukan Permintaan</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Slide Arrow Navigation -->
@@ -696,7 +723,14 @@
               </div>
               <h4 class="font-heading font-bold text-xl text-corporate-dark mb-4">Misi Perusahaan</h4>
               <ul class="space-y-4" id="about-missions-list">
-                <!-- Populated dynamically -->
+                <li class="flex items-start gap-4">
+                  <span class="w-7 h-7 rounded-full bg-corporate text-amber-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                  <p class="text-slate-700 text-sm leading-relaxed">Memberikan produk, kualitas, dan pelayanan terbaik dengan solusi yang kompetitif.</p>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="w-7 h-7 rounded-full bg-corporate text-amber-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                  <p class="text-slate-700 text-sm leading-relaxed">Membangun kepercayaan customer melalui kinerja yang efektif dan efisien.</p>
+                </li>
               </ul>
             </div>
           </div>
@@ -2292,232 +2326,10 @@
   <!-- Firebase App & Firestore SDKs (Compat v10.8.0) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="js/data.js?v=5.1"></script>
-  <script src="js/app.js?v=5.1"></script>
-  <script src="js/i18n.js?v=5.1"></script>
+  <script src="js/data.js?v=6.0"></script>
+  <script src="js/app.js?v=6.0"></script>
+  <script src="js/i18n.js?v=6.0"></script>
 
   <!-- Hero Slides Synchronizer & Enhanced Renderer (Guarantees Instant Live Update via Single-File Upload) -->
-  <script>
-    (function() {
-      // 4 Curated High-Definition Hero Slides
-      const curatedHeroSlides = [
-        {
-          id: "slide-1",
-          badge: "General Supplier & B2B Procurement Partner",
-          title: "General Supplier Terpercaya untuk Kebutuhan Operasional & Bisnis",
-          subtitle: "PT Kanaya Multi Solusindo hadir sebagai mitra pengadaan terintegrasi dengan menyediakan beragam produk industri berkualitas prima.",
-          image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
-          tag: "Suplai Cepat & Resmi",
-          highlights: [
-            "Katalog Produk Lengkap & Siap Pasok",
-            "Legalitas Perusahaan Lengkap & Faktur Pajak Resmi",
-            "Jangkauan Pengiriman Seluruh Wilayah Industri"
-          ],
-          btnPrimaryText: "Lihat Produk",
-          btnPrimaryLink: "#products",
-          btnSecondaryText: "Hubungi Kami",
-          btnSecondaryLink: "#contact"
-        },
-        {
-          id: "slide-2",
-          badge: "Packaging & Material Plastik Industri",
-          title: "Solusi Lengkap Packaging & Plastic Stretch Film Industri",
-          subtitle: "Menyediakan Plastic Stretch Film kualitas prima, bubble wrap tebal, lakban OPP, dan kardus corrugated untuk proteksi kargo maksimal.",
-          image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=85",
-          tag: "Proteksi Kargo Pallet",
-          highlights: [
-            "Plastic Stretch Film Hand & Machine Roll",
-            "Bubble Wrap Tebal & Dus Corrugated Box",
-            "Standar Proteksi Kargo Industri & Siap Ekspor"
-          ],
-          btnPrimaryText: "Katalog Plastik",
-          btnPrimaryLink: "#products",
-          btnSecondaryText: "Ajukan Penawaran",
-          btnSecondaryLink: "#contact"
-        },
-        {
-          id: "slide-3",
-          badge: "Workplace Safety & Standar K3",
-          title: "Perlengkapan Keselamatan Kerja (APD) & Safety Industri",
-          subtitle: "Mendukung kepatuhan standar K3 di lingkungan kerja pabrik, pergudangan, dan proyek dengan perlengkapan keselamatan bersertifikasi.",
-          image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
-          tag: "Standar Sertifikasi K3",
-          highlights: [
-            "Helm Safety, Rompi K3, Kacamata & Sarung Tangan",
-            "Sepatu Safety Standar Pabrik & Konstruksi",
-            "Perlindungan Optimal Tenaga Kerja Industri"
-          ],
-          btnPrimaryText: "Perlengkapan APD",
-          btnPrimaryLink: "#products",
-          btnSecondaryText: "Konsultasi Safety",
-          btnSecondaryLink: "#contact"
-        },
-        {
-          id: "slide-4",
-          badge: "Mitra Pengadaan B2B Terpercaya",
-          title: "Bukan Sekadar Penyedia, Kami Hadir sebagai Mitra Strategis",
-          subtitle: "Kerja sama yang baik dibangun melalui integritas, kecepatan suplai, kualitas produk teruji, dan komitmen pelayanan jangka panjang.",
-          image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=85",
-          tag: "Kemitraan Jangka Panjang",
-          highlights: [
-            "Sistem Pembayaran TOP (Term of Payment) Fleksibel",
-            "Dedicated Account Manager yang Responsif",
-            "Garansi Mutu Produk & Pelayanan Prima"
-          ],
-          btnPrimaryText: "Lihat Klien Kami",
-          btnPrimaryLink: "#clients",
-          btnSecondaryText: "Mulai Kerja Sama",
-          btnSecondaryLink: "#contact"
-        }
-      ];
-
-      // 4 Curated High-Definition Hero Slides (English)
-      const curatedHeroSlidesEn = [
-        {
-          id: "slide-1",
-          badge: "General Supplier & B2B Procurement Partner",
-          title: "Trusted General Supplier for Operational & Business Needs",
-          subtitle: "PT Kanaya Multi Solusindo is an integrated procurement partner delivering high-quality industrial products.",
-          image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
-          tag: "Fast & Official Supply",
-          highlights: [
-            "Complete & Ready-to-Supply Product Catalog",
-            "Official Corporate Legality & Valid VAT Tax Invoices",
-            "Nationwide Delivery Across Industrial Estates"
-          ],
-          btnPrimaryText: "View Products",
-          btnPrimaryLink: "#products",
-          btnSecondaryText: "Contact Us",
-          btnSecondaryLink: "#contact"
-        },
-        {
-          id: "slide-2",
-          badge: "Packaging & Industrial Plastic Material",
-          title: "Comprehensive Industrial Packaging & Stretch Film Solutions",
-          subtitle: "Supplying premium Plastic Stretch Film, heavy-duty bubble wrap, OPP adhesive tape, and corrugated boxes for maximum cargo protection.",
-          image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=85",
-          tag: "Pallet Cargo Protection",
-          highlights: [
-            "Plastic Stretch Film Hand & Machine Rolls",
-            "Heavy-Duty Bubble Wrap & Corrugated Cartons",
-            "Industrial & Export-Ready Cargo Standards"
-          ],
-          btnPrimaryText: "Plastic Catalog",
-          btnPrimaryLink: "#products",
-          btnSecondaryText: "Request Quote",
-          btnSecondaryLink: "#contact"
-        },
-        {
-          id: "slide-3",
-          badge: "Workplace Safety & HSE Standards",
-          title: "Personal Protective Equipment (PPE) & Industrial Safety Supplies",
-          subtitle: "Supporting HSE compliance across factories, warehouses, and industrial construction projects with certified safety gear.",
-          image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85",
-          tag: "HSE Certified Standards",
-          highlights: [
-            "Safety Helmets, High-Vis Vests, Eyewear & Work Gloves",
-            "Factory & Construction Grade Safety Footwear",
-            "Comprehensive Protection for Industrial Workforce"
-          ],
-          btnPrimaryText: "PPE Supplies",
-          btnPrimaryLink: "#products",
-          btnSecondaryText: "Safety Consultation",
-          btnSecondaryLink: "#contact"
-        },
-        {
-          id: "slide-4",
-          badge: "Trusted B2B Procurement Partner",
-          title: "More Than a Supplier, We Are Your Strategic Business Partner",
-          subtitle: "Strong business partnerships are built on integrity, rapid supply chain, verified product quality, and long-term service commitment.",
-          image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=85",
-          tag: "Long-Term Partnership",
-          highlights: [
-            "Flexible Terms of Payment (TOP) Facility",
-            "Dedicated & Responsive Corporate Account Manager",
-            "Guaranteed Product Quality & Service Excellence"
-          ],
-          btnPrimaryText: "Our Clients",
-          btnPrimaryLink: "#clients",
-          btnSecondaryText: "Start Partnership",
-          btnSecondaryLink: "#contact"
-        }
-      ];
-
-      function applyEnhancedHero() {
-        if (!window.KMS_DATA) window.KMS_DATA = {};
-        let activeLang = window.currentLang;
-        if (!activeLang) {
-          try {
-            activeLang = localStorage.getItem('KMS_CURRENT_LANG');
-          } catch (e) {}
-        }
-        if (!activeLang) {
-          const browserLang = (navigator.language || navigator.userLanguage || (navigator.languages && navigator.languages[0]) || '').toLowerCase();
-          activeLang = browserLang.startsWith('en') ? 'en' : 'id';
-        }
-        window.currentLang = activeLang;
-
-        window.renderHeroSlides = function(langOverride) {
-          const lang = langOverride || window.currentLang || 'id';
-          const slides = (lang === 'en') ? curatedHeroSlidesEn : curatedHeroSlides;
-          window.KMS_DATA.heroSlides = slides;
-          const wrapper = document.getElementById('hero-slides-wrapper');
-          const dotsContainer = document.getElementById('hero-dots-container');
-          if (!wrapper || !dotsContainer) return;
-          if (slides.length === 0) return;
-
-          const curSlideIdx = (typeof currentSlideIndex !== 'undefined') ? currentSlideIndex : (window.currentSlideIndex || 0);
-
-          wrapper.innerHTML = slides.map((slide, idx) => `
-            <div class="hero-slide ${idx === curSlideIdx ? 'active' : ''}" id="hero-slide-${idx}">
-              <!-- Slide Background Image with Clearer Visibility -->
-              <img src="${slide.image}" alt="${slide.title}" class="hero-slide-bg">
-              
-              <!-- Content Container -->
-              <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-16 lg:py-24 w-full">
-                <div class="max-w-2xl">
-                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-200 text-corporate text-[11px] sm:text-xs font-bold mb-3 sm:mb-5 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-                    <span>${slide.badge || 'PT Kanaya Multi Solusindo'}</span>
-                  </div>
-                  <h2 class="font-heading text-2xl sm:text-4xl lg:text-5xl font-black leading-tight text-corporate-dark mb-3 sm:mb-5 break-words">
-                    ${slide.title}
-                  </h2>
-                  <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8 font-normal">
-                    ${slide.subtitle}
-                  </p>
-                  <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap">
-                    <a href="${slide.btnPrimaryLink || '#products'}" onclick="navigateTo('${(slide.btnPrimaryLink || 'products').replace('#', '')}')" 
-                       class="btn-gold px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold flex items-center justify-center gap-1.5 sm:gap-2 shadow">
-                      <span>${slide.btnPrimaryText || (lang === 'en' ? 'View Products' : 'Lihat Produk')}</span>
-                      <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
-                    </a>
-                    <a href="${slide.btnSecondaryLink || '#contact'}" onclick="navigateTo('${(slide.btnSecondaryLink || 'contact').replace('#', '')}')" 
-                       class="btn-outline-navy px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold transition flex items-center justify-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-sm">
-                      <span>${slide.btnSecondaryText || (lang === 'en' ? 'Contact Us' : 'Hubungi Kami')}</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `).join('');
-
-          dotsContainer.innerHTML = slides.map((_, idx) => `
-            <div onclick="goToHeroSlide(${idx})" class="slide-dot ${idx === curSlideIdx ? 'active' : ''}" id="slide-dot-${idx}"></div>
-          `).join('');
-
-          if (window.lucide) lucide.createIcons();
-        };
-
-        window.renderHeroSlides();
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applyEnhancedHero);
-      } else {
-        applyEnhancedHero();
-      }
-    })();
-  </script>
-</body>
+  </body>
 </html>

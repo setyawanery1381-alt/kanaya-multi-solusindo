@@ -72,14 +72,12 @@ const KMS_I18N = {
     aboutProfileHeading: "Profil Perusahaan",
     aboutVisionMissionHeading: "Visi & Misi",
     aboutVisionTitle: "Visi Kami",
-    aboutVisionText: "\"Menjadi perusahaan yang mandiri, unggul, terpercaya, dan berorientasi pada keberlanjutan, serta mampu memberikan dampak positif bagi lingkungan sekitar.\"",
+    aboutVisionText: "\"Menjadi perusahaan yang ramah lingkungan, mandiri, unggul, dan terpercaya, serta menjadi pilihan utama customer di Indonesia dengan kemampuan bersaing di pasar nasional maupun internasional.\"",
     aboutVisionCommitment: "Komitmen Berkelanjutan & Integritas",
     aboutMissionTitle: "Misi Perusahaan",
     aboutMissions: [
-      "Menyediakan produk berkualitas prima dengan standar industri yang teruji dan harga kompetitif.",
-      "Membangun kemitraan strategis jangka panjang yang berlandaskan integritas, transparansi, dan saling menguntungkan.",
-      "Memberikan pelayanan profesional, responsif, dan pengiriman tepat waktu demi kelancaran operasional mitra bisnis.",
-      "Menerapkan tata kelola perusahaan yang berorientasi pada pertumbuhan berkelanjutan dan kepatuhan hukum."
+      "Memberikan produk, kualitas, dan pelayanan terbaik dengan solusi yang kompetitif.",
+      "Membangun kepercayaan customer melalui kinerja yang efektif dan efisien."
     ],
     aboutWhyBadge: "Keunggulan Kompetitif B2B",
     aboutWhyTitle: "Mengapa Perusahaan Memilih Bermitra dengan Kanaya?",
@@ -277,9 +275,8 @@ const KMS_I18N = {
     aboutVisionCommitment: "Sustainable Commitment & Integrity",
     aboutMissionTitle: "Company Mission",
     aboutMissions: [
-      "Providing the best products, quality, and services with competitive solutions.",
-      "Building customer trust through effective and efficient performance.",
-      "Delivering innovative business solutions for every partner company."
+      "Providing the best products, quality, and service with competitive solutions.",
+      "Building customer trust through effective and efficient performance."
     ],
     aboutWhyBadge: "B2B Competitive Edge",
     aboutWhyTitle: "Why Do Leading Companies Partner with Kanaya?",
@@ -2644,23 +2641,18 @@ function applyLanguage(lang) {
     aboutH2s[0].textContent = t.aboutProfileHeading;
     aboutH2s[1].textContent = t.aboutVisionMissionHeading;
   }
-  const visionBox = document.querySelector('#view-about .bg-gradient-to-br');
-  if (visionBox) {
-    const h3 = visionBox.querySelector('h3');
-    if (h3) h3.textContent = t.aboutVisionTitle;
-    const p = visionBox.querySelector('p');
-    if (p) p.textContent = t.aboutVisionText;
-    const spanCommit = visionBox.querySelector('.font-semibold');
-    if (spanCommit) spanCommit.textContent = t.aboutVisionCommitment;
+  const visionEl = document.getElementById('about-vision-text');
+  if (visionEl) {
+    visionEl.textContent = t.aboutVisionText;
   }
-  const missionBox = document.querySelector('#view-about .bg-white.p-8');
-  if (missionBox) {
-    const h3 = missionBox.querySelector('h3');
-    if (h3) h3.textContent = t.aboutMissionTitle;
-    const lis = missionBox.querySelectorAll('li span');
-    t.aboutMissions.forEach((misText, idx) => {
-      if (lis[idx]) lis[idx].textContent = misText;
-    });
+  const missionsList = document.getElementById('about-missions-list');
+  if (missionsList) {
+    missionsList.innerHTML = t.aboutMissions.map((m, idx) => `
+      <li class="flex items-start gap-4">
+        <span class="w-7 h-7 rounded-full bg-corporate text-amber-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
+        <p class="text-slate-700 text-sm leading-relaxed">${m}</p>
+      </li>
+    `).join('');
   }
 
   // About 4 Guarantees Strip
@@ -2990,7 +2982,7 @@ window.setLanguage = function(lang) {
 window.applyKmsLanguage = window.setLanguage;
 window.setLanguageKms = window.setLanguage;
 
-// Auto-initialize on load: check saved preference or detect browser locale
+// Auto-initialize on load: default language is ALWAYS Indonesian ('id') unless user explicitly selected 'en'
 (function autoInitLanguage() {
   function run() {
     let saved = null;
@@ -2998,14 +2990,8 @@ window.setLanguageKms = window.setLanguage;
       saved = localStorage.getItem('KMS_CURRENT_LANG');
     } catch (e) {}
 
-    // If no saved preference, check if browser language is English
-    if (!saved) {
-      const browserLang = (navigator.language || navigator.userLanguage || (navigator.languages && navigator.languages[0]) || '').toLowerCase();
-      if (browserLang.startsWith('en')) {
-        saved = 'en';
-      } else {
-        saved = 'id';
-      }
+    if (saved !== 'en') {
+      saved = 'id';
     }
 
     window.setLanguage(saved);

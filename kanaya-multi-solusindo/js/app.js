@@ -7,10 +7,9 @@
 window.currentLang = (function() {
   try {
     const s = localStorage.getItem('KMS_CURRENT_LANG');
-    if (s) return s;
+    if (s === 'en' || s === 'id') return s;
   } catch (e) {}
-  const b = (typeof navigator !== 'undefined' ? (navigator.language || (navigator.languages && navigator.languages[0]) || '') : '').toLowerCase();
-  return b.startsWith('en') ? 'en' : 'id';
+  return 'id'; // Default always to Indonesian
 })();
 var currentLang = window.currentLang;
 window.currentSlideIndex = 0;
@@ -554,10 +553,15 @@ function renderHeroSlides() {
   const dotsContainer = document.getElementById('hero-dots-container');
   if (!wrapper || !dotsContainer) return;
 
-  const slides = window.KMS_DATA.heroSlides || [];
-  if (slides.length === 0) return;
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  const slides = (isEn && window.KMS_HERO_I18N && window.KMS_HERO_I18N.en)
+    ? window.KMS_HERO_I18N.en
+    : ((window.KMS_DATA && window.KMS_DATA.heroSlides && window.KMS_DATA.heroSlides.length > 0)
+        ? window.KMS_DATA.heroSlides
+        : DEFAULT_KMS_DATA.heroSlides);
+  if (!slides || slides.length === 0) return;
 
-  // Build Slides HTML (Exact Classic Layout matching Photo 2, seamless background image)
+  // Build Slides HTML (Exact Classic Layout matching Mockup, seamless background image)
   wrapper.innerHTML = slides.map((slide, idx) => `
     <div class="hero-slide ${idx === currentSlideIndex ? 'active' : ''}" id="hero-slide-${idx}">
       <!-- Slide Background Image with Clearer Visibility -->
@@ -579,12 +583,12 @@ function renderHeroSlides() {
           <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap">
             <a href="${slide.btnPrimaryLink || '#products'}" onclick="navigateTo('${(slide.btnPrimaryLink || 'products').replace('#', '')}')" 
                class="btn-gold px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-bold flex items-center justify-center gap-1.5 sm:gap-2 shadow">
-              <span>${slide.btnPrimaryText || 'Lihat Produk'}</span>
+              <span>${slide.btnPrimaryText || (isEn ? 'View Products' : 'Lihat Produk')}</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             </a>
             <a href="${slide.btnSecondaryLink || '#contact'}" onclick="navigateTo('${(slide.btnSecondaryLink || 'contact').replace('#', '')}')" 
                class="btn-outline-navy px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-base font-semibold transition flex items-center justify-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-sm">
-              <span>${slide.btnSecondaryText || 'Hubungi Kami'}</span>
+              <span>${slide.btnSecondaryText || (isEn ? 'Submit Request' : 'Ajukan Permintaan')}</span>
             </a>
           </div>
         </div>
