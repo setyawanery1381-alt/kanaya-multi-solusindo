@@ -292,13 +292,21 @@ function refreshAllPublicContent() {
 
   const aboutFullBox = document.getElementById('about-full-text');
   const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  const langKey = isEn ? 'en' : 'id';
+  const i18nDict = (typeof KMS_I18N !== 'undefined' && KMS_I18N[langKey]) ? KMS_I18N[langKey] : null;
+
   if (aboutFullBox) {
-    const text = isEn 
-      ? "PT Kanaya Multi Solusindo is an Indonesian private enterprise specializing in general procurement and supply chain solutions for corporate and industrial sectors.\n\nFounded with a vision to become an agile, dependable partner, we bridge industrial enterprises with high-grade supplies ranging from plastic packaging, logistics consumables, office stationery, to safety gear and specialty products."
-      : (data.company.aboutFull || '');
-    const paragraphs = text.split('\n\n');
+    let paragraphs = [];
+    if (isEn && i18nDict && i18nDict.aboutProfileParagraphs) {
+      paragraphs = i18nDict.aboutProfileParagraphs;
+    } else if (data.company.aboutFull) {
+      paragraphs = data.company.aboutFull.split('\n\n').filter(Boolean);
+    } else if (i18nDict && i18nDict.aboutProfileParagraphs) {
+      paragraphs = i18nDict.aboutProfileParagraphs;
+    }
+    const heading = isEn ? 'Company Profile' : 'Profil Perusahaan';
     aboutFullBox.innerHTML = `
-      <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark mb-4">${isEn ? 'Company Profile' : 'Profil Perusahaan'}</h2>
+      <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark mb-4">${heading}</h2>
       <div class="w-12 h-1 bg-amber-500 mb-6 rounded-full"></div>
       ${paragraphs.map(p => `<p>${p}</p>`).join('')}
     `;
@@ -307,19 +315,25 @@ function refreshAllPublicContent() {
   // Vision & Mission
   const visionText = document.getElementById('about-vision-text');
   if (visionText) {
-    visionText.textContent = isEn 
-      ? `"To become an independent, distinguished, trustworthy enterprise oriented towards sustainability, and capable of creating meaningful positive impact for the surrounding environment."`
-      : `"${data.vision}"`;
+    if (isEn && i18nDict && i18nDict.aboutVisionText) {
+      visionText.textContent = i18nDict.aboutVisionText;
+    } else {
+      visionText.textContent = `"${data.vision}"`;
+    }
   }
 
   const missionsList = document.getElementById('about-missions-list');
   if (missionsList) {
-    const missions = isEn ? [
-      "Providing high-grade procurement supplies and services with uncompromising consistency and efficiency.",
-      "Developing sustainable B2B partnerships grounded in transparency, integrity, and reciprocal growth.",
-      "Delivering scheduled and adaptive delivery solutions aligned with strict operational timelines of client factories.",
-      "Contributing responsibly toward social and environmental sustainability across our operations."
-    ] : data.missions;
+    let missions = [];
+    if (isEn && i18nDict && i18nDict.aboutMissions) {
+      missions = i18nDict.aboutMissions;
+    } else {
+      missions = (data.missions && data.missions.length) ? data.missions : [
+        "Memberikan produk, kualitas, dan pelayanan terbaik dengan solusi yang kompetitif.",
+        "Membangun kepercayaan customer melalui kinerja yang efektif dan efisien.",
+        "Menghadirkan solusi bisnis yang inovatif bagi setiap perusahaan yang menjadi mitra kami."
+      ];
+    }
     missionsList.innerHTML = missions.map((m, idx) => `
       <li class="flex items-start gap-4">
         <span class="w-7 h-7 rounded-full bg-corporate text-amber-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
@@ -3130,3 +3144,68 @@ window.renderWhyKanayaSection = renderWhyKanayaSection;
 window.renderStatsBar = renderStatsBar;
 window.showProductDetail = showProductDetail;
 window.initCatalogFilters = initCatalogFilters;
+
+/**
+ * Render About Page with Bilingual Support
+ */
+window.renderAboutPage = function() {
+  const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  const langKey = isEn ? 'en' : 'id';
+  const i18nDict = (typeof KMS_I18N !== 'undefined' && KMS_I18N[langKey]) ? KMS_I18N[langKey] : null;
+  const data = window.KMS_DATA || (typeof DEFAULT_KMS_DATA !== 'undefined' ? DEFAULT_KMS_DATA : null);
+  if (!data) return;
+
+  const aboutFullBox = document.getElementById('about-full-text');
+  if (aboutFullBox) {
+    let paragraphs = [];
+    if (isEn && i18nDict && i18nDict.aboutProfileParagraphs) {
+      paragraphs = i18nDict.aboutProfileParagraphs;
+    } else if (data.company && data.company.aboutFull) {
+      paragraphs = data.company.aboutFull.split('\n\n').filter(Boolean);
+    } else if (i18nDict && i18nDict.aboutProfileParagraphs) {
+      paragraphs = i18nDict.aboutProfileParagraphs;
+    }
+    const heading = isEn ? 'Company Profile' : 'Profil Perusahaan';
+    aboutFullBox.innerHTML = `
+      <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark mb-4">${heading}</h2>
+      <div class="w-12 h-1 bg-amber-500 mb-6 rounded-full"></div>
+      ${paragraphs.map(p => `<p>${p}</p>`).join('')}
+    `;
+  }
+
+  const visionText = document.getElementById('about-vision-text');
+  if (visionText) {
+    if (isEn && i18nDict && i18nDict.aboutVisionText) {
+      visionText.textContent = i18nDict.aboutVisionText;
+    } else {
+      visionText.textContent = `"${data.vision || ''}"`;
+    }
+  }
+
+  const missionsList = document.getElementById('about-missions-list');
+  if (missionsList) {
+    let missions = [];
+    if (isEn && i18nDict && i18nDict.aboutMissions) {
+      missions = i18nDict.aboutMissions;
+    } else {
+      missions = (data.missions && data.missions.length) ? data.missions : [
+        "Memberikan produk, kualitas, dan pelayanan terbaik dengan solusi yang kompetitif.",
+        "Membangun kepercayaan customer melalui kinerja yang efektif dan efisien.",
+        "Menghadirkan solusi bisnis yang inovatif bagi setiap perusahaan yang menjadi mitra kami."
+      ];
+    }
+    missionsList.innerHTML = missions.map((m, idx) => `
+      <li class="flex items-start gap-4">
+        <span class="w-7 h-7 rounded-full bg-corporate text-amber-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
+        <p class="text-slate-700 text-sm leading-relaxed">${m}</p>
+      </li>
+    `).join('');
+  }
+
+  if (typeof renderWhyKanayaSection === 'function') {
+    renderWhyKanayaSection();
+  }
+  if (typeof renderValuesGrid === 'function') {
+    renderValuesGrid('about-values-grid');
+  }
+};

@@ -70,6 +70,11 @@ const KMS_I18N = {
     aboutBannerTitle: "Tentang Kami",
     aboutBannerSubtitle: "Profil resmi, visi misi, dan komitmen PT Kanaya Multi Solusindo sebagai mitra pengadaan industri terpercaya.",
     aboutProfileHeading: "Profil Perusahaan",
+    aboutProfileParagraphs: [
+      "PT Kanaya Multi Solusindo merupakan perusahaan General Supplier yang menyediakan berbagai kebutuhan produk dan material untuk mendukung aktivitas bisnis, operasional, dan industri.",
+      "Didirikan pada tahun 2024, PT Kanaya Multi Solusindo berfokus pada pengadaan dan penyediaan berbagai kebutuhan, mulai dari Plastic, Packaging, Office Stationery, Safety Equipment, Chemicals, Consumables, hingga Printing.",
+      "Dengan pendekatan yang berorientasi pada kebutuhan pelanggan, kami berkomitmen untuk menjadi mitra pengadaan yang terpercaya serta memberikan solusi yang efektif, efisien, dan tepat guna."
+    ],
     aboutVisionMissionHeading: "Visi & Misi",
     aboutVisionTitle: "Visi Kami",
     aboutVisionText: "\"Menjadi perusahaan yang ramah lingkungan, mandiri, unggul, dan terpercaya, serta menjadi pilihan utama customer di Indonesia dengan kemampuan bersaing di pasar nasional maupun internasional.\"",
@@ -77,7 +82,8 @@ const KMS_I18N = {
     aboutMissionTitle: "Misi Perusahaan",
     aboutMissions: [
       "Memberikan produk, kualitas, dan pelayanan terbaik dengan solusi yang kompetitif.",
-      "Membangun kepercayaan customer melalui kinerja yang efektif dan efisien."
+      "Membangun kepercayaan customer melalui kinerja yang efektif dan efisien.",
+      "Menghadirkan solusi bisnis yang inovatif bagi setiap perusahaan yang menjadi mitra kami."
     ],
     aboutWhyBadge: "Keunggulan Kompetitif B2B",
     aboutWhyTitle: "Mengapa Perusahaan Memilih Bermitra dengan Kanaya?",
@@ -269,6 +275,11 @@ const KMS_I18N = {
     aboutBannerTitle: "About Us",
     aboutBannerSubtitle: "Official profile, vision, mission, and commitments of PT Kanaya Multi Solusindo as a premier industrial procurement partner.",
     aboutProfileHeading: "Company Profile",
+    aboutProfileParagraphs: [
+      "PT Kanaya Multi Solusindo is a premier General Supplier company providing a wide range of products and materials to support business, operational, and industrial activities.",
+      "Established in 2024, PT Kanaya Multi Solusindo focuses on the procurement and supply of diverse business needs, spanning Plastic, Packaging, Office Stationery, Safety Equipment, Chemicals, Consumables, to Printing.",
+      "With a customer-oriented approach, we are committed to being a trusted procurement partner that delivers effective, efficient, and purpose-driven solutions."
+    ],
     aboutVisionMissionHeading: "Vision & Mission",
     aboutVisionTitle: "Our Vision",
     aboutVisionText: "\"To become an environmentally friendly, independent, superior, and trusted company, as well as the primary choice for customers in Indonesia with the ability to compete in national and international markets.\"",
@@ -276,7 +287,8 @@ const KMS_I18N = {
     aboutMissionTitle: "Company Mission",
     aboutMissions: [
       "Providing the best products, quality, and service with competitive solutions.",
-      "Building customer trust through effective and efficient performance."
+      "Building customer trust through effective and efficient performance.",
+      "Delivering innovative business solutions for every partner enterprise."
     ],
     aboutWhyBadge: "B2B Competitive Edge",
     aboutWhyTitle: "Why Do Leading Companies Partner with Kanaya?",
@@ -2635,19 +2647,50 @@ function applyLanguage(lang) {
   updateSubpageCrumb('view-gallery', isEn ? 'Documentation' : 'Dokumentasi');
   updateSubpageCrumb('view-contact', isEn ? 'Contact Us' : 'Kontak Kami');
 
-  // 11. About Us View
-  const aboutH2s = document.querySelectorAll('#view-about h2.font-heading');
-  if (aboutH2s.length >= 2) {
-    aboutH2s[0].textContent = t.aboutProfileHeading;
-    aboutH2s[1].textContent = t.aboutVisionMissionHeading;
+  // 11. About Us View - Complete Bilingual Synchronization
+  const aboutFullBox = document.getElementById('about-full-text');
+  if (aboutFullBox) {
+    let pList = t.aboutProfileParagraphs || [];
+    if (!isEn && window.KMS_DATA && window.KMS_DATA.company && window.KMS_DATA.company.aboutFull) {
+      pList = window.KMS_DATA.company.aboutFull.split('\n\n').filter(Boolean);
+    }
+    aboutFullBox.innerHTML = `
+      <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-corporate-dark mb-4">${t.aboutProfileHeading}</h2>
+      <div class="w-12 h-1 bg-amber-500 mb-6 rounded-full"></div>
+      ${pList.map(p => `<p>${p}</p>`).join('')}
+    `;
+  }
+
+  // Visi & Misi Headings
+  const visiMisiH3 = document.querySelector('#view-about .bg-corporate-softBlue h3.font-heading');
+  if (visiMisiH3) {
+    visiMisiH3.textContent = t.aboutVisionMissionHeading;
+  }
+  const visiCards = document.querySelectorAll('#view-about .bg-corporate-softBlue h4.font-heading');
+  if (visiCards.length >= 2) {
+    visiCards[0].textContent = t.aboutVisionTitle;
+    visiCards[1].textContent = t.aboutMissionTitle;
   }
   const visionEl = document.getElementById('about-vision-text');
   if (visionEl) {
-    visionEl.textContent = t.aboutVisionText;
+    if (!isEn && window.KMS_DATA && window.KMS_DATA.vision) {
+      visionEl.textContent = `"${window.KMS_DATA.vision}"`;
+    } else {
+      visionEl.textContent = t.aboutVisionText;
+    }
   }
+  const visionCommitmentSpan = document.querySelector('#view-about .bg-corporate-softBlue .border-t span');
+  if (visionCommitmentSpan) {
+    visionCommitmentSpan.textContent = t.aboutVisionCommitment;
+  }
+
   const missionsList = document.getElementById('about-missions-list');
   if (missionsList) {
-    missionsList.innerHTML = t.aboutMissions.map((m, idx) => `
+    let mList = t.aboutMissions || [];
+    if (!isEn && window.KMS_DATA && Array.isArray(window.KMS_DATA.missions) && window.KMS_DATA.missions.length) {
+      mList = window.KMS_DATA.missions;
+    }
+    missionsList.innerHTML = mList.map((m, idx) => `
       <li class="flex items-start gap-4">
         <span class="w-7 h-7 rounded-full bg-corporate text-amber-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
         <p class="text-slate-700 text-sm leading-relaxed">${m}</p>

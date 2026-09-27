@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 10,
+  catalogVersion: 11,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -109,7 +109,8 @@ const DEFAULT_KMS_DATA = {
   
   missions: [
     "Memberikan produk, kualitas, dan pelayanan terbaik dengan solusi yang kompetitif.",
-    "Membangun kepercayaan customer melalui kinerja yang efektif dan efisien."
+    "Membangun kepercayaan customer melalui kinerja yang efektif dan efisien.",
+    "Menghadirkan solusi bisnis yang inovatif bagi setiap perusahaan yang menjadi mitra kami."
   ],
 
   values: [
@@ -2682,7 +2683,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V13';
+const STORAGE_KEY = 'KMS_APP_DATA_V14';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2804,13 +2805,13 @@ function initCloudSync() {
     if (doc.exists) {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
-      // Auto-upgrade cloud catalog if version < 7 or categories contain unsplash or old images path
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 10 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
+      // Auto-upgrade cloud catalog if version < 11 or categories contain unsplash or old images path
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 11 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
         merged.clients = DEFAULT_KMS_DATA.clients;
         merged.gallery = DEFAULT_KMS_DATA.gallery;
-        merged.catalogVersion = 10;
+        merged.catalogVersion = 11;
         merged.heroSlides = DEFAULT_KMS_DATA.heroSlides;
         merged.vision = DEFAULT_KMS_DATA.vision;
         merged.missions = DEFAULT_KMS_DATA.missions;
