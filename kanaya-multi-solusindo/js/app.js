@@ -1057,13 +1057,13 @@ function renderProducts() {
           </p>
         </div>
       </div>
-      <div class="px-5 pb-5 pt-0 grid grid-cols-2 gap-2">
-        <button onclick="openProductDetailView('${p.id}')" class="py-2 rounded-lg border border-slate-200 hover:border-corporate hover:text-corporate text-xs font-bold text-slate-700 transition text-center">
+      <div class="px-4 pb-4 pt-0 flex items-center gap-2">
+        <button onclick="openProductDetailView('${p.id}')" class="flex-shrink-0 px-2.5 sm:px-3 py-2 rounded-lg border border-slate-200 hover:border-corporate hover:text-corporate text-xs font-bold text-slate-700 transition text-center whitespace-nowrap">
           ${isEn ? 'View Details' : 'Lihat Detail'}
         </button>
-        <button onclick="quickInquireProduct('${p.id}')" class="btn-gold py-2 rounded-lg text-xs font-bold text-center flex items-center justify-center gap-1">
-          <i data-lucide="send" class="w-3.5 h-3.5"></i>
-          <span>${isEn ? 'Submit Request' : 'Ajukan Permintaan'}</span>
+        <button onclick="quickInquireProduct('${p.id}')" class="btn-gold flex-1 py-2 px-2.5 rounded-lg text-xs font-bold text-center flex items-center justify-center gap-1.5 whitespace-nowrap shadow-sm">
+          <i data-lucide="send" class="w-3.5 h-3.5 flex-shrink-0"></i>
+          <span class="whitespace-nowrap">${isEn ? 'Submit Request' : 'Ajukan Permintaan'}</span>
         </button>
       </div>
     </div>
