@@ -2627,8 +2627,10 @@ function applyLanguage(lang) {
   setBanner('view-contact', t.contactBannerTitle, t.contactBannerSubtitle);
 
   // All breadcrumbs: "Beranda / ..." -> "Home / ..."
-  document.querySelectorAll('a[onclick*="navigateTo(\'home\')"]').forEach(el => {
-    el.textContent = isEn ? 'Home' : 'Beranda';
+  document.querySelectorAll('.subpage-banner a[onclick*="navigateTo(\'home\')"], .breadcrumb-container a[onclick*="navigateTo(\'home\')"]').forEach(el => {
+    if (!el.querySelector('img')) {
+      el.textContent = isEn ? 'Home' : 'Beranda';
+    }
   });
   document.querySelectorAll('.breadcrumb-container a[onclick*="navigateTo(\'products\')"]').forEach(el => {
     el.textContent = isEn ? 'Products' : 'Produk';
