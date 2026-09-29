@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 11,
+  catalogVersion: 12,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -2620,6 +2620,18 @@ const DEFAULT_KMS_DATA = {
       "assets/gallery/Aktivitas_2.jpeg",
       "assets/gallery/Aktivitas_3.jpeg"
     ]
+  },
+  {
+    "id": "gal-6",
+    "title": "Tim Kami",
+    "category": "Tim Kami",
+    "desc": "Tim profesional kami yang berkomitmen mendampingi setiap tahapan pengadaan perusahaan Anda.",
+    "image": "assets/gallery/Rapat_2.png",
+    "gallery": [
+      "assets/gallery/Rapat_2.png",
+      "assets/gallery/Rapat_1.png",
+      "assets/gallery/Rapat_3.jpg"
+    ]
   }
   ],
 
@@ -2683,7 +2695,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V14';
+const STORAGE_KEY = 'KMS_APP_DATA_V15';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2805,13 +2817,13 @@ function initCloudSync() {
     if (doc.exists) {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
-      // Auto-upgrade cloud catalog if version < 11 or categories contain unsplash or old images path
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 11 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0) {
+      // Auto-upgrade cloud catalog if version < 12 or categories contain unsplash or old images path or gallery incomplete
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 12 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0 || !cloudData.gallery || cloudData.gallery.length < 6) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
         merged.clients = DEFAULT_KMS_DATA.clients;
         merged.gallery = DEFAULT_KMS_DATA.gallery;
-        merged.catalogVersion = 11;
+        merged.catalogVersion = 12;
         merged.heroSlides = DEFAULT_KMS_DATA.heroSlides;
         merged.vision = DEFAULT_KMS_DATA.vision;
         merged.missions = DEFAULT_KMS_DATA.missions;
