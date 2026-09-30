@@ -866,9 +866,6 @@ function initHomeCategories() {
       <div>
         <div class="relative h-48 overflow-hidden bg-slate-100">
           <img src="${cat.image}" alt="${cat.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/images/categories/'+this.src.split('?')[0].split('/').pop();}else if(this.dataset.retried==='1'){this.dataset.retried='2';this.src='assets/categories/'+this.src.split('?')[0].split('/').pop();}else{this.onerror=null;this.src='assets/gallery/Distribusi.jpg';}">
-          <div class="absolute top-3 left-3 bg-corporate text-amber-400 text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
-            ${itemCount}
-          </div>
         </div>
         <div class="p-6">
           <h3 class="font-heading font-extrabold text-lg text-corporate-dark mb-2 group-hover:text-corporate transition-colors">
@@ -977,39 +974,10 @@ function renderProducts() {
 
   const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
 
-  // Render Subcategory Tabs for categories that have subcategories
+  // Subcategory tabs bar disabled per user request to keep catalog uncluttered
   if (subFilterBar) {
-    if (currentCategory !== 'all') {
-      const categoryProducts = (window.KMS_DATA.products || []).filter(p => p.categoryId === currentCategory);
-      const subcategories = [...new Set(categoryProducts.map(p => p.subCategory).filter(Boolean))];
-
-      if (subcategories.length > 0) {
-        subFilterBar.classList.remove('hidden');
-        const allSubText = isEn ? 'All Subcategories' : 'Semua Subkategori';
-        let subHtml = `
-          <button onclick="filterSubCategory('all')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${currentSubCategory === 'all' ? 'bg-corporate text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}">
-            ${allSubText} (${categoryProducts.length})
-          </button>
-        `;
-        subcategories.forEach(sub => {
-          const subCount = categoryProducts.filter(p => p.subCategory === sub).length;
-          const isActive = currentSubCategory === sub;
-          const subLabel = isEn ? ((window.KMS_SUBCAT_I18N && window.KMS_SUBCAT_I18N[sub]) || sub) : sub;
-          subHtml += `
-            <button onclick="filterSubCategory('${sub}')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${isActive ? 'bg-corporate text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}">
-              ${subLabel} (${subCount})
-            </button>
-          `;
-        });
-        subFilterBar.innerHTML = subHtml;
-      } else {
-        subFilterBar.classList.add('hidden');
-        subFilterBar.innerHTML = '';
-      }
-    } else {
-      subFilterBar.classList.add('hidden');
-      subFilterBar.innerHTML = '';
-    }
+    subFilterBar.classList.add('hidden');
+    subFilterBar.innerHTML = '';
   }
 
   let filtered = window.KMS_DATA.products || [];
@@ -1073,14 +1041,10 @@ function renderProducts() {
       <div>
         <div class="relative h-48 bg-slate-50 overflow-hidden cursor-pointer" onclick="openProductDetailView('${p.id}')">
           <img src="${p.image}" alt="${pName}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-sm text-corporate shadow-sm">
-            ${pSubCat || pCatName || (isEn ? 'Product' : 'Produk')}
-          </span>
         </div>
         <div class="p-5">
           <div class="flex items-center gap-1.5 mb-1.5 flex-wrap">
             <span class="text-[10px] font-bold text-amber-700 bg-amber-100/70 px-2 py-0.5 rounded">${pCatName}</span>
-            ${pSubCat ? `<span class="text-[10px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">${pSubCat}</span>` : ''}
           </div>
           <h3 class="font-heading font-extrabold text-base text-corporate-dark mb-1.5 line-clamp-1 hover:text-corporate cursor-pointer" onclick="openProductDetailView('${p.id}')">
             ${pName}

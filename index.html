@@ -864,7 +864,8 @@
           <!-- Right Product Grid -->
           <div class="lg:col-span-9">
 
-            <div class="flex items-center justify-between mb-4">
+            <!-- Product Count & Subcategory Filter Bar (Hidden per user request for clean layout) -->
+            <div id="catalog-count-header" class="hidden flex items-center justify-between mb-4">
               <div class="text-sm text-slate-600">
                 Menampilkan <span id="product-count-display" class="font-bold text-corporate">0</span> produk
               </div>
@@ -873,10 +874,7 @@
               </div>
             </div>
 
-            <!-- Subcategory Tabs Bar (3-Click navigation for Packaging & Subcategories) -->
-            <div id="subcategory-filter-bar" class="mb-6 hidden flex flex-wrap items-center gap-2 pb-2 border-b border-slate-200">
-              <!-- Dynamically populated -->
-            </div>
+            <div id="subcategory-filter-bar" class="hidden"></div>
 
             <!-- Products Grid Container -->
             <div id="products-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -2395,9 +2393,9 @@
   <!-- Firebase App & Firestore SDKs (Compat v10.8.0) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="js/data.js?v=18.0"></script>
-  <script src="js/app.js?v=18.0"></script>
-  <script src="js/i18n.js?v=18.0"></script>
+  <script src="js/data.js?v=19.0"></script>
+  <script src="js/app.js?v=19.0"></script>
+  <script src="js/i18n.js?v=19.0"></script>
 
   <!-- Hero Slides Synchronizer & Enhanced Renderer (Guarantees Instant Live Update via Single-File Upload) -->
   </body>
