@@ -2161,29 +2161,46 @@ function saveAdminWhyKanaya(e) {
 /**
  * CMS: Categories CRUD
  */
+let currentAdminProdFilter = 'all';
+let currentEditingProdGallery = [];
+let currentAddingProdGallery = [];
+
 function renderAdminCategories() {
   const container = document.getElementById('admin-categories-list');
   if (!container) return;
 
-  container.innerHTML = window.KMS_DATA.categories.map(cat => `
-    <div class="p-4 border rounded-xl bg-slate-50 flex items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <img src="${cat.image}" alt="${cat.name}" class="w-12 h-12 object-cover rounded-lg border" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/images/categories/'+this.src.split('?')[0].split('/').pop();}else{this.onerror=null;this.src='assets/gallery/Distribusi.jpg';}">
-        <div>
-          <h4 class="font-extrabold text-sm text-corporate-dark">${cat.name}</h4>
-          <p class="text-[11px] text-slate-500">${cat.itemCount || ''}</p>
+  const products = window.KMS_DATA.products || [];
+
+  container.innerHTML = window.KMS_DATA.categories.map(cat => {
+    const catProds = products.filter(p => p.categoryId === cat.id);
+    return `
+    <div class="p-4 border rounded-xl bg-slate-50 flex items-center justify-between gap-3 hover:border-slate-300 transition">
+      <div class="flex items-center gap-3 min-w-0">
+        <img src="${cat.image}" alt="${cat.name}" class="w-12 h-12 object-cover rounded-lg border flex-shrink-0" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/images/categories/'+this.src.split('?')[0].split('/').pop();}else{this.onerror=null;this.src='assets/gallery/Distribusi.jpg';}">
+        <div class="min-w-0">
+          <h4 class="font-extrabold text-sm text-corporate-dark truncate">${cat.name}</h4>
+          <div class="flex items-center gap-2 text-[11px] text-slate-500">
+            <span>${cat.itemCount || ''}</span>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">
+              ${catProds.length} Produk
+            </span>
+          </div>
         </div>
       </div>
-      <div class="flex items-center gap-1.5">
-        <button onclick="editCategoryModal('${cat.id}')" class="p-1.5 text-corporate hover:bg-blue-100 rounded">
+      <div class="flex items-center gap-1.5 flex-shrink-0">
+        <button onclick="openAddProductModal('${cat.id}')" title="Tambah Produk ke Kategori ${cat.name}" class="px-2.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition">
+          <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">+ Produk</span>
+        </button>
+        <button onclick="editCategoryModal('${cat.id}')" title="Kelola Kategori &amp; Produk" class="p-1.5 text-corporate hover:bg-blue-100 rounded">
           <i data-lucide="edit" class="w-4 h-4"></i>
         </button>
-        <button onclick="deleteCategory('${cat.id}')" class="p-1.5 text-red-600 hover:bg-red-100 rounded">
+        <button onclick="deleteCategory('${cat.id}')" title="Hapus Kategori" class="p-1.5 text-red-600 hover:bg-red-100 rounded">
           <i data-lucide="trash-2" class="w-4 h-4"></i>
         </button>
       </div>
     </div>
-  `).join('');
+  `}).join('');
   initIcons();
 }
 
@@ -2250,37 +2267,92 @@ function editCategoryModal(catId) {
   const cat = window.KMS_DATA.categories.find(c => c.id === catId);
   if (!cat) return;
 
-  openCmsModal(`Edit Kategori: ${cat.name}`, `
-    <form onsubmit="saveEditedCategory(event, '${cat.id}')" class="space-y-4">
-      <div>
-        <label class="block text-xs font-bold text-slate-700 mb-1">Nama Kategori</label>
-        <input type="text" id="edit-cat-name" required value="${cat.name}" class="w-full px-3 py-2 text-sm border rounded-lg">
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-slate-700 mb-1">Deskripsi</label>
-        <textarea id="edit-cat-desc" rows="2" class="w-full px-3 py-2 text-sm border rounded-lg">${cat.desc || ''}</textarea>
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-slate-700 mb-1">Label Varian</label>
-        <input type="text" id="edit-cat-count" value="${cat.itemCount || ''}" class="w-full px-3 py-2 text-sm border rounded-lg">
-      </div>
+  const catProds = (window.KMS_DATA.products || []).filter(p => p.categoryId === cat.id);
 
-      <!-- Photo Upload Box -->
-      <div class="p-3 bg-slate-50 border rounded-xl space-y-2">
-        <label class="block text-xs font-bold text-slate-700">Foto Sampul Kategori</label>
-        <div class="flex items-center gap-3">
-          <input type="file" accept="image/*" onchange="handleImageFileInput(this, 'edit-cat-preview', 'edit-cat-image')" class="text-xs text-slate-500">
-          <img id="edit-cat-preview" src="${cat.image || ''}" alt="Preview" class="w-14 h-14 object-cover rounded border">
+  openCmsModal(`Kelola Kategori: ${cat.name}`, `
+    <div class="space-y-6">
+      <form onsubmit="saveEditedCategory(event, '${cat.id}')" class="space-y-4">
+        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Informasi Kategori &amp; Sampul</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Nama Kategori</label>
+            <input type="text" id="edit-cat-name" required value="${cat.name}" class="w-full px-3 py-2 text-sm border rounded-lg">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Label Varian / Subkategori</label>
+            <input type="text" id="edit-cat-count" value="${cat.itemCount || ''}" class="w-full px-3 py-2 text-sm border rounded-lg">
+          </div>
         </div>
         <div>
-          <span class="text-[10px] text-slate-400">Atau URL foto:</span>
-          <input type="text" id="edit-cat-image" required value="${cat.image || ''}" class="w-full px-3 py-1.5 text-xs border rounded-lg mt-1">
+          <label class="block text-xs font-bold text-slate-700 mb-1">Deskripsi</label>
+          <textarea id="edit-cat-desc" rows="2" class="w-full px-3 py-2 text-sm border rounded-lg">${cat.desc || ''}</textarea>
+        </div>
+
+        <!-- Photo Upload Box -->
+        <div class="p-3 bg-slate-50 border rounded-xl space-y-2">
+          <label class="block text-xs font-bold text-slate-700">Foto Sampul Kategori</label>
+          <div class="flex items-center gap-3">
+            <input type="file" accept="image/*" onchange="handleImageFileInput(this, 'edit-cat-preview', 'edit-cat-image')" class="text-xs text-slate-500">
+            <img id="edit-cat-preview" src="${cat.image || ''}" alt="Preview" class="w-14 h-14 object-cover rounded border">
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400">Atau URL foto:</span>
+            <input type="text" id="edit-cat-image" required value="${cat.image || ''}" class="w-full px-3 py-1.5 text-xs border rounded-lg mt-1">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-navy w-full py-2.5 rounded-lg text-xs font-bold">Simpan Perubahan Kategori</button>
+      </form>
+
+      <!-- SECTION: Kelola Produk dalam Kategori Ini -->
+      <div class="pt-5 border-t border-slate-200">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
+          <div>
+            <h4 class="font-extrabold text-sm text-corporate-dark">Daftar Produk di Kategori Ini</h4>
+            <p class="text-[11px] text-slate-500">Terdapat <span class="font-bold text-corporate">${catProds.length} produk</span> terdaftar dalam kategori <strong>${cat.name}</strong></p>
+          </div>
+          <button type="button" onclick="closeCmsModal(); openAddProductModal('${cat.id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>+ Tambah Produk ke ${cat.name}</span>
+          </button>
+        </div>
+
+        <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
+          ${catProds.length === 0 ? `
+            <div class="p-6 text-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50">
+              <p class="text-xs text-slate-500 font-medium">Belum ada produk untuk kategori ini.</p>
+              <button type="button" onclick="closeCmsModal(); openAddProductModal('${cat.id}')" class="mt-2 text-xs text-corporate font-bold hover:underline">
+                + Tambah produk pertama sekarang
+              </button>
+            </div>
+          ` : catProds.map(prod => `
+            <div class="flex items-center justify-between gap-3 p-3 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition">
+              <div class="flex items-center gap-3 min-w-0">
+                <img src="${prod.image}" alt="${prod.name}" class="w-10 h-10 object-cover rounded-lg border flex-shrink-0" onerror="this.src='assets/gallery/Distribusi.jpg'">
+                <div class="min-w-0">
+                  <div class="font-bold text-xs text-slate-900 truncate">${prod.name}</div>
+                  <div class="flex items-center gap-2 text-[10px] text-slate-500">
+                    <span>${(prod.gallery && prod.gallery.length) || 1} Foto Galeri</span>
+                    ${prod.tag ? `<span class="bg-blue-100 text-blue-800 px-1 rounded">${prod.tag}</span>` : ''}
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <button type="button" onclick="closeCmsModal(); editProductModal('${prod.id}')" title="Edit Produk &amp; Galeri" class="px-2.5 py-1 rounded bg-blue-50 text-corporate font-bold text-[11px] hover:bg-blue-100 flex items-center gap-1">
+                  <i data-lucide="edit" class="w-3 h-3"></i>
+                  <span>Edit</span>
+                </button>
+                <button type="button" onclick="deleteProductFromCategory('${prod.id}', '${cat.id}')" title="Hapus Produk" class="p-1 rounded text-red-600 hover:bg-red-100">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          `).join('')}
         </div>
       </div>
-
-      <button type="submit" class="btn-navy w-full py-2.5 rounded-lg text-xs font-bold">Simpan Perubahan</button>
-    </form>
+    </div>
   `);
+  initIcons();
 }
 
 function saveEditedCategory(e, catId) {
@@ -2312,50 +2384,115 @@ function deleteCategory(catId) {
   }
 }
 
+function deleteProductFromCategory(prodId, catId) {
+  if (confirm('Hapus produk ini dari kategori?')) {
+    window.KMS_DATA.products = window.KMS_DATA.products.filter(p => p.id !== prodId);
+    saveKmsData(window.KMS_DATA);
+    refreshAllPublicContent();
+    renderAdminProductsTable();
+    renderAdminCategories();
+    updateAdminStats();
+    editCategoryModal(catId);
+  }
+}
+
 /**
- * CMS: Products & Specifications CRUD
+ * CMS: Products & Specifications CRUD with Category Filtering and Photo Gallery Manager
  */
-function renderAdminProductsTable() {
+function filterAdminProductsCategory(catId) {
+  currentAdminProdFilter = catId;
+  renderAdminProductsTable();
+}
+
+function renderAdminProductsTable(filterCatId) {
+  if (filterCatId !== undefined) {
+    currentAdminProdFilter = filterCatId;
+  }
   const container = document.getElementById('admin-products-table');
   if (!container) return;
 
   const products = window.KMS_DATA.products || [];
-  container.innerHTML = products.map(prod => `
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50">
-      <div class="flex items-center gap-4">
-        <img src="${prod.image}" alt="${prod.name}" class="w-14 h-14 object-cover rounded-lg border">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">${prod.categoryName || prod.categoryId}</span>
-            ${prod.tag ? `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">${prod.tag}</span>` : ''}
-          </div>
-          <h4 class="font-extrabold text-sm text-corporate-dark mt-1">${prod.name}</h4>
-          <p class="text-[11px] text-slate-500 line-clamp-1">${prod.shortDesc || ''}</p>
-        </div>
+  const categories = window.KMS_DATA.categories || [];
+
+  const filteredProds = currentAdminProdFilter === 'all'
+    ? products
+    : products.filter(p => p.categoryId === currentAdminProdFilter);
+
+  const filterBar = `
+    <div class="flex flex-wrap items-center justify-between gap-3 p-3 bg-slate-100 rounded-xl mb-4 border border-slate-200">
+      <div class="flex items-center gap-2">
+        <label class="text-xs font-bold text-slate-700">Filter Kategori:</label>
+        <select onchange="filterAdminProductsCategory(this.value)" class="text-xs px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white font-medium focus:ring-1 focus:ring-corporate">
+          <option value="all" ${currentAdminProdFilter === 'all' ? 'selected' : ''}>Semua Kategori (${products.length})</option>
+          ${categories.map(c => {
+            const count = products.filter(p => p.categoryId === c.id).length;
+            return `<option value="${c.id}" ${currentAdminProdFilter === c.id ? 'selected' : ''}>${c.name} (${count})</option>`;
+          }).join('')}
+        </select>
       </div>
-      <div class="flex items-center gap-2 self-end sm:self-auto">
-        <button onclick="editProductModal('${prod.id}')" class="px-3 py-1.5 rounded-lg bg-blue-50 text-corporate font-bold text-xs hover:bg-blue-100 flex items-center gap-1">
-          <i data-lucide="edit" class="w-3.5 h-3.5"></i>
-          <span>Edit &amp; Specs</span>
-        </button>
-        <button onclick="deleteProduct('${prod.id}')" class="px-3 py-1.5 rounded-lg bg-red-50 text-red-600 font-bold text-xs hover:bg-red-100 flex items-center gap-1">
-          <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-          <span>Hapus</span>
-        </button>
-      </div>
+      <button onclick="openAddProductModal(${currentAdminProdFilter !== 'all' ? "'" + currentAdminProdFilter + "'" : ''})" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition">
+        <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+        <span>+ Tambah Produk Baru</span>
+      </button>
     </div>
-  `).join('');
+  `;
+
+  if (filteredProds.length === 0) {
+    container.innerHTML = filterBar + `
+      <div class="p-8 text-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50">
+        <p class="text-xs text-slate-500 font-medium">Tidak ada produk ditemukan untuk filter kategori ini.</p>
+        <button onclick="openAddProductModal(${currentAdminProdFilter !== 'all' ? "'" + currentAdminProdFilter + "'" : ''})" class="mt-2 text-xs text-corporate font-bold hover:underline">
+          + Tambah produk baru sekarang
+        </button>
+      </div>
+    `;
+    initIcons();
+    return;
+  }
+
+  container.innerHTML = filterBar + `
+    <div class="space-y-3">
+      ${filteredProds.map(prod => `
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50 hover:bg-white hover:shadow-sm transition">
+          <div class="flex items-center gap-4 min-w-0">
+            <img src="${prod.image}" alt="${prod.name}" class="w-14 h-14 object-cover rounded-lg border flex-shrink-0" onerror="this.src='assets/gallery/Distribusi.jpg'">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">${prod.categoryName || prod.categoryId}</span>
+                ${prod.tag ? `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">${prod.tag}</span>` : ''}
+                <span class="text-[10px] text-slate-500 font-medium">&bull; ${(prod.gallery && prod.gallery.length) || 1} Foto Galeri</span>
+              </div>
+              <h4 class="font-extrabold text-sm text-corporate-dark mt-1 truncate">${prod.name}</h4>
+              <p class="text-[11px] text-slate-500 line-clamp-1">${prod.shortDesc || ''}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
+            <button onclick="editProductModal('${prod.id}')" class="px-3 py-1.5 rounded-lg bg-blue-50 text-corporate font-bold text-xs hover:bg-blue-100 flex items-center gap-1">
+              <i data-lucide="edit" class="w-3.5 h-3.5"></i>
+              <span>Edit &amp; Galeri</span>
+            </button>
+            <button onclick="deleteProduct('${prod.id}')" class="px-3 py-1.5 rounded-lg bg-red-50 text-red-600 font-bold text-xs hover:bg-red-100 flex items-center gap-1">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              <span>Hapus</span>
+            </button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
   initIcons();
 }
 
-function openAddProductModal() {
+function openAddProductModal(defaultCatId = null) {
+  currentAddingProdGallery = [];
+
   const catOptions = window.KMS_DATA.categories.map(c => `
-    <option value="${c.id}">${c.name}</option>
+    <option value="${c.id}" ${defaultCatId && c.id === defaultCatId ? 'selected' : ''}>${c.name}</option>
   `).join('');
 
   openCmsModal('Tambah Produk Baru', `
     <form onsubmit="saveNewProduct(event)" class="space-y-4">
-      <div class="grid grid-cols-2 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Nama Produk *</label>
           <input type="text" id="add-prod-name" required placeholder="Contoh: Plastic Wrapping Roll" class="w-full px-3 py-2 text-sm border rounded-lg">
@@ -2370,18 +2507,45 @@ function openAddProductModal() {
 
       <!-- Photo Upload Box -->
       <div class="p-3 bg-slate-50 border rounded-xl space-y-2">
-        <label class="block text-xs font-bold text-slate-700">Foto Produk</label>
+        <label class="block text-xs font-bold text-slate-700">Foto Sampul Utama Produk *</label>
         <div class="flex items-center gap-3">
           <input type="file" accept="image/*" onchange="handleImageFileInput(this, 'add-prod-preview', 'add-prod-img')" class="text-xs text-slate-500">
           <img id="add-prod-preview" src="" alt="Preview" class="w-16 h-16 object-cover rounded border hidden">
         </div>
         <div>
-          <span class="text-[10px] text-slate-400">Atau gunakan URL:</span>
-          <input type="text" id="add-prod-img" required placeholder="https://..." class="w-full px-3 py-1.5 text-xs border rounded-lg mt-1">
+          <span class="text-[10px] text-slate-400">Atau gunakan URL / path gambar:</span>
+          <input type="text" id="add-prod-img" required placeholder="assets/products/... atau https://..." class="w-full px-3 py-1.5 text-xs border rounded-lg mt-1">
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-3">
+      <!-- Photo Gallery / Sub-Produk / Varian Manager -->
+      <div class="p-3 bg-slate-50 border rounded-xl space-y-3">
+        <div class="flex justify-between items-center">
+          <div>
+            <label class="block text-xs font-bold text-slate-700">Foto Galeri / Sub-Produk / Varian (Opsional)</label>
+            <p class="text-[10px] text-slate-500">Foto tambahan untuk thumbnail galeri di halaman detail produk (seperti foto roll, botol, spesifikasi varian).</p>
+          </div>
+          <span id="add-gallery-count" class="text-xs font-bold text-corporate">0 Foto</span>
+        </div>
+
+        <div id="add-prod-gallery-list" class="flex flex-wrap gap-2.5 items-center p-2.5 bg-white rounded-lg border min-h-[50px]">
+          <span class="text-xs text-slate-400 italic">Belum ada foto galeri tambahan.</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-1">
+          <label class="cursor-pointer px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-corporate text-xs font-bold rounded-lg border border-blue-200 flex items-center justify-center gap-1.5 whitespace-nowrap">
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+            <span>Upload Foto Tambahan</span>
+            <input type="file" accept="image/*" onchange="handleAddAddProdGalleryFile(this)" class="hidden">
+          </label>
+          <div class="flex items-center gap-2 flex-1">
+            <input type="text" id="add-prod-new-gallery-url" placeholder="Atau paste URL / path gambar..." class="flex-1 px-3 py-1.5 text-xs border rounded-lg">
+            <button type="button" onclick="handleAddAddProdGalleryUrl()" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold rounded-lg whitespace-nowrap">+ Tambah</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Tag / Badge</label>
           <input type="text" id="add-prod-tag" placeholder="Misal: Best Seller" class="w-full px-3 py-2 text-sm border rounded-lg">
@@ -2410,9 +2574,84 @@ function openAddProductModal() {
         </div>
       </div>
 
-      <button type="submit" class="btn-navy w-full py-2.5 rounded-lg text-xs font-bold">Simpan Produk</button>
+      <button type="submit" class="btn-navy w-full py-2.5 rounded-lg text-xs font-bold">Simpan Produk Baru</button>
     </form>
   `);
+  initIcons();
+}
+
+function renderAddProdGalleryList() {
+  const container = document.getElementById('add-prod-gallery-list');
+  const countEl = document.getElementById('add-gallery-count');
+  if (countEl) countEl.textContent = `${currentAddingProdGallery.length} Foto`;
+  if (!container) return;
+
+  if (currentAddingProdGallery.length === 0) {
+    container.innerHTML = '<span class="text-xs text-slate-400 italic">Belum ada foto galeri tambahan.</span>';
+    return;
+  }
+
+  container.innerHTML = currentAddingProdGallery.map((imgUrl, idx) => `
+    <div class="relative group w-14 h-14 rounded-lg overflow-hidden border-2 border-slate-200 hover:border-corporate flex-shrink-0">
+      <img src="${imgUrl}" class="w-full h-full object-cover">
+      <button type="button" onclick="removeGalleryImgFromAdd(${idx})" title="Hapus foto" class="absolute top-0.5 right-0.5 w-5 h-5 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center text-[10px] font-bold shadow">
+        &times;
+      </button>
+    </div>
+  `).join('');
+  initIcons();
+}
+
+function removeGalleryImgFromAdd(idx) {
+  currentAddingProdGallery.splice(idx, 1);
+  renderAddProdGalleryList();
+}
+
+function handleAddAddProdGalleryFile(fileInput) {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      let width = img.width;
+      let height = img.height;
+      const maxDim = 1200;
+      if (width > maxDim || height > maxDim) {
+        if (width > height) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      const isPng = file.type === 'image/png';
+      const dataUrl = canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', 0.88);
+      currentAddingProdGallery.push(dataUrl);
+      renderAddProdGalleryList();
+      fileInput.value = '';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleAddAddProdGalleryUrl() {
+  const input = document.getElementById('add-prod-new-gallery-url');
+  if (!input) return;
+  const val = input.value.trim();
+  if (val) {
+    currentAddingProdGallery.push(val);
+    input.value = '';
+    renderAddProdGalleryList();
+  }
 }
 
 function addSpecRowInput(containerId, key = '', val = '') {
@@ -2441,6 +2680,12 @@ function saveNewProduct(e) {
     if (k && v) specs.push({ key: k, val: v });
   });
 
+  const mainImg = document.getElementById('add-prod-img').value;
+  const finalGallery = [...currentAddingProdGallery];
+  if (!finalGallery.includes(mainImg)) {
+    finalGallery.unshift(mainImg);
+  }
+
   const newProd = {
     id: 'prod-' + Date.now(),
     categoryId: catId,
@@ -2448,8 +2693,8 @@ function saveNewProduct(e) {
     name: document.getElementById('add-prod-name').value,
     tag: document.getElementById('add-prod-tag').value,
     badge: document.getElementById('add-prod-tag').value || (catObj ? catObj.name : 'Produk'),
-    image: document.getElementById('add-prod-img').value,
-    gallery: [document.getElementById('add-prod-img').value],
+    image: mainImg,
+    gallery: finalGallery,
     shortDesc: document.getElementById('add-prod-short').value,
     fullDesc: document.getElementById('add-prod-full').value || document.getElementById('add-prod-short').value,
     specs,
@@ -2463,8 +2708,10 @@ function saveNewProduct(e) {
   window.KMS_DATA.products.unshift(newProd);
   saveKmsData(window.KMS_DATA);
   closeCmsModal();
+  refreshAllPublicContent();
   renderProducts();
   renderAdminProductsTable();
+  renderAdminCategories();
   updateAdminStats();
   alert('Produk baru berhasil ditambahkan!');
 }
@@ -2473,45 +2720,74 @@ function editProductModal(prodId) {
   const p = window.KMS_DATA.products.find(item => item.id === prodId);
   if (!p) return;
 
+  currentEditingProdGallery = Array.isArray(p.gallery) && p.gallery.length > 0 ? [...p.gallery] : [p.image];
+
   const catOptions = window.KMS_DATA.categories.map(c => `
     <option value="${c.id}" ${c.id === p.categoryId ? 'selected' : ''}>${c.name}</option>
   `).join('');
 
   openCmsModal(`Edit Produk: ${p.name}`, `
     <form onsubmit="saveEditedProduct(event, '${p.id}')" class="space-y-4">
-      <div class="grid grid-cols-2 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Nama Produk</label>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Nama Produk *</label>
           <input type="text" id="edit-prod-name" required value="${p.name}" class="w-full px-3 py-2 text-sm border rounded-lg">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Kategori</label>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Kategori *</label>
           <select id="edit-prod-cat" required class="w-full px-3 py-2 text-sm border rounded-lg">
             ${catOptions}
           </select>
         </div>
       </div>
 
-      <!-- Photo Upload Box -->
+      <!-- Photo Upload Box (Main Cover) -->
       <div class="p-3 bg-slate-50 border rounded-xl space-y-2">
-        <label class="block text-xs font-bold text-slate-700">Foto Produk</label>
+        <label class="block text-xs font-bold text-slate-700">Foto Sampul Utama Produk</label>
         <div class="flex items-center gap-3">
           <input type="file" accept="image/*" onchange="handleImageFileInput(this, 'edit-prod-preview', 'edit-prod-img')" class="text-xs text-slate-500">
           <img id="edit-prod-preview" src="${p.image || ''}" alt="Preview" class="w-16 h-16 object-cover rounded border">
         </div>
         <div>
-          <span class="text-[10px] text-slate-400">Atau URL foto:</span>
+          <span class="text-[10px] text-slate-400">Atau URL foto sampul:</span>
           <input type="text" id="edit-prod-img" required value="${p.image || ''}" class="w-full px-3 py-1.5 text-xs border rounded-lg mt-1">
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-3">
+      <!-- Photo Gallery / Sub-Produk / Varian Manager -->
+      <div class="p-3 bg-slate-50 border rounded-xl space-y-3">
+        <div class="flex justify-between items-center">
+          <div>
+            <label class="block text-xs font-bold text-slate-700">Foto Galeri / Sub-Produk / Varian</label>
+            <p class="text-[10px] text-slate-500">Foto-foto ini tampil sebagai thumbnail di bawah foto utama pada halaman detail produk (seperti roll, botol, spesifikasi varian).</p>
+          </div>
+          <span id="edit-gallery-count" class="text-xs font-bold text-corporate">${currentEditingProdGallery.length} Foto</span>
+        </div>
+
+        <div id="edit-prod-gallery-list" class="flex flex-wrap gap-2.5 items-center p-2.5 bg-white rounded-lg border min-h-[70px]">
+          <!-- Rendered by renderEditProdGalleryList() -->
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-1">
+          <label class="cursor-pointer px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-corporate text-xs font-bold rounded-lg border border-blue-200 flex items-center justify-center gap-1.5 whitespace-nowrap">
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+            <span>Upload Foto Tambahan</span>
+            <input type="file" accept="image/*" onchange="handleAddEditProdGalleryFile(this)" class="hidden">
+          </label>
+          <div class="flex items-center gap-2 flex-1">
+            <input type="text" id="edit-prod-new-gallery-url" placeholder="Atau paste URL / path gambar galeri..." class="flex-1 px-3 py-1.5 text-xs border rounded-lg">
+            <button type="button" onclick="handleAddEditProdGalleryUrl()" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold rounded-lg whitespace-nowrap">+ Tambah</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Tag / Badge</label>
           <input type="text" id="edit-prod-tag" value="${p.tag || ''}" class="w-full px-3 py-2 text-sm border rounded-lg">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Deskripsi Singkat</label>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Deskripsi Singkat *</label>
           <input type="text" id="edit-prod-short" required value="${p.shortDesc || ''}" class="w-full px-3 py-2 text-sm border rounded-lg">
         </div>
       </div>
@@ -2535,11 +2811,88 @@ function editProductModal(prodId) {
     </form>
   `);
 
+  renderEditProdGalleryList();
+
   const specContainer = document.getElementById('edit-specs-container');
   if (specContainer && p.specs) {
     p.specs.forEach(sp => {
       addSpecRowInput('edit-specs-container', sp.key, sp.val);
     });
+  }
+  initIcons();
+}
+
+function renderEditProdGalleryList() {
+  const container = document.getElementById('edit-prod-gallery-list');
+  const countEl = document.getElementById('edit-gallery-count');
+  if (countEl) countEl.textContent = `${currentEditingProdGallery.length} Foto`;
+  if (!container) return;
+
+  if (currentEditingProdGallery.length === 0) {
+    container.innerHTML = '<span class="text-xs text-slate-400 italic">Belum ada foto galeri tambahan.</span>';
+    return;
+  }
+
+  container.innerHTML = currentEditingProdGallery.map((imgUrl, idx) => `
+    <div class="relative group w-14 h-14 rounded-lg overflow-hidden border-2 border-slate-200 hover:border-corporate flex-shrink-0">
+      <img src="${imgUrl}" class="w-full h-full object-cover">
+      <button type="button" onclick="removeGalleryImgFromEdit(${idx})" title="Hapus foto dari galeri" class="absolute top-0.5 right-0.5 w-5 h-5 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center text-[10px] font-bold shadow">
+        &times;
+      </button>
+    </div>
+  `).join('');
+  initIcons();
+}
+
+function removeGalleryImgFromEdit(idx) {
+  currentEditingProdGallery.splice(idx, 1);
+  renderEditProdGalleryList();
+}
+
+function handleAddEditProdGalleryFile(fileInput) {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      let width = img.width;
+      let height = img.height;
+      const maxDim = 1200;
+      if (width > maxDim || height > maxDim) {
+        if (width > height) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      const isPng = file.type === 'image/png';
+      const dataUrl = canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', 0.88);
+      currentEditingProdGallery.push(dataUrl);
+      renderEditProdGalleryList();
+      fileInput.value = '';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleAddEditProdGalleryUrl() {
+  const input = document.getElementById('edit-prod-new-gallery-url');
+  if (!input) return;
+  const val = input.value.trim();
+  if (val) {
+    currentEditingProdGallery.push(val);
+    input.value = '';
+    renderEditProdGalleryList();
   }
 }
 
@@ -2559,20 +2912,31 @@ function saveEditedProduct(e, prodId) {
     if (k && v) specs.push({ key: k, val: v });
   });
 
+  const mainImg = document.getElementById('edit-prod-img').value;
+
   p.categoryId = catId;
   p.categoryName = catObj ? catObj.name : catId;
   p.name = document.getElementById('edit-prod-name').value;
   p.tag = document.getElementById('edit-prod-tag').value;
   p.badge = p.tag || p.categoryName;
-  p.image = document.getElementById('edit-prod-img').value;
+  p.image = mainImg;
   p.shortDesc = document.getElementById('edit-prod-short').value;
   p.fullDesc = document.getElementById('edit-prod-full').value;
   p.specs = specs;
 
+  // Save gallery: ensure mainImg is included
+  const finalGallery = [...currentEditingProdGallery];
+  if (!finalGallery.includes(mainImg)) {
+    finalGallery.unshift(mainImg);
+  }
+  p.gallery = finalGallery.length > 0 ? finalGallery : [mainImg];
+
   saveKmsData(window.KMS_DATA);
   closeCmsModal();
+  refreshAllPublicContent();
   renderProducts();
   renderAdminProductsTable();
+  renderAdminCategories();
   alert('Produk berhasil diperbarui!');
 }
 
@@ -2580,15 +2944,15 @@ function deleteProduct(prodId) {
   if (confirm('Hapus produk ini?')) {
     window.KMS_DATA.products = window.KMS_DATA.products.filter(p => p.id !== prodId);
     saveKmsData(window.KMS_DATA);
+    refreshAllPublicContent();
     renderProducts();
     renderAdminProductsTable();
+    renderAdminCategories();
     updateAdminStats();
   }
 }
 
-/**
- * CMS: Solutions & Credibility Stats
- */
+
 function renderAdminSolutions() {
   const container = document.getElementById('admin-solutions-list');
   if (!container) return;
@@ -3209,3 +3573,14 @@ window.renderAboutPage = function() {
     renderValuesGrid('about-values-grid');
   }
 };
+
+window.filterAdminProductsCategory = filterAdminProductsCategory;
+window.deleteProductFromCategory = deleteProductFromCategory;
+window.renderEditProdGalleryList = renderEditProdGalleryList;
+window.removeGalleryImgFromEdit = removeGalleryImgFromEdit;
+window.handleAddEditProdGalleryFile = handleAddEditProdGalleryFile;
+window.handleAddEditProdGalleryUrl = handleAddEditProdGalleryUrl;
+window.renderAddProdGalleryList = renderAddProdGalleryList;
+window.removeGalleryImgFromAdd = removeGalleryImgFromAdd;
+window.handleAddAddProdGalleryFile = handleAddAddProdGalleryFile;
+window.handleAddAddProdGalleryUrl = handleAddAddProdGalleryUrl;

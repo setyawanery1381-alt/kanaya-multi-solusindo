@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 12,
+  catalogVersion: 13,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -237,7 +237,7 @@ const DEFAULT_KMS_DATA = {
         "name": "Packaging",
         "title": "Kemasan & Logistik",
         "desc": "Solusi kemasan kardus, plastik, kayu, pengikat, dan kain untuk pengemasan, penyimpanan, dan distribusi.",
-        "image": "assets/categories/packaging.jpg?v=3",
+        "image": "assets/products/packaging/covers/Cover_Kemasan_Kardus_&_Kertas.png",
         "itemCount": "5 Subkategori"
     },
     {
@@ -453,6 +453,7 @@ const DEFAULT_KMS_DATA = {
     "image": "assets/products/plastic/covers/Cover_Plastik_PP.png",
     "gallery": [
       "assets/products/plastic/covers/Cover_Plastik_PP.png",
+      "assets/products/plastic/pp/PP_Roll.png",
       "assets/products/plastic/pp/Gelas_Plastik.png",
       "assets/products/plastic/pp/Sedotan.png",
       "assets/products/plastic/pp/Wadah_Makanan.png"
@@ -489,6 +490,7 @@ const DEFAULT_KMS_DATA = {
     "image": "assets/products/plastic/covers/Cover_Plastik_PET.png",
     "gallery": [
       "assets/products/plastic/covers/Cover_Plastik_PET.png",
+      "assets/products/plastic/pet/PET_Roll.png",
       "assets/products/plastic/pet/Botol_Minuman_Bening.png",
       "assets/products/plastic/pet/Botol_Minuman_Berwarna.png",
       "assets/products/plastic/pet/Toples_Bening.png",
@@ -563,6 +565,7 @@ const DEFAULT_KMS_DATA = {
     "image": "assets/products/plastic/covers/Cover_Plastik_HDPE.png",
     "gallery": [
       "assets/products/plastic/covers/Cover_Plastik_HDPE.png",
+      "assets/products/plastic/hdpe/HDPE_Roll.png",
       "assets/products/plastic/hdpe/Botol_Oli.png",
       "assets/products/plastic/hdpe/Drum.png",
       "assets/products/plastic/hdpe/Jerigen.png",
@@ -599,8 +602,9 @@ const DEFAULT_KMS_DATA = {
     "badge": "Packing & Pengiriman",
     "shortDesc": "Solusi kemasan berbahan kertas karton bergelombang untuk packing, penyimpanan di gudang, dan pengiriman kargo perusahaan.",
     "fullDesc": "Karton box corrugated berkualitas tinggi dengan pilihan Single Wall (3 ply), Double Wall (5 ply), hingga Triple Wall untuk memastikan keamanan penyimpanan di rak gudang serta distribusi logistik antarpulau dan ekspor.",
-    "image": "assets/products/packaging/(Kardus_Packing)_Kardus_&_Karton_Corrugated_Box.png",
+    "image": "assets/products/packaging/covers/Cover_Kemasan_Kardus_&_Kertas.png",
     "gallery": [
+      "assets/products/packaging/covers/Cover_Kemasan_Kardus_&_Kertas.png",
       "assets/products/packaging/(Kardus_Packing)_Kardus_&_Karton_Corrugated_Box.png",
       "assets/products/packaging/(Kemasan_Makanan)_Kardus_&_Karton_Corrugated_Box_.png",
       "assets/products/packaging/(Kertas_Packing)_Kardus_&_Karton_Corrugated_Box.png"
@@ -671,9 +675,12 @@ const DEFAULT_KMS_DATA = {
     "badge": "Wadah Gudang",
     "shortDesc": "Kotak kontainer plastik tebal serbaguna untuk wadah penyimpanan sparepart, komponen manufaktur, dan distribusi kargo.",
     "fullDesc": "Container box plastik industri berbahan PP murni ekstra tebal yang dirancang kuat menahan beban berat, dapat ditumpuk secara rapi (stackable), serta tahan benturan untuk operasional gudang dan pabrik perakitan.",
-    "image": "assets/products/packaging/Container_Box_Plastik_Industri_.png",
+    "image": "assets/products/packaging/covers/Cover_Kemasan_Plastik.png",
     "gallery": [
-      "assets/products/packaging/Container_Box_Plastik_Industri_.png"
+      "assets/products/packaging/covers/Cover_Kemasan_Plastik.png",
+      "assets/products/packaging/Container_Box_Plastik_Industri_.png",
+      "assets/products/packaging/Busa_PE_(PE_Foam_Protection).png",
+      "assets/products/packaging/Plastic_Stretch_Film_Industri.png"
     ],
     "advantages": [
       "Konstruksi dinding bertulang kuat menahan beban tumpukan tinggi",
@@ -776,9 +783,11 @@ const DEFAULT_KMS_DATA = {
     "badge": "Heavy Cargo",
     "shortDesc": "Kemasan kayu kokoh untuk melindungi barang berat, mesin industri, dan peralatan elektronik selama distribusi ekspedisi.",
     "fullDesc": "Peti kayu industri custom-built berbahan kayu keras pilihan atau plywood tebal berkualitas tinggi. Dirancang khusus untuk proteksi kargo bernilai tinggi, mesin pabrik, dan suku cadang berat dari benturan keras selama ekspedisi darat, laut, maupun udara.",
-    "image": "assets/products/packaging/Peti_Kayu_Solid_(Wooden_Crate).png",
+    "image": "assets/products/packaging/covers/Cover_Kemasan_Kayu.png",
     "gallery": [
-      "assets/products/packaging/Peti_Kayu_Solid_(Wooden_Crate).png"
+      "assets/products/packaging/covers/Cover_Kemasan_Kayu.png",
+      "assets/products/packaging/Peti_Kayu_Solid_(Wooden_Crate).png",
+      "assets/products/packaging/Palet_Kayu_Standar_(Wooden_Pallet).png"
     ],
     "advantages": [
       "Konstruksi rangka kayu sangat kokoh menahan beban hingga berton-ton",
@@ -846,9 +855,11 @@ const DEFAULT_KMS_DATA = {
     "badge": "Bundling Cargo",
     "shortDesc": "Tali strapping mesin dan manual berkualitas tinggi untuk mengikat dan mengamankan koli karton serta muatan pallet.",
     "fullDesc": "Tali pengikat strapping band berbahan Polypropylene (PP) dan Polyester (PET) dengan kekuatan tarik tinggi. Digunakan untuk bundling kardus, pipa, dan penguncian pallet barang agar tidak goyah atau berantakan.",
-    "image": "assets/products/packaging/Strapping_Band_(Tali_Strapping_PP-PET).png",
+    "image": "assets/products/packaging/covers/Cover_Pengikat_dan_Pengaman.png",
     "gallery": [
-      "assets/products/packaging/Strapping_Band_(Tali_Strapping_PP-PET).png"
+      "assets/products/packaging/covers/Cover_Pengikat_dan_Pengaman.png",
+      "assets/products/packaging/Strapping_Band_(Tali_Strapping_PP-PET).png",
+      "assets/products/packaging/Sabuk_Kargo_(Ratchet_Cargo_Strap).png"
     ],
     "advantages": [
       "Daya tarik dan regangan tidak mudah putus saat ditarik kencang",
@@ -916,8 +927,9 @@ const DEFAULT_KMS_DATA = {
     "badge": "Kemasan Kain",
     "shortDesc": "Kemasan tas berbahan kain spunbond dan canvas untuk membungkus, melindungi, dan mengemas berbagai barang perusahaan.",
     "fullDesc": "Goodie bag ramah lingkungan dengan bahan non-woven spunbond atau kanvas tebal. Dapat dipesan polos (original) maupun custom sablon logo perusahaan untuk souvenir event kantor, kemasan belanja produk, dan corporate gift.",
-    "image": "assets/products/packaging/Goodie_Bag_Kain_(Custom_&.png",
+    "image": "assets/products/packaging/covers/Cover_Kemasan_Kain.png",
     "gallery": [
+      "assets/products/packaging/covers/Cover_Kemasan_Kain.png",
       "assets/products/packaging/Goodie_Bag_Kain_(Custom_&.png"
     ],
     "advantages": [
@@ -2695,7 +2707,7 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V15';
+const STORAGE_KEY = 'KMS_APP_DATA_V16';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
@@ -2818,12 +2830,12 @@ function initCloudSync() {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
       // Auto-upgrade cloud catalog if version < 12 or categories contain unsplash or old images path or gallery incomplete
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 12 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0 || !cloudData.gallery || cloudData.gallery.length < 6) {
+      if (!cloudData.catalogVersion || cloudData.catalogVersion < 13 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0 || !cloudData.gallery || cloudData.gallery.length < 6) {
         merged.products = DEFAULT_KMS_DATA.products;
         merged.categories = DEFAULT_KMS_DATA.categories;
         merged.clients = DEFAULT_KMS_DATA.clients;
         merged.gallery = DEFAULT_KMS_DATA.gallery;
-        merged.catalogVersion = 12;
+        merged.catalogVersion = 13;
         merged.heroSlides = DEFAULT_KMS_DATA.heroSlides;
         merged.vision = DEFAULT_KMS_DATA.vision;
         merged.missions = DEFAULT_KMS_DATA.missions;
