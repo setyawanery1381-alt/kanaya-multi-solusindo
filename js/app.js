@@ -306,11 +306,22 @@ function refreshAllPublicContent() {
   if (footerTiktok) footerTiktok.textContent = c.tiktok || '@pt_kanayamultisolusindo';
   if (footerLinkedin) footerLinkedin.textContent = c.linkedin || 'PT Kanaya Multi Solusindo';
 
-  // About Texts
+  // About Texts & Images
   const homeAboutTitle = document.getElementById('home-about-title');
   const homeAboutText = document.getElementById('home-about-text');
   if (homeAboutTitle) homeAboutTitle.textContent = "Mengenal Kanaya Multi Solusindo";
   if (homeAboutText) homeAboutText.innerHTML = data.company.aboutShort;
+
+  // Foto Tim / Tentang Kami di Beranda
+  const homeAboutImg = document.getElementById('home-about-image');
+  if (homeAboutImg && data.company && data.company.aboutImage) {
+    homeAboutImg.src = data.company.aboutImage;
+  }
+  // Foto Kantor Operasional di Halaman Tentang Kami
+  const aboutCompanyImg = document.getElementById('about-company-image');
+  if (aboutCompanyImg && data.company && data.company.officeImage) {
+    aboutCompanyImg.src = data.company.officeImage;
+  }
 
   const aboutFullBox = document.getElementById('about-full-text');
   const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
@@ -2030,6 +2041,20 @@ function populateAdminProfileForm() {
   document.getElementById('adm-misi-1').value = d.missions[0] || '';
   document.getElementById('adm-misi-2').value = d.missions[1] || '';
   document.getElementById('adm-misi-3').value = d.missions[2] || '';
+
+  // Foto Tim Beranda
+  const aboutImgVal = (d.company && d.company.aboutImage) || 'assets/gallery/Rapat_1.png';
+  const aboutInput = document.getElementById('adm-about-image');
+  if (aboutInput) aboutInput.value = aboutImgVal;
+  const aboutPreview = document.getElementById('adm-about-image-preview');
+  if (aboutPreview) aboutPreview.src = aboutImgVal;
+
+  // Foto Kantor Operasional
+  const officeImgVal = (d.company && d.company.officeImage) || 'assets/gallery/kantor_kanaya.jpg';
+  const officeInput = document.getElementById('adm-office-image');
+  if (officeInput) officeInput.value = officeImgVal;
+  const officePreview = document.getElementById('adm-office-image-preview');
+  if (officePreview) officePreview.src = officeImgVal;
 }
 
 function saveAdminProfile(e) {
@@ -2046,9 +2071,19 @@ function saveAdminProfile(e) {
     document.getElementById('adm-misi-3').value
   ];
 
+  // Simpan Foto Tim & Foto Kantor
+  const aboutImgEl = document.getElementById('adm-about-image');
+  if (aboutImgEl && aboutImgEl.value.trim()) {
+    d.company.aboutImage = aboutImgEl.value.trim();
+  }
+  const officeImgEl = document.getElementById('adm-office-image');
+  if (officeImgEl && officeImgEl.value.trim()) {
+    d.company.officeImage = officeImgEl.value.trim();
+  }
+
   saveKmsData(d);
   refreshAllPublicContent();
-  alert('Profil perusahaan & Visi Misi berhasil diperbarui!');
+  alert('Profil perusahaan dan foto berhasil diperbarui!');
 }
 
 function populateAdminContactsForm() {
