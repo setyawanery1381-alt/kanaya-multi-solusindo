@@ -2908,7 +2908,7 @@ function applyLanguage(lang) {
   if (formBtn) formBtn.textContent = t.formSubmitBtn;
 
   // Contact Map
-  const mapH4 = document.querySelector('#view-contact .lg\:col-span-12 h4');
+  const mapH4 = document.querySelector('#view-contact [class*="lg:col-span-12"] h4') || document.querySelector('#contact-address-card h4');
   if (mapH4) mapH4.textContent = t.contactMapHeading;
   const mapOpenBtn = document.querySelector('#contact-address-map-link span');
   if (mapOpenBtn) mapOpenBtn.textContent = t.contactMapOpenBtn;

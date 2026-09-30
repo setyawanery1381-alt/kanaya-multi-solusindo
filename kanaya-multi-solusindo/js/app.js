@@ -87,11 +87,13 @@ function handleImageFileInput(fileInput, previewImgId, targetHiddenId) {
   reader.onload = function(e) {
     const img = new Image();
     img.onload = function() {
-      // Resize to max 1200px width/height to keep localStorage fast & lightweight
+      // Resize to safe max dimension (800px for photos/covers, 500px for logos)
+      // Ensures crisp HD display while compressing base64 to 35-55KB, safely fitting inside Firestore 1 MiB doc limit
       const canvas = document.createElement('canvas');
       let width = img.width;
       let height = img.height;
-      const maxDim = 1200;
+      const isLogo = previewImgId && previewImgId.includes('logo');
+      const maxDim = isLogo ? 500 : 800;
       if (width > maxDim || height > maxDim) {
         if (width > height) {
           height = Math.round((height * maxDim) / width);
@@ -104,10 +106,18 @@ function handleImageFileInput(fileInput, previewImgId, targetHiddenId) {
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
+
+      // Draw white background so transparent PNG photos do not produce black artifacts in JPEG
+      if (!isLogo) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+      }
       ctx.drawImage(img, 0, 0, width, height);
       
-      const isPng = file.type === 'image/png';
-      const dataUrl = canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', 0.88);
+      // Clean JPEG 0.80 for tiny fast uploads; PNG only for transparent logos
+      const dataUrl = isLogo && file.type === 'image/png' 
+        ? canvas.toDataURL('image/png') 
+        : canvas.toDataURL('image/jpeg', 0.80);
 
       const preview = document.getElementById(previewImgId);
       if (preview) {
@@ -117,6 +127,18 @@ function handleImageFileInput(fileInput, previewImgId, targetHiddenId) {
       const target = document.getElementById(targetHiddenId);
       if (target) {
         target.value = dataUrl;
+      }
+
+      // If user uploaded a new product cover in edit modal, also synchronize the first gallery image
+      if (previewImgId === 'edit-prod-preview' && typeof currentEditingProdGallery !== 'undefined' && Array.isArray(currentEditingProdGallery)) {
+        if (currentEditingProdGallery.length > 0) {
+          currentEditingProdGallery[0] = dataUrl;
+        } else {
+          currentEditingProdGallery.push(dataUrl);
+        }
+        if (typeof renderEditProdGalleryList === 'function') {
+          renderEditProdGalleryList();
+        }
       }
     };
     img.src = e.target.result;
@@ -2618,7 +2640,7 @@ function handleAddAddProdGalleryFile(fileInput) {
       const canvas = document.createElement('canvas');
       let width = img.width;
       let height = img.height;
-      const maxDim = 1200;
+      const maxDim = 800;
       if (width > maxDim || height > maxDim) {
         if (width > height) {
           height = Math.round((height * maxDim) / width);
@@ -2631,9 +2653,10 @@ function handleAddAddProdGalleryFile(fileInput) {
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
       ctx.drawImage(img, 0, 0, width, height);
-      const isPng = file.type === 'image/png';
-      const dataUrl = canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', 0.88);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.80);
       currentAddingProdGallery.push(dataUrl);
       renderAddProdGalleryList();
       fileInput.value = '';
@@ -2860,7 +2883,7 @@ function handleAddEditProdGalleryFile(fileInput) {
       const canvas = document.createElement('canvas');
       let width = img.width;
       let height = img.height;
-      const maxDim = 1200;
+      const maxDim = 800;
       if (width > maxDim || height > maxDim) {
         if (width > height) {
           height = Math.round((height * maxDim) / width);
@@ -2873,9 +2896,10 @@ function handleAddEditProdGalleryFile(fileInput) {
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
       ctx.drawImage(img, 0, 0, width, height);
-      const isPng = file.type === 'image/png';
-      const dataUrl = canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', 0.88);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.80);
       currentEditingProdGallery.push(dataUrl);
       renderEditProdGalleryList();
       fileInput.value = '';
@@ -2924,9 +2948,12 @@ function saveEditedProduct(e, prodId) {
   p.fullDesc = document.getElementById('edit-prod-full').value;
   p.specs = specs;
 
-  // Save gallery: ensure mainImg is included
+  // Save gallery: ensure mainImg is primary cover
   const finalGallery = [...currentEditingProdGallery];
-  if (!finalGallery.includes(mainImg)) {
+  const oldImg = p.image;
+  if (oldImg && finalGallery[0] === oldImg && oldImg !== mainImg) {
+    finalGallery[0] = mainImg;
+  } else if (!finalGallery.includes(mainImg)) {
     finalGallery.unshift(mainImg);
   }
   p.gallery = finalGallery.length > 0 ? finalGallery : [mainImg];

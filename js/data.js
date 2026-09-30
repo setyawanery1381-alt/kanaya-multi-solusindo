@@ -2707,12 +2707,16 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V16';
+const STORAGE_KEY = 'KMS_APP_DATA_V17';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
 function loadKmsData() {
   try {
+    // Bersihkan versi lama di LocalStorage untuk menghemat memori kuota 5MB browser
+    for (let i = 1; i <= 16; i++) {
+      try { localStorage.removeItem('KMS_APP_DATA_V' + i); } catch(e) {}
+    }
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       const parsed = JSON.parse(stored);
@@ -2737,11 +2741,22 @@ function loadKmsData() {
 }
 
 function saveKmsData(data) {
+  data.catalogVersion = 17;
+  data.lastModified = Date.now();
+
   // 1. Simpan ke LocalStorage seketika untuk kecepatan lokal & offline fallback
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (e) {
     console.error('Error saving to localStorage:', e);
+    try {
+      for (let i = 1; i <= 16; i++) {
+        localStorage.removeItem('KMS_APP_DATA_V' + i);
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch(err2) {
+      console.warn('LocalStorage quota limit reached:', err2);
+    }
   }
 
   // 2. Simpan & Sinkronkan langsung ke Cloud Firebase Firestore
@@ -2753,6 +2768,8 @@ function saveKmsData(data) {
       })
       .catch((err) => {
         console.error('❌ Gagal sinkron ke Cloud Firestore:', err);
+        showSyncNotice('⚠️ Gagal sinkron ke Cloud');
+        alert('Peringatan: Gagal sinkronisasi data ke Cloud Firestore. ' + (err.message || 'Ukuran data melebihi limit 1 MiB.'));
       });
   }
 }
@@ -2829,20 +2846,25 @@ function initCloudSync() {
     if (doc.exists) {
       const cloudData = doc.data();
       const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
-      // Auto-upgrade cloud catalog if version < 12 or categories contain unsplash or old images path or gallery incomplete
-      if (!cloudData.catalogVersion || cloudData.catalogVersion < 13 || (cloudData.categories && cloudData.categories.some(c => c.image && (c.image.includes('unsplash') || c.image.includes('assets/images/categories')))) || (cloudData.products && cloudData.products.some(p => p.image && p.image.includes('unsplash'))) || !cloudData.clients || cloudData.clients.length === 0 || !cloudData.gallery || cloudData.gallery.length < 6) {
+
+      // Pastikan data esensial terisi jika kosong di cloud, TETAPI JANGAN PERNAH MENIMPA
+      // produk atau kategori yang sudah diubah/dibuat oleh admin!
+      if (!cloudData.products || !Array.isArray(cloudData.products) || cloudData.products.length === 0) {
         merged.products = DEFAULT_KMS_DATA.products;
-        merged.categories = DEFAULT_KMS_DATA.categories;
-        merged.clients = DEFAULT_KMS_DATA.clients;
-        merged.gallery = DEFAULT_KMS_DATA.gallery;
-        merged.catalogVersion = 13;
-        merged.heroSlides = DEFAULT_KMS_DATA.heroSlides;
-        merged.vision = DEFAULT_KMS_DATA.vision;
-        merged.missions = DEFAULT_KMS_DATA.missions;
-        if (kmsDb) {
-          kmsDb.collection('cms').doc('website_data').set(merged).catch(() => {});
-        }
       }
+      if (!cloudData.categories || !Array.isArray(cloudData.categories) || cloudData.categories.length === 0) {
+        merged.categories = DEFAULT_KMS_DATA.categories;
+      }
+      if (!cloudData.clients || !Array.isArray(cloudData.clients) || cloudData.clients.length === 0) {
+        merged.clients = DEFAULT_KMS_DATA.clients;
+      }
+      if (!cloudData.gallery || !Array.isArray(cloudData.gallery) || cloudData.gallery.length === 0) {
+        merged.gallery = DEFAULT_KMS_DATA.gallery;
+      }
+      if (!cloudData.heroSlides || !Array.isArray(cloudData.heroSlides) || cloudData.heroSlides.length === 0) {
+        merged.heroSlides = DEFAULT_KMS_DATA.heroSlides;
+      }
+
       if (cloudData.company) {
         merged.company = Object.assign({}, DEFAULT_KMS_DATA.company, cloudData.company);
         if (cloudData.company.contacts) {
