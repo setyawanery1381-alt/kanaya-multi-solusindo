@@ -87,13 +87,18 @@ function handleImageFileInput(fileInput, previewImgId, targetHiddenId) {
   reader.onload = function(e) {
     const img = new Image();
     img.onload = function() {
-      // Resize to safe max dimension (800px for photos/covers, 500px for logos)
-      // Ensures crisp HD display while compressing base64 to 35-55KB, safely fitting inside Firestore 1 MiB doc limit
+      // Resize to safe max dimension:
+      // - 1200px for hero slide banners (JPEG quality 0.78 gives crisp HD banner around 50-70KB)
+      // - 500px for logos
+      // - 800px for products and gallery photos
       const canvas = document.createElement('canvas');
       let width = img.width;
       let height = img.height;
       const isLogo = previewImgId && previewImgId.includes('logo');
-      const maxDim = isLogo ? 500 : 800;
+      const isSlide = previewImgId && previewImgId.includes('slide');
+      const maxDim = isLogo ? 500 : (isSlide ? 1200 : 800);
+      const quality = isSlide ? 0.78 : 0.80;
+
       if (width > maxDim || height > maxDim) {
         if (width > height) {
           height = Math.round((height * maxDim) / width);
@@ -114,10 +119,10 @@ function handleImageFileInput(fileInput, previewImgId, targetHiddenId) {
       }
       ctx.drawImage(img, 0, 0, width, height);
       
-      // Clean JPEG 0.80 for tiny fast uploads; PNG only for transparent logos
+      // Clean JPEG for tiny fast uploads; PNG only for transparent logos
       const dataUrl = isLogo && file.type === 'image/png' 
         ? canvas.toDataURL('image/png') 
-        : canvas.toDataURL('image/jpeg', 0.80);
+        : canvas.toDataURL('image/jpeg', quality);
 
       const preview = document.getElementById(previewImgId);
       if (preview) {
@@ -601,11 +606,24 @@ function renderHeroSlides() {
   if (!wrapper || !dotsContainer) return;
 
   const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
-  const slides = (isEn && window.KMS_HERO_I18N && window.KMS_HERO_I18N.en)
-    ? window.KMS_HERO_I18N.en
-    : ((window.KMS_DATA && window.KMS_DATA.heroSlides && window.KMS_DATA.heroSlides.length > 0)
-        ? window.KMS_DATA.heroSlides
-        : DEFAULT_KMS_DATA.heroSlides);
+  let slides = (window.KMS_DATA && window.KMS_DATA.heroSlides && window.KMS_DATA.heroSlides.length > 0)
+    ? window.KMS_DATA.heroSlides
+    : DEFAULT_KMS_DATA.heroSlides;
+
+  if (isEn && window.KMS_HERO_I18N && window.KMS_HERO_I18N.en) {
+    slides = slides.map((slide, idx) => {
+      const enSlide = window.KMS_HERO_I18N.en[idx];
+      if (!enSlide) return slide;
+      return Object.assign({}, slide, {
+        badge: enSlide.badge || slide.badge,
+        title: enSlide.title || slide.title,
+        subtitle: enSlide.subtitle || slide.subtitle,
+        btnPrimaryText: enSlide.btnPrimaryText || slide.btnPrimaryText,
+        btnSecondaryText: enSlide.btnSecondaryText || slide.btnSecondaryText,
+        highlights: (enSlide.highlights && enSlide.highlights.length) ? enSlide.highlights : slide.highlights
+      });
+    });
+  }
   if (!slides || slides.length === 0) return;
 
   // Build Slides HTML (Exact Classic Layout matching Mockup, seamless background image)

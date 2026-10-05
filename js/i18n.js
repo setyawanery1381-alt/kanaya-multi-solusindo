@@ -2521,7 +2521,19 @@ function applyLanguage(lang) {
 
   // 4. Hero Slides
   if (!window.KMS_DATA) window.KMS_DATA = {};
-  window.KMS_DATA.heroSlides = KMS_HERO_I18N[lang] || KMS_HERO_I18N.id;
+  const langSlides = KMS_HERO_I18N[lang] || KMS_HERO_I18N.id;
+  if (Array.isArray(window.KMS_DATA.heroSlides) && window.KMS_DATA.heroSlides.length > 0) {
+    window.KMS_DATA.heroSlides = langSlides.map((slide, idx) => {
+      const existing = window.KMS_DATA.heroSlides[idx];
+      return Object.assign({}, slide, {
+        image: (existing && existing.image) ? existing.image : slide.image,
+        btnPrimaryLink: (existing && existing.btnPrimaryLink) ? existing.btnPrimaryLink : slide.btnPrimaryLink,
+        btnSecondaryLink: (existing && existing.btnSecondaryLink) ? existing.btnSecondaryLink : slide.btnSecondaryLink
+      });
+    });
+  } else {
+    window.KMS_DATA.heroSlides = langSlides;
+  }
   if (typeof window.renderHeroSlides === 'function') {
     window.renderHeroSlides();
   }

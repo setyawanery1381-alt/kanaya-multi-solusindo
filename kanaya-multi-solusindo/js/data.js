@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 13,
+  catalogVersion: 19,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -2730,9 +2730,11 @@ function loadKmsData() {
           merged.company.contacts = Object.assign({}, DEFAULT_KMS_DATA.company.contacts, parsed.company.contacts);
         }
       }
-      // Guarantee updated hero slides with clean high-res images & highlights
-      if (!parsed.heroSlides || parsed.heroSlides.some(s => !s.highlights || s.image.includes('1605600659908'))) {
+      // Guarantee hero slides array exists
+      if (!parsed.heroSlides || !Array.isArray(parsed.heroSlides) || parsed.heroSlides.length === 0) {
         merged.heroSlides = JSON.parse(JSON.stringify(DEFAULT_KMS_DATA.heroSlides));
+      } else {
+        merged.heroSlides = parsed.heroSlides;
       }
       return merged;
     }
@@ -2743,7 +2745,7 @@ function loadKmsData() {
 }
 
 function saveKmsData(data) {
-  data.catalogVersion = 18;
+  data.catalogVersion = 19;
   data.lastModified = Date.now();
 
   // 1. Simpan ke LocalStorage seketika untuk kecepatan lokal & offline fallback
@@ -2752,7 +2754,7 @@ function saveKmsData(data) {
   } catch (e) {
     console.error('Error saving to localStorage:', e);
     try {
-      for (let i = 1; i <= 17; i++) {
+      for (let i = 1; i <= 18; i++) {
         localStorage.removeItem('KMS_APP_DATA_V' + i);
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
@@ -2761,17 +2763,42 @@ function saveKmsData(data) {
     }
   }
 
-  // 2. Simpan & Sinkronkan langsung ke Cloud Firebase Firestore
+  // 2. Simpan & Sinkronkan langsung ke Cloud Firebase Firestore secara modular
+  // Menggunakan arsitektur dokumen modular terpisah agar tidak melampaui batas 1 MiB per dokumen Firestore:
+  // - cms/website_data: metadata profil perusahaan, kontak, kategori, solusi, statistik
+  // - cms/hero_slides: banner slideshow beranda (kuota 1 MiB mandiri)
+  // - cms/gallery_data: foto dokumentasi & aktivitas (kuota 1 MiB mandiri)
+  // - cms/products_data: katalog lengkap seluruh produk (kuota 1 MiB mandiri)
   if (kmsDb) {
-    kmsDb.collection('cms').doc('website_data').set(data)
+    // Siapkan coreData tanpa array besar gambar agar website_data tetap sangat ringan (~100-200 KB)
+    const coreData = Object.assign({}, data);
+    delete coreData.products;
+    delete coreData.gallery;
+    delete coreData.heroSlides;
+
+    const pWebsite = kmsDb.collection('cms').doc('website_data').set(coreData);
+    const pHero = kmsDb.collection('cms').doc('hero_slides').set({
+      heroSlides: data.heroSlides || [],
+      lastModified: Date.now()
+    });
+    const pGallery = kmsDb.collection('cms').doc('gallery_data').set({
+      gallery: data.gallery || [],
+      lastModified: Date.now()
+    });
+    const pProducts = kmsDb.collection('cms').doc('products_data').set({
+      products: data.products || [],
+      lastModified: Date.now()
+    });
+
+    Promise.all([pWebsite, pHero, pGallery, pProducts])
       .then(() => {
-        console.log('☁️ Data website berhasil disinkronkan ke Cloud Firestore.');
+        console.log('☁️ Data website berhasil disinkronkan ke Cloud Firestore (Modular Architecture).');
         showSyncNotice('Tersimpan di Cloud Firebase');
       })
       .catch((err) => {
         console.error('❌ Gagal sinkron ke Cloud Firestore:', err);
         showSyncNotice('⚠️ Gagal sinkron ke Cloud');
-        alert('Peringatan: Gagal sinkronisasi data ke Cloud Firestore. ' + (err.message || 'Ukuran data melebihi limit 1 MiB.'));
+        alert('Peringatan: Gagal sinkronisasi data ke Cloud Firestore. ' + (err.message || ''));
       });
   }
 }
@@ -2839,49 +2866,16 @@ function showSyncNotice(msg) {
 // Initialize Global Data Instance
 window.KMS_DATA = loadKmsData();
 
-// Real-Time Cloud Synchronization Listener
+// Real-Time Cloud Synchronization Listener (Modular Firestore Architecture)
 function initCloudSync() {
   if (!kmsDb) return;
 
-  // 1. Dengarkan pembaruan data website dari Firestore secara langsung
-  kmsDb.collection('cms').doc('website_data').onSnapshot((doc) => {
-    if (doc.exists) {
-      const cloudData = doc.data();
-      const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
-
-      // Pastikan data esensial terisi jika kosong di cloud, TETAPI JANGAN PERNAH MENIMPA
-      // produk atau kategori yang sudah diubah/dibuat oleh admin!
-      if (!cloudData.products || !Array.isArray(cloudData.products) || cloudData.products.length === 0) {
-        merged.products = DEFAULT_KMS_DATA.products;
-      }
-      if (!cloudData.categories || !Array.isArray(cloudData.categories) || cloudData.categories.length === 0) {
-        merged.categories = DEFAULT_KMS_DATA.categories;
-      }
-      if (!cloudData.clients || !Array.isArray(cloudData.clients) || cloudData.clients.length === 0) {
-        merged.clients = DEFAULT_KMS_DATA.clients;
-      }
-      if (!cloudData.gallery || !Array.isArray(cloudData.gallery) || cloudData.gallery.length === 0) {
-        merged.gallery = DEFAULT_KMS_DATA.gallery;
-      }
-      if (!cloudData.heroSlides || !Array.isArray(cloudData.heroSlides) || cloudData.heroSlides.length === 0) {
-        merged.heroSlides = DEFAULT_KMS_DATA.heroSlides;
-      }
-
-      if (cloudData.company) {
-        merged.company = Object.assign({}, DEFAULT_KMS_DATA.company, cloudData.company);
-        if (cloudData.company.contacts) {
-          merged.company.contacts = Object.assign({}, DEFAULT_KMS_DATA.company.contacts, cloudData.company.contacts);
-        }
-      }
-      window.KMS_DATA = merged;
+  let debounceTimer = null;
+  function triggerUiRefresh() {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
-        if (cloudData.adminUsername) {
-          localStorage.setItem('KMS_CUSTOM_USER', cloudData.adminUsername);
-        }
-        if (cloudData.adminPassword) {
-          localStorage.setItem('KMS_CUSTOM_PASS', cloudData.adminPassword);
-        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(window.KMS_DATA));
       } catch(e) {}
 
       // Perbarui tampilan publik jika halaman utama sedang terbuka
@@ -2896,17 +2890,110 @@ function initCloudSync() {
       if (typeof initAdminDashboard === 'function' && window.location.hash.includes('admin')) {
         initAdminDashboard();
       }
-    } else {
-      // Jika data di Firestore masih kosong, unggah data default secara otomatis
-      console.log('☁️ Mengunggah data awal bawaan ke Cloud Firestore...');
-      kmsDb.collection('cms').doc('website_data').set(window.KMS_DATA)
-        .catch(err => console.warn('Gagal upload data awal:', err));
+    }, 60);
+  }
+
+  // 1. Dengarkan data inti website_data (Profil, Kategori, Klien, Kontak, Nilai Perusahaan)
+  kmsDb.collection('cms').doc('website_data').onSnapshot((doc) => {
+    if (doc.exists) {
+      const cloudData = doc.data();
+      const merged = Object.assign({}, DEFAULT_KMS_DATA, cloudData);
+
+      // Pertahankan produk, galeri, dan hero slides yang sudah aktif di memori
+      if (window.KMS_DATA && Array.isArray(window.KMS_DATA.products) && window.KMS_DATA.products.length > 0) {
+        merged.products = window.KMS_DATA.products;
+      } else if (cloudData.products && Array.isArray(cloudData.products) && cloudData.products.length > 0) {
+        merged.products = cloudData.products;
+      } else {
+        merged.products = DEFAULT_KMS_DATA.products;
+      }
+
+      if (window.KMS_DATA && Array.isArray(window.KMS_DATA.gallery) && window.KMS_DATA.gallery.length > 0) {
+        merged.gallery = window.KMS_DATA.gallery;
+      } else if (cloudData.gallery && Array.isArray(cloudData.gallery) && cloudData.gallery.length > 0) {
+        merged.gallery = cloudData.gallery;
+      } else {
+        merged.gallery = DEFAULT_KMS_DATA.gallery;
+      }
+
+      if (window.KMS_DATA && Array.isArray(window.KMS_DATA.heroSlides) && window.KMS_DATA.heroSlides.length > 0) {
+        merged.heroSlides = window.KMS_DATA.heroSlides;
+      } else if (cloudData.heroSlides && Array.isArray(cloudData.heroSlides) && cloudData.heroSlides.length > 0) {
+        merged.heroSlides = cloudData.heroSlides;
+      } else {
+        merged.heroSlides = DEFAULT_KMS_DATA.heroSlides;
+      }
+
+      if (!cloudData.categories || !Array.isArray(cloudData.categories) || cloudData.categories.length === 0) {
+        merged.categories = DEFAULT_KMS_DATA.categories;
+      }
+      if (!cloudData.clients || !Array.isArray(cloudData.clients) || cloudData.clients.length === 0) {
+        merged.clients = DEFAULT_KMS_DATA.clients;
+      }
+
+      if (cloudData.company) {
+        merged.company = Object.assign({}, DEFAULT_KMS_DATA.company, cloudData.company);
+        if (cloudData.company.contacts) {
+          merged.company.contacts = Object.assign({}, DEFAULT_KMS_DATA.company.contacts, cloudData.company.contacts);
+        }
+      }
+      window.KMS_DATA = merged;
+      if (cloudData.adminUsername) {
+        try { localStorage.setItem('KMS_CUSTOM_USER', cloudData.adminUsername); } catch(e) {}
+      }
+      if (cloudData.adminPassword) {
+        try { localStorage.setItem('KMS_CUSTOM_PASS', cloudData.adminPassword); } catch(e) {}
+      }
+
+      triggerUiRefresh();
     }
   }, (err) => {
-    console.warn('Firestore real-time sync warning:', err);
+    console.warn('Firestore website_data sync warning:', err);
   });
 
-  // 2. Dengarkan data Inquiries dari Firestore secara realtime untuk Admin
+  // 2. Dengarkan data Hero Slides secara realtime (Dedicated 1 MiB limit)
+  kmsDb.collection('cms').doc('hero_slides').onSnapshot((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      if (data && Array.isArray(data.heroSlides) && data.heroSlides.length > 0) {
+        if (!window.KMS_DATA) window.KMS_DATA = {};
+        window.KMS_DATA.heroSlides = data.heroSlides;
+        triggerUiRefresh();
+      }
+    }
+  }, (err) => {
+    console.warn('Firestore hero_slides sync warning:', err);
+  });
+
+  // 3. Dengarkan data Galeri secara realtime (Dedicated 1 MiB limit)
+  kmsDb.collection('cms').doc('gallery_data').onSnapshot((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      if (data && Array.isArray(data.gallery) && data.gallery.length > 0) {
+        if (!window.KMS_DATA) window.KMS_DATA = {};
+        window.KMS_DATA.gallery = data.gallery;
+        triggerUiRefresh();
+      }
+    }
+  }, (err) => {
+    console.warn('Firestore gallery_data sync warning:', err);
+  });
+
+  // 4. Dengarkan data Produk secara realtime (Dedicated 1 MiB limit)
+  kmsDb.collection('cms').doc('products_data').onSnapshot((doc) => {
+    if (doc.exists) {
+      const data = doc.data();
+      if (data && Array.isArray(data.products) && data.products.length > 0) {
+        if (!window.KMS_DATA) window.KMS_DATA = {};
+        window.KMS_DATA.products = data.products;
+        triggerUiRefresh();
+      }
+    }
+  }, (err) => {
+    console.warn('Firestore products_data sync warning:', err);
+  });
+
+  // 5. Dengarkan data Inquiries dari Firestore secara realtime untuk Admin
   kmsDb.collection('inquiries').onSnapshot((snapshot) => {
     const cloudInquiries = [];
     snapshot.forEach((doc) => {
@@ -2929,7 +3016,7 @@ function initCloudSync() {
     console.warn('Firestore inquiries sync warning:', err);
   });
 
-  // 3. Dengarkan data Analitik Kunjungan dari Firestore secara realtime
+  // 6. Dengarkan data Analitik Kunjungan dari Firestore secara realtime
   kmsDb.collection('cms').doc('analytics').onSnapshot((doc) => {
     if (doc.exists) {
       window.KMS_ANALYTICS = doc.data();
