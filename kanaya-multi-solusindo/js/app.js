@@ -2037,8 +2037,8 @@ function populateAdminProfileForm() {
   const aboutPreview = document.getElementById('adm-about-image-preview');
   if (aboutPreview) aboutPreview.src = aboutImgVal;
 
-  // Foto Kantor Operasional
-  const officeImgVal = (d.company && d.company.officeImage) || 'assets/gallery/kantor_kanaya.jpg';
+  // Foto Profil Perusahaan (Halaman Tentang Kami)
+  const officeImgVal = (d.company && d.company.officeImage) || 'assets/gallery/profil_kanaya_tablet.png';
   const officeInput = document.getElementById('adm-office-image');
   if (officeInput) officeInput.value = officeImgVal;
   const officePreview = document.getElementById('adm-office-image-preview');
