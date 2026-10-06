@@ -42,7 +42,7 @@ const DEFAULT_KMS_DATA = {
       badge: "General Supplier & Procurement Partner",
       title: "Solusi Pengadaan Untuk Setiap Kebutuhan Proyek",
       subtitle: "Kami menyediakan beragam produk dan kebutuhan industri melalui layanan pengadaan yang praktis, responsif, dan terpercaya.",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
+      image: "assets/hero/hero_kms_tablet_16x9.jpg",
       tag: "Suplai Cepat & Resmi",
       highlights: [
         "Katalog Produk Lengkap & Siap Pasok",
