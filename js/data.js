@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 20,
+  catalogVersion: 21,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -2601,21 +2601,21 @@ const DEFAULT_KMS_DATA = {
     "title": "Gudang Kami",
     "category": "Gudang Kami",
     "desc": "Manajemen penyimpanan stok barang dengan sistem racking teratur dan terjaga kebersihannya.",
-    "image": "assets/gallery/Distribusi_3.jpg"
+    "image": "assets/gallery/gudang_rak.jpg"
   },
   {
     "id": "gal-6",
     "title": "Aktivitas Kerja",
     "category": "Aktivitas Kerja Karyawan",
     "desc": "Aktivitas kerja karyawan dalam menjalankan tugas dan mendukung operasional perusahaan.",
-    "image": "assets/gallery/Aktivitas.jpeg"
+    "image": "assets/gallery/aktivitas_kantor.jpg"
   },
   {
     "id": "gal-1790922063412",
     "title": "Kantor Kami",
     "category": "Kantor Kami",
     "desc": "Lingkungan kantor sebagai pusat aktivitas kerja, koordinasi internal, dan operasional perusahaan.",
-    "image": "assets/gallery/kantor_kanaya.jpg"
+    "image": "assets/gallery/sofa_kantor.jpg"
   }
   ],
 
@@ -2679,14 +2679,14 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V20';
+const STORAGE_KEY = 'KMS_APP_DATA_V21';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
 function loadKmsData() {
   try {
     // Bersihkan versi lama di LocalStorage untuk menghemat memori kuota 5MB browser
-    for (let i = 1; i <= 19; i++) {
+    for (let i = 1; i <= 20; i++) {
       try { localStorage.removeItem('KMS_APP_DATA_V' + i); } catch(e) {}
     }
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -2715,7 +2715,7 @@ function loadKmsData() {
 }
 
 function saveKmsData(data) {
-  data.catalogVersion = 20;
+  data.catalogVersion = 21;
   data.lastModified = Date.now();
 
   // 1. Simpan ke LocalStorage seketika untuk kecepatan lokal & offline fallback
@@ -2724,7 +2724,7 @@ function saveKmsData(data) {
   } catch (e) {
     console.error('Error saving to localStorage:', e);
     try {
-      for (let i = 1; i <= 19; i++) {
+      for (let i = 1; i <= 20; i++) {
         localStorage.removeItem('KMS_APP_DATA_V' + i);
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
