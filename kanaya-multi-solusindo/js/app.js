@@ -819,6 +819,9 @@ function showView(viewId) {
   if (viewId === 'products') {
     renderProducts();
   }
+  if (viewId === 'gallery') {
+    initGalleryGrid();
+  }
 }
 
 function updateNavActive(target) {
