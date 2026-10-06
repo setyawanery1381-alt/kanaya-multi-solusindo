@@ -4,7 +4,7 @@
  */
 
 const DEFAULT_KMS_DATA = {
-  catalogVersion: 21,
+  catalogVersion: 22,
   company: {
     name: "PT Kanaya Multi Solusindo",
     shortName: "KMS",
@@ -14,7 +14,7 @@ const DEFAULT_KMS_DATA = {
     aboutShort: "PT Kanaya Multi Solusindo bergerak di bidang General Supplier dengan menyediakan beragam produk untuk memenuhi kebutuhan bisnis, operasional, dan industri, meliputi Plastic, Packaging, Office Stationery, Safety Equipment, Chemical, Consumable, dan Printing.",
     aboutFull: "PT Kanaya Multi Solusindo merupakan perusahaan General Supplier yang menyediakan berbagai kebutuhan produk dan material untuk mendukung aktivitas bisnis, operasional, dan industri.\n\nDidirikan pada tahun 2024, PT Kanaya Multi Solusindo berfokus pada pengadaan dan penyediaan berbagai kebutuhan, mulai dari Plastic, Packaging, Office Stationery, Safety Equipment, Chemicals, Consumables, hingga Printing.\n\nDengan pendekatan yang berorientasi pada kebutuhan pelanggan, kami berkomitmen untuk menjadi mitra pengadaan yang terpercaya serta memberikan solusi yang efektif, efisien, dan tepat guna.",
     aboutImage: "assets/gallery/Rapat_1.png",
-    officeImage: "assets/gallery/kantor_kanaya.jpg",
+    officeImage: "assets/gallery/profil_perusahaan.png",
     contacts: {
       phone: "0813-1052-840",
       whatsapp: "0813-1052-840",
@@ -2679,14 +2679,14 @@ try {
 /**
  * Reactive LocalStorage + Cloud Firestore Data Layer
  */
-const STORAGE_KEY = 'KMS_APP_DATA_V21';
+const STORAGE_KEY = 'KMS_APP_DATA_V22';
 const INQUIRIES_KEY = 'KMS_INQUIRIES_V2';
 const AUTH_KEY = 'KMS_ADMIN_AUTH_V2';
 
 function loadKmsData() {
   try {
     // Bersihkan versi lama di LocalStorage untuk menghemat memori kuota 5MB browser
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 21; i++) {
       try { localStorage.removeItem('KMS_APP_DATA_V' + i); } catch(e) {}
     }
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -2715,7 +2715,7 @@ function loadKmsData() {
 }
 
 function saveKmsData(data) {
-  data.catalogVersion = 21;
+  data.catalogVersion = 22;
   data.lastModified = Date.now();
 
   // 1. Simpan ke LocalStorage seketika untuk kecepatan lokal & offline fallback
@@ -2724,7 +2724,7 @@ function saveKmsData(data) {
   } catch (e) {
     console.error('Error saving to localStorage:', e);
     try {
-      for (let i = 1; i <= 20; i++) {
+      for (let i = 1; i <= 21; i++) {
         localStorage.removeItem('KMS_APP_DATA_V' + i);
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));

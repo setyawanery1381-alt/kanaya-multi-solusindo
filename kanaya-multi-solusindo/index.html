@@ -685,9 +685,9 @@
             <!-- Populated dynamically -->
           </div>
           <div class="lg:col-span-5 flex justify-center lg:justify-end">
-            <div class="w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-2xl overflow-hidden shadow-xl border border-slate-200 relative group bg-slate-100" style="aspect-ratio: 9/16;">
-              <img id="about-company-image" src="assets/gallery/kantor_kanaya.jpg" 
-       alt="Kantor Operasional PT Kanaya Multi Solusindo - Ruko Sentra EM.6 Harapan Indah Bekasi" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="w-full max-w-[480px] aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-slate-200 relative group bg-slate-100" style="aspect-ratio: 4/3;">
+              <img id="about-company-image" src="assets/gallery/profil_perusahaan.png" 
+       alt="Profil Perusahaan PT Kanaya Multi Solusindo - General Supplier &amp; Procurement Partner" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
             </div>
           </div>
         </div>
@@ -1644,21 +1644,21 @@
                       <span class="text-[10px] font-bold text-slate-700 bg-slate-200 px-2.5 py-0.5 rounded-full">Foto Halaman Tentang Kami</span>
                     </div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                      <div class="w-20 h-28 rounded-xl overflow-hidden border-2 border-white shadow-md bg-slate-200 flex-shrink-0 relative group">
-                        <img id="adm-office-image-preview" src="assets/gallery/kantor_kanaya.jpg" alt="Preview Foto Kantor" class="w-full h-full object-cover">
+                      <div class="w-32 h-24 aspect-[4/3] rounded-xl overflow-hidden border-2 border-white shadow-md bg-slate-200 flex-shrink-0 relative group" style="aspect-ratio: 4/3;">
+                        <img id="adm-office-image-preview" src="assets/gallery/profil_perusahaan.png" alt="Preview Foto Profil Perusahaan" class="w-full h-full object-cover">
                       </div>
                       <div class="space-y-2 flex-1 w-full">
                         <div class="flex items-center gap-2 flex-wrap">
                           <label class="cursor-pointer px-3.5 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-corporate text-xs font-bold border border-blue-200 flex items-center gap-1.5 shadow-2xs transition">
                             <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                            <span>Upload Foto Kantor</span>
+                            <span>Upload Foto Profil</span>
                             <input type="file" accept="image/*" onchange="handleImageFileInput(this, 'adm-office-image-preview', 'adm-office-image')" class="hidden">
                           </label>
-                          <span class="text-[11px] text-slate-500">Format JPG/PNG</span>
+                          <span class="text-[11px] text-slate-500">Format JPG/PNG (Rasio 4:3)</span>
                         </div>
                         <div>
                           <span class="text-[10px] text-slate-500 font-medium">Atau path/URL gambar:</span>
-                          <input type="text" id="adm-office-image" placeholder="assets/gallery/kantor_kanaya.jpg" class="w-full px-3 py-1.5 text-xs border rounded-lg mt-0.5 bg-white" oninput="document.getElementById('adm-office-image-preview').src = this.value">
+                          <input type="text" id="adm-office-image" placeholder="assets/gallery/profil_perusahaan.png" class="w-full px-3 py-1.5 text-xs border rounded-lg mt-0.5 bg-white" oninput="document.getElementById('adm-office-image-preview').src = this.value">
                         </div>
                       </div>
                     </div>
@@ -2393,9 +2393,9 @@
   <!-- Firebase App & Firestore SDKs (Compat v10.8.0) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="js/data.js?v=21.1"></script>
-  <script src="js/app.js?v=21.1"></script>
-  <script src="js/i18n.js?v=21.1"></script>
+  <script src="js/data.js?v=22.0"></script>
+  <script src="js/app.js?v=22.0"></script>
+  <script src="js/i18n.js?v=22.0"></script>
 
   <!-- Hero Slides Synchronizer & Enhanced Renderer (Guarantees Instant Live Update via Single-File Upload) -->
   </body>
