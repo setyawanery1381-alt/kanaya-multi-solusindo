@@ -692,19 +692,19 @@ const KMS_CATEGORIES_I18N = {
 const KMS_GALLERY_I18N = {
   id: [
     { title: "Distribusi", category: "Distribusi", desc: "Proses pemuatan dan penyiapan muatan produk suplai untuk pengiriman tepat waktu ke gudang pelanggan." },
-    { title: "Gudang", category: "Gudang", desc: "Manajemen penyimpanan stok barang dengan sistem racking teratur dan terjaga kebersihannya." },
     { title: "Rapat", category: "Rapat", desc: "Koordinasi internal tim pengadaan dan konsultasi spesifikasi kebutuhan solusi mitra bisnis." },
     { title: "Pengiriman", category: "Pengiriman", desc: "Armada logistik terpercaya siap menjangkau berbagai kawasan industri di Jabodetabek dan sekitarnya." },
-    { title: "Aktivitas", category: "Aktivitas", desc: "Pemeriksaan kualitas berkala (quality check) memastikan barang yang dikirim sesuai standar spesifikasi." },
-    { title: "Tim Kami", category: "Tim Kami", desc: "Tim profesional kami yang berkomitmen mendampingi setiap tahapan pengadaan perusahaan Anda." }
+    { title: "Gudang Kami", category: "Gudang Kami", desc: "Manajemen penyimpanan stok barang dengan sistem racking teratur dan terjaga kebersihannya." },
+    { title: "Aktivitas Kerja", category: "Aktivitas Kerja Karyawan", desc: "Aktivitas kerja karyawan dalam menjalankan tugas dan mendukung operasional perusahaan." },
+    { title: "Kantor Kami", category: "Kantor Kami", desc: "Lingkungan kantor sebagai pusat aktivitas kerja, koordinasi internal, dan operasional perusahaan." }
   ],
   en: [
     { title: "Logistics Distribution", category: "Distribution", desc: "Product staging and preparation for punctual on-time delivery to client manufacturing facilities." },
-    { title: "Warehouse Facility", category: "Warehouse", desc: "Systematic warehouse inventory management with organized racking and clean storage environments." },
-    { title: "Client Consultation", category: "Meeting", desc: "Internal procurement coordination and technical specification consultation with enterprise partners." },
-    { title: "Fleet Delivery", category: "Logistics", desc: "Reliable logistics fleet ready to service industrial corridors across Greater Jakarta and West Java." },
-    { title: "Quality Inspection", category: "Quality Check", desc: "Rigorous periodic quality checks ensuring all dispatched goods meet certified technical specifications." },
-    { title: "Our Dedicated Team", category: "Team", desc: "Our dedicated professional procurement team committed to assisting every stage of your corporate sourcing." }
+    { title: "Strategic Meeting", category: "Meeting", desc: "Internal procurement coordination and technical specification consultation with enterprise partners." },
+    { title: "Fleet Delivery", category: "Delivery", desc: "Reliable logistics fleet ready to service industrial corridors across Greater Jakarta and West Java." },
+    { title: "Our Warehouse", category: "Warehouse", desc: "Systematic warehouse inventory management with organized racking and clean storage environments." },
+    { title: "Employee Activities", category: "Workplace", desc: "Dedicated employees executing operational tasks and supporting company workflow excellence." },
+    { title: "Our Office", category: "Headquarters", desc: "Office environment serving as the operational hub for internal coordination and corporate activities." }
   ]
 };
 

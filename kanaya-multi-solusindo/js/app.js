@@ -1291,13 +1291,19 @@ function initGalleryGrid() {
   if (!container) return;
 
   const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
-  const galI18n = (window.KMS_GALLERY_I18N && window.KMS_GALLERY_I18N[isEn ? 'en' : 'id']) || [];
+  const galI18n = (isEn && window.KMS_GALLERY_I18N && window.KMS_GALLERY_I18N.en) || null;
 
-  container.innerHTML = window.KMS_DATA.gallery.map((item, idx) => {
-    const gData = galI18n[idx] || {};
-    const title = gData.title || item.title;
-    const category = gData.category || item.category;
-    const desc = gData.desc || item.desc;
+  container.innerHTML = (window.KMS_DATA.gallery || []).map((item, idx) => {
+    let title = item.title;
+    let category = item.category;
+    let desc = item.desc;
+
+    // Hanya terapkan kamus bahasa Inggris jika pengguna sedang aktif dalam mode English
+    if (isEn && galI18n && galI18n[idx]) {
+      title = galI18n[idx].title || item.title;
+      category = galI18n[idx].category || item.category;
+      desc = galI18n[idx].desc || item.desc;
+    }
 
     return `
     <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 card-hover group">

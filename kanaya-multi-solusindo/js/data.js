@@ -2580,72 +2580,42 @@ const DEFAULT_KMS_DATA = {
     "title": "Distribusi",
     "category": "Distribusi",
     "desc": "Proses pemuatan dan penyiapan muatan produk suplai untuk pengiriman tepat waktu ke gudang pelanggan.",
-    "image": "assets/gallery/Distribusi.jpg",
-    "gallery": [
-      "assets/gallery/Distribusi.jpg",
-      "assets/gallery/Distribusi_2.jpg",
-      "assets/gallery/Distribusi_3.jpg",
-      "assets/gallery/Distribusi_4.jpg"
-    ]
-  },
-  {
-    "id": "gal-2",
-    "title": "Gudang",
-    "category": "Gudang",
-    "desc": "Manajemen penyimpanan stok barang dengan sistem racking teratur dan terjaga kebersihannya.",
-    "image": "assets/gallery/Distribusi_3.jpg",
-    "gallery": [
-      "assets/gallery/Distribusi_3.jpg",
-      "assets/gallery/Distribusi_4.jpg",
-      "assets/gallery/Distribusi.jpg"
-    ]
+    "image": "assets/gallery/Distribusi.jpg"
   },
   {
     "id": "gal-3",
     "title": "Rapat",
     "category": "Rapat",
     "desc": "Koordinasi internal tim pengadaan dan konsultasi spesifikasi kebutuhan solusi mitra bisnis.",
-    "image": "assets/gallery/Rapat_1.png",
-    "gallery": [
-      "assets/gallery/Rapat_1.png",
-      "assets/gallery/Rapat_2.png",
-      "assets/gallery/Rapat_3.jpg"
-    ]
+    "image": "assets/gallery/Rapat_1.png"
   },
   {
     "id": "gal-4",
     "title": "Pengiriman",
     "category": "Pengiriman",
     "desc": "Armada logistik terpercaya siap menjangkau berbagai kawasan industri di Jabodetabek dan sekitarnya.",
-    "image": "assets/gallery/Pengiriman_1.jpg",
-    "gallery": [
-      "assets/gallery/Pengiriman_1.jpg",
-      "assets/gallery/Pengiriman_2.jpeg"
-    ]
+    "image": "assets/gallery/Pengiriman_1.jpg"
   },
   {
     "id": "gal-5",
-    "title": "Aktivitas",
-    "category": "Aktivitas",
-    "desc": "Pemeriksaan kualitas berkala (quality check) memastikan barang yang dikirim sesuai standar spesifikasi.",
-    "image": "assets/gallery/Aktivitas.jpeg",
-    "gallery": [
-      "assets/gallery/Aktivitas.jpeg",
-      "assets/gallery/Aktivitas_2.jpeg",
-      "assets/gallery/Aktivitas_3.jpeg"
-    ]
+    "title": "Gudang Kami",
+    "category": "Gudang Kami",
+    "desc": "Manajemen penyimpanan stok barang dengan sistem racking teratur dan terjaga kebersihannya.",
+    "image": "assets/gallery/Distribusi_3.jpg"
   },
   {
     "id": "gal-6",
-    "title": "Tim Kami",
-    "category": "Tim Kami",
-    "desc": "Tim profesional kami yang berkomitmen mendampingi setiap tahapan pengadaan perusahaan Anda.",
-    "image": "assets/gallery/Rapat_2.png",
-    "gallery": [
-      "assets/gallery/Rapat_2.png",
-      "assets/gallery/Rapat_1.png",
-      "assets/gallery/Rapat_3.jpg"
-    ]
+    "title": "Aktivitas Kerja",
+    "category": "Aktivitas Kerja Karyawan",
+    "desc": "Aktivitas kerja karyawan dalam menjalankan tugas dan mendukung operasional perusahaan.",
+    "image": "assets/gallery/Aktivitas.jpeg"
+  },
+  {
+    "id": "gal-1790922063412",
+    "title": "Kantor Kami",
+    "category": "Kantor Kami",
+    "desc": "Lingkungan kantor sebagai pusat aktivitas kerja, koordinasi internal, dan operasional perusahaan.",
+    "image": "assets/gallery/kantor_kanaya.jpg"
   }
   ],
 
