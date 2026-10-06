@@ -14,7 +14,7 @@ const DEFAULT_KMS_DATA = {
     aboutShort: "PT Kanaya Multi Solusindo bergerak di bidang General Supplier dengan menyediakan beragam produk untuk memenuhi kebutuhan bisnis, operasional, dan industri, meliputi Plastic, Packaging, Office Stationery, Safety Equipment, Chemical, Consumable, dan Printing.",
     aboutFull: "PT Kanaya Multi Solusindo merupakan perusahaan General Supplier yang menyediakan berbagai kebutuhan produk dan material untuk mendukung aktivitas bisnis, operasional, dan industri.\n\nDidirikan pada tahun 2024, PT Kanaya Multi Solusindo berfokus pada pengadaan dan penyediaan berbagai kebutuhan, mulai dari Plastic, Packaging, Office Stationery, Safety Equipment, Chemicals, Consumables, hingga Printing.\n\nDengan pendekatan yang berorientasi pada kebutuhan pelanggan, kami berkomitmen untuk menjadi mitra pengadaan yang terpercaya serta memberikan solusi yang efektif, efisien, dan tepat guna.",
     aboutImage: "assets/gallery/Rapat_1.png",
-    officeImage: "assets/gallery/profil_kanaya_tablet.png",
+    officeImage: "assets/gallery/profil_kanaya_tablet.jpg",
     contacts: {
       phone: "0813-1052-840",
       whatsapp: "0813-1052-840",

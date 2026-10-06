@@ -2038,7 +2038,7 @@ function populateAdminProfileForm() {
   if (aboutPreview) aboutPreview.src = aboutImgVal;
 
   // Foto Profil Perusahaan (Halaman Tentang Kami)
-  const officeImgVal = (d.company && d.company.officeImage) || 'assets/gallery/profil_kanaya_tablet.png';
+  const officeImgVal = (d.company && d.company.officeImage) || 'assets/gallery/profil_kanaya_tablet.jpg';
   const officeInput = document.getElementById('adm-office-image');
   if (officeInput) officeInput.value = officeImgVal;
   const officePreview = document.getElementById('adm-office-image-preview');
