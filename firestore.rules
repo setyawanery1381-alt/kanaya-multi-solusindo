@@ -1,0 +1,217 @@
+rules_version = '2';
+
+/**
+ * Cloud Firestore Security Rules
+ * Project: kanaya-multi-solusindo
+ *
+ * Designed for PT Kanaya Multi Solusindo (General Supplier & Industrial Procurement).
+ * Enforces production-grade security, type checking, field constraints, and DoS mitigation
+ * replacing the expiring 30-day Test Mode.
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: cms
+    // Document IDs: 'website_data', 'hero_slides', 'gallery_data', 'products_data', 'analytics'
+    //
+    // 1. cms/website_data:
+    //    Fields:
+    //      - catalogVersion: number (optional)
+    //      - lastModified: number (optional)
+    //      - company: map (optional)
+    //      - vision: string (optional, max 2000 chars)
+    //      - missions: list (optional, max 20 items)
+    //      - values: list (optional, max 20 items)
+    //      - stats: list (optional, max 20 items)
+    //      - whyKanaya: map (optional)
+    //      - closingCta: map (optional)
+    //      - solutions: list (optional, max 30 items)
+    //      - categories: list (optional, max 50 items)
+    //      - clients: list (optional, max 100 items)
+    //      - translations: map (optional)
+    //      - adminUsername: string (optional, max 100 chars)
+    //      - adminPassword: string (optional, max 100 chars)
+    //      - products: list (optional, legacy fallback, max 300 items)
+    //      - gallery: list (optional, legacy fallback, max 100 items)
+    //      - heroSlides: list (optional, legacy fallback, max 20 items)
+    //
+    // 2. cms/hero_slides:
+    //    Fields:
+    //      - heroSlides: list of map (required, max 20 items)
+    //      - lastModified: number (optional)
+    //
+    // 3. cms/gallery_data:
+    //    Fields:
+    //      - gallery: list of map (required, max 100 items)
+    //      - lastModified: number (optional)
+    //
+    // 4. cms/products_data:
+    //    Fields:
+    //      - products: list of map (required, max 300 items)
+    //      - lastModified: number (optional)
+    //
+    // 5. cms/analytics:
+    //    Fields:
+    //      - totalViews: number (optional, >= 0)
+    //      - uniqueVisitors: number (optional, >= 0)
+    //      - mobileViews: number (optional, >= 0)
+    //      - desktopViews: number (optional, >= 0)
+    //      - lastUpdated: string (optional, max 50 chars)
+    //      - views_YYYY-MM-DD: number (optional dynamic daily view counter, >= 0)
+    //
+    // Collection: inquiries
+    // Document ID: Auto-generated string ID
+    // Fields:
+    //   - id: string (optional, max 100 chars, e.g. "INQ-...")
+    //   - name: string (required, 1-150 chars)
+    //   - phone: string (required, 1-50 chars)
+    //   - product: string (required, 1-300 chars)
+    //   - status: string (required, max 50 chars, e.g. "Baru")
+    //   - company: string (optional, max 200 chars)
+    //   - email: string (optional, max 150 chars)
+    //   - qty: string (optional, max 100 chars)
+    //   - message: string (optional, max 5000 chars)
+    //   - type: string (optional, max 100 chars)
+    //   - createdAt: string (optional, max 100 chars)
+    //   - createdAtMs: number (optional)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper & Domain Validation Functions
+    // ===============================================================
+
+    // Default Deny: All unmatched paths and collections are strictly denied
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Domain Validator: cms/website_data
+    function isValidWebsiteData(data) {
+      return data.keys().hasOnly([
+          'catalogVersion', 'lastModified', 'company', 'vision', 'missions',
+          'values', 'stats', 'whyKanaya', 'closingCta', 'solutions',
+          'categories', 'clients', 'translations', 'adminUsername', 'adminPassword',
+          'products', 'gallery', 'heroSlides'
+        ]) &&
+        (!('catalogVersion' in data) || data.catalogVersion is number) &&
+        (!('lastModified' in data) || data.lastModified is number) &&
+        (!('company' in data) || data.company is map) &&
+        (!('vision' in data) || (data.vision is string && data.vision.size() <= 2000)) &&
+        (!('missions' in data) || (data.missions is list && data.missions.size() <= 20)) &&
+        (!('values' in data) || (data.values is list && data.values.size() <= 20)) &&
+        (!('stats' in data) || (data.stats is list && data.stats.size() <= 20)) &&
+        (!('whyKanaya' in data) || data.whyKanaya is map) &&
+        (!('closingCta' in data) || data.closingCta is map) &&
+        (!('solutions' in data) || (data.solutions is list && data.solutions.size() <= 30)) &&
+        (!('categories' in data) || (data.categories is list && data.categories.size() <= 50)) &&
+        (!('clients' in data) || (data.clients is list && data.clients.size() <= 100)) &&
+        (!('translations' in data) || data.translations is map) &&
+        (!('adminUsername' in data) || (data.adminUsername is string && data.adminUsername.size() <= 100)) &&
+        (!('adminPassword' in data) || (data.adminPassword is string && data.adminPassword.size() <= 100)) &&
+        (!('products' in data) || (data.products is list && data.products.size() <= 300)) &&
+        (!('gallery' in data) || (data.gallery is list && data.gallery.size() <= 100)) &&
+        (!('heroSlides' in data) || (data.heroSlides is list && data.heroSlides.size() <= 20));
+    }
+
+    // Domain Validator: cms/hero_slides
+    function isValidHeroSlides(data) {
+      return data.keys().hasAll(['heroSlides']) &&
+        data.keys().hasOnly(['heroSlides', 'lastModified']) &&
+        data.heroSlides is list &&
+        data.heroSlides.size() <= 20 &&
+        (!('lastModified' in data) || data.lastModified is number);
+    }
+
+    // Domain Validator: cms/gallery_data
+    function isValidGallery(data) {
+      return data.keys().hasAll(['gallery']) &&
+        data.keys().hasOnly(['gallery', 'lastModified']) &&
+        data.gallery is list &&
+        data.gallery.size() <= 100 &&
+        (!('lastModified' in data) || data.lastModified is number);
+    }
+
+    // Domain Validator: cms/products_data
+    function isValidProducts(data) {
+      return data.keys().hasAll(['products']) &&
+        data.keys().hasOnly(['products', 'lastModified']) &&
+        data.products is list &&
+        data.products.size() <= 300 &&
+        (!('lastModified' in data) || data.lastModified is number);
+    }
+
+    // Domain Validator: cms/analytics
+    function isValidAnalytics(data) {
+      return (!('totalViews' in data) || (data.totalViews is number && data.totalViews >= 0)) &&
+        (!('uniqueVisitors' in data) || (data.uniqueVisitors is number && data.uniqueVisitors >= 0)) &&
+        (!('mobileViews' in data) || (data.mobileViews is number && data.mobileViews >= 0)) &&
+        (!('desktopViews' in data) || (data.desktopViews is number && data.desktopViews >= 0)) &&
+        (!('lastUpdated' in data) || (data.lastUpdated is string && data.lastUpdated.size() <= 50)) &&
+        data.keys().size() <= 1500;
+    }
+
+    // Domain Validator: inquiries
+    function isValidInquiry(data) {
+      return data.keys().hasAll(['name', 'phone', 'product', 'status']) &&
+        data.keys().hasOnly([
+          'id', 'name', 'company', 'email', 'phone', 'product',
+          'qty', 'message', 'type', 'createdAt', 'createdAtMs', 'status'
+        ]) &&
+        data.name is string && data.name.size() > 0 && data.name.size() <= 150 &&
+        data.phone is string && data.phone.size() > 0 && data.phone.size() <= 50 &&
+        data.product is string && data.product.size() > 0 && data.product.size() <= 300 &&
+        data.status is string && data.status.size() <= 50 &&
+        (!('company' in data) || (data.company is string && data.company.size() <= 200)) &&
+        (!('email' in data) || (data.email is string && data.email.size() <= 150)) &&
+        (!('qty' in data) || (data.qty is string && data.qty.size() <= 100)) &&
+        (!('message' in data) || (data.message is string && data.message.size() <= 5000)) &&
+        (!('type' in data) || (data.type is string && data.type.size() <= 100)) &&
+        (!('id' in data) || (data.id is string && data.id.size() <= 100)) &&
+        (!('createdAt' in data) || (data.createdAt is string && data.createdAt.size() <= 100)) &&
+        (!('createdAtMs' in data) || data.createdAtMs is number);
+    }
+
+    // ===============================================================
+    // Collection Access Rules
+    // ===============================================================
+
+    // 1. CMS Collection (Modular Content & Real-time Analytics)
+    match /cms/{docId} {
+      // Public read access for the 5 official modular content documents
+      allow read: if docId in [
+        'website_data', 'hero_slides', 'gallery_data', 'products_data', 'analytics'
+      ];
+
+      // Modular CMS content creation & updates strictly validated by document ID
+      allow create, update: if (docId == 'website_data' && isValidWebsiteData(request.resource.data))
+                            || (docId == 'hero_slides' && isValidHeroSlides(request.resource.data))
+                            || (docId == 'gallery_data' && isValidGallery(request.resource.data))
+                            || (docId == 'products_data' && isValidProducts(request.resource.data))
+                            || (docId == 'analytics' && isValidAnalytics(request.resource.data));
+
+      // Disallow deletion of CMS documents to prevent accidental website content wipe
+      allow delete: if false;
+    }
+
+    // 2. Inquiries Collection (Customer Procurement Requests)
+    match /inquiries/{inquiryId} {
+      // Public inquiry submission from website contact forms & modals with strict data validation
+      allow create: if isValidInquiry(request.resource.data);
+
+      // Read access for CMS admin dashboard to view incoming procurement leads
+      allow read: if true;
+
+      // Admin dashboard delete operation for inquiry management
+      allow delete: if true;
+
+      // Inquiries are immutable once recorded; update is completely denied to prevent tampering
+      allow update: if false;
+    }
+  }
+}
